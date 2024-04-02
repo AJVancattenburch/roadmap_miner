@@ -1,7 +1,7 @@
 <template>
-  <div :class="['offcanvas', position]" tabindex="-1" :id="`${nameOf}Offcanvas`" :aria-labelledby="`${nameOf}OffcanvasLabel`">
+  <div :class="['offcanvas', position]" tabindex="-1" :id="`${nameOf}`" :aria-labelledby="`${nameOf}Label`">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" :id="`${nameOf}OffcanvasLabel`">Upgrades</h5>
+      <h5 class="offcanvas-title" :id="`${nameOf}Label`">Upgrades</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <slot name="body-slot"></slot>

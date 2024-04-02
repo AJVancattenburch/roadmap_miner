@@ -1,10 +1,10 @@
 <template>
   <div class="home d-flex">
-    <i class="upgrade-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgradeMenuOffcanvas" aria-controls="upgradeMenuOffcanvas">
+    <i class="upgrade-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgradeOffcanvas" aria-controls="upgradeOffcanvas">
       <span>Upgrades</span>
     </i>
-    <UpgradeMenu />
-    <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillMenuOffcanvas" aria-controls="skillMenuOffcanvas">
+    <UpgradeOffcanvas />
+    <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
       Skills
     </a>
     <SkillOffcanvas />
@@ -18,7 +18,7 @@ import { accountService } from "../services/AccountService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { computed, onMounted } from "vue";
-import UpgradeMenu from "../components/upgrades/UpgradeMenu.vue";
+import UpgradeOffcanvas from "../components/upgrades/UpgradeOffcanvas.vue";
 import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
 
 export default {
@@ -66,7 +66,7 @@ export default {
     }
   },
   components: {
-    UpgradeMenu,
+    UpgradeOffcanvas,
     SkillOffcanvas,
   }
 }

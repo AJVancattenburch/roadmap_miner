@@ -1,9 +1,12 @@
 <template>
-  <OffcanvasWrapper :position="'offcanvas-start'" :nameOf="'skillMenu'">
+  <OffcanvasWrapper :position="'offcanvas-start'" :nameOf="'skillOffcanvas'">
     <template #body-slot>
       <div class="offcanvas-body p-3">
-        <h3 class="text-center">Skill Tree</h3>
-        
+        <h3 class="text-center pb-3">Skill Tree</h3>
+        <h5 class="text-center">Front End Skills</h5>
+        <div v-for="frontEnd in skills" :key="frontEnd.category">
+          <FrontEndSkillCard :skill="frontEnd" class="mx-2" />
+        </div>
       </div>
     </template>
   </OffcanvasWrapper>
@@ -12,13 +15,19 @@
 <script>
 import Pop from "../../utils/Pop.js";
 import { logger } from "../../utils/Logger.js";
-import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
+import OffcanvasWrapper from '../OffcanvasWrapper.vue'
+import FrontEndSkillCard from "./FrontEndSkillCard.vue";
 import { gameService } from "../../services/GameService.js";
 import { AppState } from "../../state/AppState.js";
-import { ref, computed, onMounted } from "vue";
+import { computed, onMounted } from "vue";
+import { Skill } from "../../models/Skill.js";
 
 export default {
   props: {
+    skill: {
+      type: Skill,
+      required: true
+    },
     position: {
       type: String,
     },
@@ -40,15 +49,16 @@ export default {
     }
 
     onMounted(() => {
-      logger.log("Upgrade:", AppState.upgradeState)
+      logger.log("Skills:", AppState.skillState)
     });
     return {
       getUpgrades,
-      upgrades: computed(() => AppState.upgradeState.upgrades),
+      skills: computed(() => AppState.skillState.skills),
     }
   },
   components: {
     OffcanvasWrapper,
+    FrontEndSkillCard
   }
 }
 </script>

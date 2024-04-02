@@ -1,5 +1,5 @@
 <template>
-  <OffcanvasWrapper :position="'offcanvas-bottom'" :nameOf="'upgradeMenu'">
+  <OffcanvasWrapper :position="'offcanvas-bottom'" :nameOf="'upgradeOffcanvas'">
     <template #body-slot>
       <div class="offcanvas-body p-3">
         <h3 class="text-center">Front End Upgrades</h3>
