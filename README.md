@@ -1,16 +1,19 @@
-CodeWorks Vue Starter
-=====================
-This template is designed to help get students started building vue applications
+# Roadmap Miner
 
-## Legal Overview
+## Welcome to Roadmap Miner!
 
-The content under the CodeWorks®, LLC Organization and all of the individual repos are solely intended for use by CodeWorks Instruction to deliver Educational content to CodeWorks Students.
+When I first started learning how to code, I was overwhelmed by the sheer number of resources available online. I found myself jumping from one tutorial to another, without a clear path to follow. It's easy to fall into the trap of learning a little bit of everything as new hot technologies come out every day, with many hiring companies saying they are looking for experience in those technologies -- especially when you're just trying to get your foot in the door somewhere that will see your potential in an ocean of other candidates.
 
----
+The key to programming and what I've learned from my mentors after reaching a certain level of code literacy or, as I like to say; `'code cognizance'`, is that coding is almost completely code and framework agnostic. The key to becoming a good programmer is to learn how to think like a programmer. The most important tool in your toolkit for you to keep refining is the ability to identify and classic problems and solve them in a way that is elegant, efficient, maintainable, and scalable.
 
-## Copyright
+*This* is why I'm creating Roadmap Miner -- and encourage you to contribute to it as well!
 
-© CodeWorks® LLC, 2021. Unauthorized use and/or duplication of this material without express and written permission from CodeWorks, LLC is strictly prohibited.
+The goal of Roadmap Miner is to try and provide some insight for the abstract and almost esoteric concept of programming that isn't mentioned nearly enough in the plethora of tutorials and resources available online. The real secret ingredient to standing out is `demonstrating your ability to readily identify problems and collaboratively discussing how to pragmatically employ clean, maintainable, and scalable solutions. This will make you will be **considerably** more hireable than someone who has built projects in React but can't solve a problem without Googling the answer.` It also helps experienced recruiters to identify those who are truly passionate about programming and those who are just trying to get a job to make 'easy money' doing something they don't really care about. That's how bad software gets made, and code literacy is not easy money. It's a craft that requires dedication, passion, and a willingness to learn and grow.
 
+The idea is to prioritize becoming more proficient with and building on your already existing logic in languages and frameworks you're already familiar with, rather than "trying to learn React over your current familiar framework" because you think it will make you more hireable. It's not about the framework or the language, it's about the logic and problem-solving skills. The framework is just a wheel to help you get there faster. In the case of not only Roadmap Miner but in real life as well, your ability to think like a programmer is the engine that will drive you to success.
 
-<img src="https://bcw.blob.core.windows.net/public/img/7815839041305055" width="125">
+Instead of constantly trying to learn a new framework, language, technology, or skill, focus on spending your `⚡ energy ⚡` on leveling up your existing and relevant `🔋 upgrades 🔋` and `📈 skills 📈` that you have already spent `⚡ energy ⚡` on to make you a more efficient and effective programmer! In this game, you will have a much easier and enjoyable playthrough if you focus on what is important over being misled by flashy temptations to 'learn more'. Remember -- **quality over quantity** to ensure a successful roadmap in advancing your level of understanding through your `🤵 career milestones 🤵`!
+
+In real life, employing this practice will make you more hireable and more valuable to your team and company. It will also make you more confident in your abilities, and much more likely to succeed in your career!
+
+The development of Roadmap Miner is still in its early stages, and I'm looking for contributors to help me 'flesh out the roadmap' and collaborate on the project. If you're interested in contributing, please feel free to reach out to me on [![LinkedIn](https://img.shields.io/badge/LinkedIn-0072b1?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anthonyvancattenburch/)
