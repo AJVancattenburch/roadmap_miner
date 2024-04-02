@@ -4,7 +4,7 @@
 
 When I first started learning how to code, I was overwhelmed by the sheer number of resources available online. I found myself jumping from one tutorial to another, without a clear path to follow. It's easy to fall into the trap of learning a little bit of everything as new hot technologies come out every day, with many hiring companies saying they are looking for experience in those technologies -- especially when you're just trying to get your foot in the door somewhere that will see your potential in an ocean of other candidates.
 
-The key to programming and what I've learned from my mentors after reaching a certain level of code literacy or, as I like to say; `'code cognizance'`, is that coding is almost completely code and framework agnostic. The key to becoming a good programmer is to learn how to think like a programmer. The most important tool in your toolkit for you to keep refining is the ability to identify and classic problems and solve them in a way that is elegant, efficient, maintainable, and scalable.
+The key to programming and what I've learned from my mentors after reaching a certain level of code literacy or, as I like to say; `'code cognizance'`, is that coding is almost completely code and framework agnostic. The key to becoming a good programmer is to learn how to think like a programmer. The most important tool in your toolkit for you to keep refining is the ability to identify classic problems, followed by solving them in a way that is elegant, efficient, maintainable, and scalable.
 
 *This* is why I'm creating Roadmap Miner -- and encourage you to contribute to it as well!
 
