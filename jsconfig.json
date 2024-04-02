@@ -6,6 +6,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
   }
 }

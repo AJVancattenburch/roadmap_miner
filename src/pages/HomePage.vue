@@ -1,20 +1,26 @@
 <template>
   <div class="home d-flex">
-    <a class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#statsOffcanvas" aria-controls="statsOffcanvas">
-      Stats
+    <i class="upgrade-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgradeMenuOffcanvas" aria-controls="upgradeMenuOffcanvas">
+      <span>Upgrades</span>
+    </i>
+    <UpgradeMenu />
+    <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillMenuOffcanvas" aria-controls="skillMenuOffcanvas">
+      Skills
     </a>
-    <StatsOffcanvas />
+    <SkillOffcanvas />
   </div>
 </template>
 
 <script>
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
-import StatsOffcanvas from '../components/StatsOffcanvas.vue'
 import { accountService } from "../services/AccountService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { computed, onMounted } from "vue";
+import UpgradeMenu from "../components/upgrades/UpgradeMenu.vue";
+import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
+
 export default {
   setup() {
 
@@ -51,16 +57,17 @@ export default {
     }
 
     onMounted(() => {
-      logger.log("Upgrades:", AppState.upgradeState)
+      logger.log("Upgrade:", AppState.upgradeState)
     });
     return {
       getAccount,
       getUpgrades,
-      upgrades: computed(() => AppState.upgradeState),
+      upgrades: computed(() => AppState.upgradeState.upgrades),
     }
   },
   components: {
-    StatsOffcanvas,
+    UpgradeMenu,
+    SkillOffcanvas,
   }
 }
 </script>
@@ -71,14 +78,45 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100vh;
-  a {
+  .upgrade-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    height: 3rem;
+    width: 3rem;
+    background: #111;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem #444 inset;
+    transition: 0.3s ease-in-out;
+    &>span {
+      position: absolute;
+      top: 3rem;
+    }
+    &:hover {
+      background: #333;
+      transition: 0.3s ease-in-out;
+    }
+  }
+  .skill-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
     height: 3rem;
     width: 3rem;
-    background: transparent;
+    background: #111;
+    &:hover {
+      background: #333;
+    }
   }
 }
 </style>

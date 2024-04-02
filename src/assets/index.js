@@ -11,6 +11,7 @@ import expressjs from "./tech/expressjs-logo.png";
 import nextjs from "./tech/nextjs.png";
 import reactjs from "./tech/reactjs.png";
 import vuejs from "./tech/vuejs.png";
+import angularjs from "./tech/angularjs.png";
 import tailwind from "./tech/tailwind.png";
 import threejs from "./tech/threejs.svg";
 import MEVN from "./tech/mevn.png";
@@ -31,6 +32,7 @@ export const image = {
   nextjs,
   reactjs,
   vuejs,
+  angularjs,
   tailwind,
   threejs,
   MEVN,

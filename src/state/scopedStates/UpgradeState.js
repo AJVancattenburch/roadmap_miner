@@ -34,23 +34,23 @@ const upgrades = reactive([
     category: 'Front End',
     energyCost: 40,
     knowledgeMultiplier: 4,
-    picture: image.vue
+    picture: image.vuejs
   }),
   new Upgrade({
     id: '5',
     name: 'React',
     category: 'Front End',
-    energyCost: 50,
-    knowledgeMultiplier: 5,
+    energyCost: 40,
+    knowledgeMultiplier: 4,
     picture: image.reactjs
   }),
   new Upgrade({
     id: '6',
     name: 'Angular',
     category: 'Front End',
-    energyCost: 60,
-    knowledgeMultiplier: 6,
-    picture: image.angular
+    energyCost: 40,
+    knowledgeMultiplier: 4,
+    picture: image.angularjs
   }),
 
   new Upgrade({
@@ -108,7 +108,7 @@ const upgrades = reactive([
     category: 'Full Stack',
     energyCost: 100,
     knowledgeMultiplier: 10,
-    picture: ''
+    picture: image.MERN
   }),
   new Upgrade({
     id: '14',
@@ -116,7 +116,7 @@ const upgrades = reactive([
     category: 'Full Stack',
     energyCost: 100,
     knowledgeMultiplier: 10,
-    picture: ''
+    picture: image.MEAN
   }),
   new Upgrade({
     id: '15',
@@ -124,7 +124,7 @@ const upgrades = reactive([
     category: 'Full Stack',
     energyCost: 100,
     knowledgeMultiplier: 10,
-    picture: ''
+    picture: image.MEVN
   })
 ]);
 
@@ -132,5 +132,6 @@ export const upgradeState = reactive({
   /** @type {import('../../models/Upgrade.js').Upgrade[]} */
     upgrades,
 
-  /** @type {import('../../models/Upgrade.js').Upgrade||null} */
+  /** @type {import('../../models/Upgrade.js').Upgrade|null} */
+    activeUpgrade: null
 });

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="upgrade.category === 'Front End'" class="card d-flex flex-column justify-content-center align-items-center">
+  <div v-if="upgrade.category === 'Full Stack'" class="card d-flex flex-column justify-content-center align-items-center">
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="upgrade.picture" :alt="`Picture of ${upgrade.name}`" :title="`Click button to purchase ${upgrade.name} for ${upgrade.energyCost}`" class="card-img-top img-fluid">
     </div>
@@ -16,6 +16,12 @@ export default {
     upgrade: {
       type: Upgrade,
       required: true
+    }
+  },
+  setup() {
+
+    return {
+      
     }
   }
 }
