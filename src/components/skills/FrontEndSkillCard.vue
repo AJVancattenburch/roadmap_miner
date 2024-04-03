@@ -32,9 +32,9 @@ export default {
     }
   },
   setup(props) {
-    async function createCategorySkillReq() {
+    async function calculateSkillReqByUpgrade() {
       try {
-        await upgradeSkillsService.createCategorySkillReq()
+        await upgradeSkillsService.calculateSkillReqByUpgrade()
         logger.log("Skills:", AppState.skillState.skills)
       }
       catch (error) {
@@ -43,7 +43,7 @@ export default {
       }
     }
     onMounted(() => {
-      createCategorySkillReq()
+      calculateSkillReqByUpgrade()
     })
     return {
       // upgrade: computed(() => {
