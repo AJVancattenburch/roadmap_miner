@@ -2,10 +2,23 @@
   <OffcanvasWrapper :position="'offcanvas-start'" :nameOf="'skillOffcanvas'">
     <template #body-slot>
       <div class="offcanvas-body p-3">
-        <h3 class="text-center pb-3">Skill Tree</h3>
+        <h3 class="text-center mt-3">Skill Tree</h3>
         <h5 class="text-center">Front End Skills</h5>
         <div v-for="frontEnd in skills" :key="frontEnd.category">
-          <FrontEndSkillCard :skill="frontEnd" class="mx-2" />
+          <FrontEndSkillCard :skill="frontEnd" class="mx-2 mb-3" />
+        </div>
+        <hr />
+        <h5 class="text-center mt-3">Back End Skills</h5>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+
+          <div v-for="backEnd in skills" :key="backEnd.category" class="col-6 mb-3">
+            <BackEndSkillCard :skill="backEnd" />
+          </div>
+        </div>
+        <hr />
+        <h5 class="text-center mt-3">Full Stack Skills</h5>
+        <div v-for="fullStack in skills" :key="fullStack.category">
+          <FullStackSkillCard :skill="fullStack" class="mx-2" />
         </div>
       </div>
     </template>
@@ -37,22 +50,11 @@ export default {
     }
   },
   setup() {
-    async function getUpgrades() {
-      try {
-        await gameService.getUpgrades();
-        logger.log(AppState.upgradeState)
-      }
-      catch (error){
-        logger.error(error);
-        Pop.error(error);
-      }
-    }
 
     onMounted(() => {
       logger.log("Skills:", AppState.skillState)
     });
     return {
-      getUpgrades,
       skills: computed(() => AppState.skillState.skills),
     }
   },

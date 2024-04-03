@@ -78,7 +78,7 @@ const upgrades = reactive([
     picture: image.mongodb
   }),
   new Upgrade({
-    id: '12',
+    id: '10',
     name: 'ASP.NET Core',
     category: 'Back End',
     energyCost: 60,
@@ -86,7 +86,7 @@ const upgrades = reactive([
     picture: image.aspnet
   }),
   new Upgrade({
-    id: '10',
+    id: '11',
     name: 'mySQL',
     category: 'Back End',
     energyCost: 40,
@@ -94,7 +94,7 @@ const upgrades = reactive([
     picture: image.mysql
   }),
   new Upgrade({
-    id: '11',
+    id: '12',
     name: 'C#',
     category: 'Back End',
     energyCost: 50,

@@ -4,13 +4,15 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class GameService {
-  async getUpgrades() {
+
+
+  async setRequiredFrontEndUpgrade() {
     try {
-      const res = await api.get('/upgrades')
-      AppState.upgradeState = res.data.map(u => new Upgrade(u))
-      logger.log('Upgrades', AppState.upgradeState)
+      const frontEndUpgrade = AppState.upgradeState.upgrades.map(u => u)
+      const frontEndSkill = AppState.skillState.skills.map(s => s)
+      frontEndSkill.f
     } catch (error) {
-      logger.error('Could not get upgrades', error)
+      logger.error('Could not set required upgrade', error)
     }
   }
 
