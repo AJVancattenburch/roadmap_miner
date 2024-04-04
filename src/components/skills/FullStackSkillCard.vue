@@ -2,10 +2,13 @@
   <div v-if="skill.category === 'Full Stack'" class="card d-flex flex-column justify-content-center align-items-center mb-2">
     <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ skill.name }}</h6>
     <div class="img-container d-flex justify-content-center align-items-center rounded-1">
-      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Click button to purchase for ${skill.upgradeQuantityReq} ${skill.name} upgrades`" class="card-img-top img-fluid">
+      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Unlocks after completing the ${skill.requirementCount} affiliated upgrades`" class="card-img-top img-fluid">
     </div>
-    <small class="sub-text">*{{skill.upgradeQuantityReq}} {{ skill.name }} upgrades required*</small>
-    <i class="mdi mdi-battery"> <span class="upgrade-requirements">{{ skill.upgradeQuantityReq }}</span></i>
+    <small class="col-12 sub-text d-flex flex-column flex-start">
+      <div class="emphasize-text">* {{skill.requirementCount}} upgrades required:</div>
+      <span>{{ skill.requiredUpgrades }}</span>
+    </small>
+    <i class="mdi mdi-battery"> <span class="upgrade-requirements">{{ skill.requirementCount }}</span></i>
   </div>
 </template>
 
@@ -33,6 +36,9 @@ export default {
 .sub-text {
   font-size: 0.75rem;
   font-weight: 500;
-  font-style: italic;
+  padding: 1rem;
+  .emphasize-text {
+    font-weight: 700;
+  }
 }
 </style>

@@ -9,11 +9,8 @@
         </div>
         <hr />
         <h5 class="text-center mt-3">Back End Skills</h5>
-        <div class="col-12 d-flex justify-content-center align-items-center">
-
-          <div v-for="backEnd in skills" :key="backEnd.category" class="col-6 mb-3">
-            <BackEndSkillCard :skill="backEnd" />
-          </div>
+        <div v-for="backEnd in skills" :key="backEnd.category">
+          <BackEndSkillCard :skill="backEnd" />
         </div>
         <hr />
         <h5 class="text-center mt-3">Full Stack Skills</h5>
