@@ -1,5 +1,4 @@
 import { upgradeState } from "../state/scopedStates/UpgradeState.js";
-import { skillState } from "../state/scopedStates/SkillState.js";
 import { logger } from "../utils/Logger.js";
 
 class UpgradeSkillsService {
@@ -7,10 +6,10 @@ class UpgradeSkillsService {
   async setUpgradesRequiredForSkill(newSkill) {
     try {
       const matchedCategories = upgradeState.upgrades.filter(upgrade => upgrade.category === newSkill.category)
-      const relatedUpgrades = matchedCategories.map(upgrade => upgrade.name)
-      newSkill.requiredUpgrades = relatedUpgrades.join(', '),
+      const relatedUpgrades = matchedCategories.map(upgrade => upgrade)
+      newSkill.requiredUpgrades = relatedUpgrades
       newSkill.requirementCount = relatedUpgrades.length
-      logger.log('Added skill.updateReq to skill object: ', newSkill)
+      logger.log('Added required upgrades and count requirement to pertaining skill:', newSkill)
     } catch (error) {
       logger.error('Could not match upgrade to skill', error)
     }
