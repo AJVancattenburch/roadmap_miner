@@ -3,11 +3,11 @@
     <i class="upgrade-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgradeOffcanvas" aria-controls="upgradeOffcanvas">
       <span>Upgrades</span>
     </i>
-    <UpgradeOffcanvas />
+    <UpgradeOffcanvas :position="position" :nameOf="nameOf" />
     <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
       Skills
     </a>
-    <SkillOffcanvas />
+    <SkillOffcanvas :skill="skill" :position="position" :nameOf="nameOf" />
   </div>
 </template>
 
@@ -17,12 +17,29 @@ import { logger } from "../utils/Logger.js";
 import { accountService } from "../services/AccountService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import UpgradeOffcanvas from "../components/upgrades/UpgradeOffcanvas.vue";
 import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
+import { Skill } from "../models/Skill.js";
+import { skillState } from "../state/scopedStates/SkillState.js";
 
 export default {
+  // props: {
+  //   skill: {
+  //     type: Skill,
+  //     required: true
+  //   },
+  //   position: {
+  //     type: String,
+  //   },
+  //   nameOf: {
+  //     type: String,
+  //   }
+  // },
   setup() {
+    const skill = ref(skillState.skills.find(s => s))
+    const position = ref('')
+    const nameOf = ref('')
 
     async function getAccount() {
       try {
@@ -37,7 +54,7 @@ export default {
     async function getUpgrades() {
       try {
         await gameService.getUpgrades();
-        logger.log(AppState.upgradeState)
+        logger.log(`Upgrade State: ${AppState.upgradeState}`)
       }
       catch (error){
         logger.error(error);
@@ -56,10 +73,10 @@ export default {
       }
     }
 
-    onMounted(() => {
-      logger.log("Upgrade:", AppState.upgradeState)
-    });
     return {
+      skill,
+      position,
+      nameOf,
       getAccount,
       getUpgrades,
       upgrades: computed(() => AppState.upgradeState.upgrades),

@@ -50,7 +50,7 @@ export default {
     async function getUpgrades() {
       try {
         await gameService.getUpgrades();
-        logger.log(AppState.upgradeState)
+        logger.log(`Upgrade State: ${AppState.upgradeState}`)
       }
       catch (error){
         logger.error(error);
@@ -58,9 +58,6 @@ export default {
       }
     }
 
-    onMounted(() => {
-      logger.log("Upgrade:", AppState.upgradeState)
-    });
     return {
       getUpgrades,
       upgrades: computed(() => AppState.upgradeState.upgrades),

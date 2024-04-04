@@ -6,5 +6,7 @@ export class Skill {
     this.description = data.description
     this.picture = data.picture
     this.multiplier = data.multiplier
+    this.requiredUpgrades = data.requiredUpgrades
+    this.requirementCount = data.requirementCount
   }
 }

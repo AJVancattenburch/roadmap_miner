@@ -50,10 +50,6 @@ export default {
     }
   },
   setup() {
-
-    onMounted(() => {
-      logger.log("Skills:", AppState.skillState)
-    });
     return {
       skills: computed(() => AppState.skillState.skills),
     }

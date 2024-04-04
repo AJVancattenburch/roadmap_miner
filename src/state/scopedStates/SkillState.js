@@ -12,7 +12,9 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered HTML!',
       picture: image.html,
-      multiplier: 1
+      multiplier: 1,
+      requiredUpgrades: [],
+      requirementCount: 0
     }),
     new Skill({
       id: '2',
