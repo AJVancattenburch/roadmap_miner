@@ -4,7 +4,7 @@
     <div class="img-container d-flex justify-content-center align-items-center rounded-1">
       <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Click button to purchase for ${skill.upgradeQuantityReq} ${skill.name} upgrades`" class="card-img-top img-fluid">
     </div>
-    <small class="sub-text">*{{skill.upgradeQuantityReq}} {{ skill.name }} upgrades required*</small>
+    <small class="sub-text">*{{skill.upgradeQuantityReq}} {{ skill.name }} upgrades required</small>
     <i class="mdi mdi-battery"> <span class="upgrade-requirements">{{ skill.upgradeQuantityReq }}</span></i>
   </div>
 </template>
