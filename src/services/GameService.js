@@ -26,7 +26,7 @@ class GameService {
     AppState.knowledge += upgradeMultiplier
   }
 
-  async buyUpgrade(upgradeId) {
+  async buyUpgrade(upgradeCategory, upgradeId) {
     
   }
 }
