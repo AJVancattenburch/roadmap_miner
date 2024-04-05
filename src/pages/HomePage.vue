@@ -10,9 +10,9 @@
     </a>
     <SkillOffcanvas :skill="skill" :position="position" :nameOf="nameOf" />
 
-    <div class="col-12 clicker-container d-flex justify-content-center align-items-center">
+    <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
       <h1 @click="knowledgeClicker" class="col-3 btn btn-outline-primary">Click and learn</h1>
-      <p>Current Knowledge: {{ knowledgeCounter }}</p>
+      <p class="text-light">Current Knowledge: {{ knowledgeCounter }}</p>
     </div>
   </div>
 </template>

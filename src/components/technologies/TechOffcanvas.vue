@@ -26,15 +26,12 @@
 </template>
 
 <script>
-import Pop from "../../utils/Pop.js";
-import { logger } from "../../utils/Logger.js";
-import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
-import { gameService } from "../../services/GameService.js";
-import { AppState } from "../../state/AppState.js";
 import { computed } from "vue";
+import { AppState } from "../../state/AppState.js";
 import FrontEndTechCard from "./FrontEndTechCard.vue";
 import BackEndTechCard from "./BackEndTechCard.vue";
 import FullStackTechCard from "./FullStackTechCard.vue";
+import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
 
 export default {
   props: {
@@ -48,19 +45,7 @@ export default {
     }
   },
   setup() {
-    async function learnTechnology() {
-      try {
-        await gameService.learnTechnology();
-        logger.log(`Tech State: ${AppState.techState}`)
-      }
-      catch (error){
-        logger.error(error);
-        Pop.error(error);
-      }
-    }
-
     return {
-      learnTechnology,
       technologies: computed(() => AppState.techState.technologies),
     }
   },

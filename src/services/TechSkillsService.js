@@ -6,11 +6,14 @@ import { logger } from "../utils/Logger.js";
 
 class TechSkillsService {
 
-  async learnTechnology(techCategory, techId) {
-    // Check if user has more or equal energy to the cost of the technology
-    // If true, subtract the energy cost from the user's energy by the cost of the technology
-    // Add the technology to the user's list of technologies, increment the quantity of the technology by 1
-    // Then call the techEffects method to apply the multiplier effect of the technology
+  async learnTechnology(newTech) {
+    // ANCHOR - You left off here 👇🏻
+    if (techState.activeTech?.id != newTech.id) {
+      return logger.error('Tech not found')
+    }
+    newTech.quantity++
+    await this.techEffects()
+    logger.log('Technology learned:', newTech)
   }
 
   async techEffects() {

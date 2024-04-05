@@ -3,19 +3,40 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <i @click="learnTechnology" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ tech.name }}</h6>
   </div>
 </template>
 
 <script>
+import Pop from "../../utils/Pop.js";
+import { logger } from "../../utils/Logger.js";
 import { Tech } from "../../models/Tech.js";
+import { AppState } from "../../state/AppState.js";
+import { techSkillsService } from "../../services/TechSkillsService.js";
 
 export default {
   props: {
     tech: {
       type: Tech,
       required: true
+    }
+  },
+  setup(props) {
+    async function learnTechnology() {
+      try {
+        const newTech = props.tech;
+        await techSkillsService.learnTechnology(newTech);
+        logger.log(`Tech State: ${AppState.techState}`)
+      }
+      catch (error){
+        logger.error(error);
+        Pop.error(error);
+      }
+    }
+
+    return {
+      learnTechnology
     }
   }
 }
