@@ -13,6 +13,7 @@ const skills = reactive([
       description: 'You have mastered HTML!',
       picture: image.html,
       multiplier: 1,
+      isUnlocked: false,
       requiredUpgrades: [],
       requirementCount: 0
     }),
@@ -22,7 +23,8 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered CSS!',
       picture: image.css,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '3',
@@ -30,7 +32,8 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered JavaScript!',
       picture: image.javascript,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '4',
@@ -38,7 +41,8 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered Vue!',
       picture: image.vuejs,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '5',
@@ -46,7 +50,8 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered React!',
       picture: image.reactjs,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '6',
@@ -54,7 +59,8 @@ const skills = reactive([
       category: 'Front End',
       description: 'You have mastered Angular!',
       picture: image.angularjs,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '7',
@@ -62,7 +68,8 @@ const skills = reactive([
       category: 'Back End',
       description: 'You have mastered mySQL!',
       picture: image.mysql,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '8',
@@ -70,7 +77,8 @@ const skills = reactive([
       category: 'Back End',
       description: 'You have mastered ASP.NET Core with C# and mySQL!',
       picture: image.csharp,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
 
     new Skill({
@@ -79,7 +87,8 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'You have mastered the MEVN Stack!',
       picture: image.MEVN,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '10',
@@ -87,7 +96,8 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'You have mastered the MERN Stack!',
       picture: image.MERN,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     }),
     new Skill({
       id: '11',
@@ -95,7 +105,8 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'You have mastered the MEAN Stack!',
       picture: image.MEAN,
-      multiplier: 1
+      multiplier: 1,
+      isUnlocked: false
     })
 ]);
 

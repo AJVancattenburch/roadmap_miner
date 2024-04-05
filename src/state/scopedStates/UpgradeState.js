@@ -9,7 +9,7 @@ const upgrades = reactive([
     name: 'HTML',
     category: 'Front End',
     energyCost: 10,
-    knowledgeMultiplier: 1,
+    multiplier: 1,
     picture: image.html
   }),
   new Upgrade({
@@ -17,7 +17,7 @@ const upgrades = reactive([
     name: 'CSS',
     category: 'Front End',
     energyCost: 20,
-    knowledgeMultiplier: 2,
+    multiplier: 2,
     picture: image.css
   }),
   new Upgrade({
@@ -25,7 +25,7 @@ const upgrades = reactive([
     name: 'JavaScript',
     category: 'Front End',
     energyCost: 30,
-    knowledgeMultiplier: 3,
+    multiplier: 3,
     picture: image.javascript
   }),
   new Upgrade({
@@ -33,7 +33,7 @@ const upgrades = reactive([
     name: 'Vue',
     category: 'Front End',
     energyCost: 40,
-    knowledgeMultiplier: 4,
+    multiplier: 4,
     picture: image.vuejs
   }),
   new Upgrade({
@@ -41,7 +41,7 @@ const upgrades = reactive([
     name: 'React',
     category: 'Front End',
     energyCost: 40,
-    knowledgeMultiplier: 4,
+    multiplier: 4,
     picture: image.reactjs
   }),
   new Upgrade({
@@ -49,7 +49,7 @@ const upgrades = reactive([
     name: 'Angular',
     category: 'Front End',
     energyCost: 40,
-    knowledgeMultiplier: 4,
+    multiplier: 4,
     picture: image.angularjs
   }),
 
@@ -58,7 +58,7 @@ const upgrades = reactive([
     name: 'Node',
     category: 'Back End',
     energyCost: 10,
-    knowledgeMultiplier: 1,
+    multiplier: 1,
     picture: image.nodejs
   }),
   new Upgrade({
@@ -66,7 +66,7 @@ const upgrades = reactive([
     name: 'Express',
     category: 'Back End',
     energyCost: 20,
-    knowledgeMultiplier: 2,
+    multiplier: 2,
     picture: image.expressjs
   }),
   new Upgrade({
@@ -74,7 +74,7 @@ const upgrades = reactive([
     name: 'MongoDB',
     category: 'Back End',
     energyCost: 30,
-    knowledgeMultiplier: 3,
+    multiplier: 3,
     picture: image.mongodb
   }),
   new Upgrade({
@@ -82,7 +82,7 @@ const upgrades = reactive([
     name: 'ASP.NET Core',
     category: 'Back End',
     energyCost: 60,
-    knowledgeMultiplier: 6,
+    multiplier: 6,
     picture: image.aspnet
   }),
   new Upgrade({
@@ -90,7 +90,7 @@ const upgrades = reactive([
     name: 'mySQL',
     category: 'Back End',
     energyCost: 40,
-    knowledgeMultiplier: 4,
+    multiplier: 4,
     picture: image.mysql
   }),
   new Upgrade({
@@ -98,7 +98,7 @@ const upgrades = reactive([
     name: 'C#',
     category: 'Back End',
     energyCost: 50,
-    knowledgeMultiplier: 5,
+    multiplier: 5,
     picture: image.csharp
   }),
 
@@ -107,7 +107,7 @@ const upgrades = reactive([
     name: 'MERN Stack',
     category: 'Full Stack',
     energyCost: 100,
-    knowledgeMultiplier: 10,
+    multiplier: 10,
     picture: image.MERN
   }),
   new Upgrade({
@@ -115,7 +115,7 @@ const upgrades = reactive([
     name: 'MEAN Stack',
     category: 'Full Stack',
     energyCost: 100,
-    knowledgeMultiplier: 10,
+    multiplier: 10,
     picture: image.MEAN
   }),
   new Upgrade({
@@ -123,7 +123,7 @@ const upgrades = reactive([
     name: 'MEVN Stack',
     category: 'Full Stack',
     energyCost: 100,
-    knowledgeMultiplier: 10,
+    multiplier: 10,
     picture: image.MEVN
   })
 ]);

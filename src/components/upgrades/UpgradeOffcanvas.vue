@@ -31,7 +31,7 @@ import { logger } from "../../utils/Logger.js";
 import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
 import { gameService } from "../../services/GameService.js";
 import { AppState } from "../../state/AppState.js";
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
 import FrontEndUpgradeCard from "../../components/upgrades/FrontEndUpgradeCard.vue";
 import BackEndUpgradeCard from "../../components/upgrades/BackEndUpgradeCard.vue";
 import FullStackUpgradeCard from "../../components/upgrades/FullStackUpgradeCard.vue";

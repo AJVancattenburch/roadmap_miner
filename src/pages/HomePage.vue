@@ -24,18 +24,6 @@ import { Skill } from "../models/Skill.js";
 import { skillState } from "../state/scopedStates/SkillState.js";
 
 export default {
-  // props: {
-  //   skill: {
-  //     type: Skill,
-  //     required: true
-  //   },
-  //   position: {
-  //     type: String,
-  //   },
-  //   nameOf: {
-  //     type: String,
-  //   }
-  // },
   setup() {
     const skill = ref(skillState.skills.find(s => s))
     const position = ref('')
@@ -51,32 +39,35 @@ export default {
       }
     }
 
-    async function getUpgrades() {
+    async function gainKnowledge() {
       try {
-        await gameService.getUpgrades();
-        logger.log(`Upgrade State: ${AppState.upgradeState}`)
-      }
-      catch (error){
+        await gameService.gainKnowledge();
+        logger.log(`Knowledge: ${AppState.knowledge}`)
+      } catch (error) {
         logger.error(error);
         Pop.error(error);
       }
     }
 
-    async function getStats() {
+    async function getUpgrades() {
       try {
-        const accountId = AppState.account.id;
-        await accountService.getStats(accountId);
-      }
-      catch (error){
+        await gameService.getUpgrades();
+        logger.log(`Upgrade State: ${AppState.upgradeState}`)
+      } catch (error){
         logger.error(error);
         Pop.error(error);
       }
     }
+
+    onMounted(() => {
+      
+    })
 
     return {
       skill,
       position,
       nameOf,
+      gainKnowledge,
       getAccount,
       getUpgrades,
       upgrades: computed(() => AppState.upgradeState.upgrades),

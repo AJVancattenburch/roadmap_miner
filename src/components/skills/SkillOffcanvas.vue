@@ -23,13 +23,10 @@
 </template>
 
 <script>
-import Pop from "../../utils/Pop.js";
-import { logger } from "../../utils/Logger.js";
 import OffcanvasWrapper from '../OffcanvasWrapper.vue'
 import FrontEndSkillCard from "./FrontEndSkillCard.vue";
-import { gameService } from "../../services/GameService.js";
 import { AppState } from "../../state/AppState.js";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { Skill } from "../../models/Skill.js";
 
 export default {
