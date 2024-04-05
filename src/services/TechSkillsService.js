@@ -7,12 +7,11 @@ import { logger } from "../utils/Logger.js";
 class TechSkillsService {
 
   async learnTechnology(newTech) {
-    // ANCHOR - You left off here 👇🏻
-    if (techState.activeTech?.id != newTech.id) {
-      return logger.error('Tech not found')
+    if (techState.activeTech.id === newTech.id) {  
+      newTech.quantity++
+      AppState.energy -= newTech.energyCost
+      await this.techEffects()
     }
-    newTech.quantity++
-    await this.techEffects()
     logger.log('Technology learned:', newTech)
   }
 
@@ -20,6 +19,7 @@ class TechSkillsService {
     let techMultiplier = 0
     techState.technologies.forEach(tech => techMultiplier += tech.multiplier * tech.quantity)
     AppState.knowledge += techMultiplier
+    logger.log('Knowledge gained per click:', AppState.knowledge)
   }
 
   async setTechRequiredForSkill(newSkill) {

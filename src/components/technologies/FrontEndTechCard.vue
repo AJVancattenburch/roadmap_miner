@@ -9,11 +9,7 @@
 </template>
 
 <script>
-import Pop from "../../utils/Pop.js";
-import { logger } from "../../utils/Logger.js";
 import { Tech } from "../../models/Tech.js";
-import { AppState } from "../../state/AppState.js";
-import { techSkillsService } from "../../services/TechSkillsService.js";
 
 export default {
   props: {
@@ -22,21 +18,8 @@ export default {
       required: true
     }
   },
-  setup(props) {
-    async function learnTechnology() {
-      try {
-        const newTech = props.tech;
-        await techSkillsService.learnTechnology(newTech);
-        logger.log(`Tech State: ${AppState.techState}`)
-      }
-      catch (error){
-        logger.error(error);
-        Pop.error(error);
-      }
-    }
-
+  setup() {
     return {
-      learnTechnology
     }
   }
 }

@@ -25,16 +25,13 @@
 <script>
 import OffcanvasWrapper from '../OffcanvasWrapper.vue'
 import FrontEndSkillCard from "./FrontEndSkillCard.vue";
+import BackEndSkillCard from "./BackEndSkillCard.vue";
+import FullStackSkillCard from "./FullStackSkillCard.vue";
 import { AppState } from "../../state/AppState.js";
 import { computed } from "vue";
-import { Skill } from "../../models/Skill.js";
 
 export default {
   props: {
-    skill: {
-      type: Skill,
-      required: true
-    },
     position: {
       type: String,
     },
@@ -50,7 +47,9 @@ export default {
   },
   components: {
     OffcanvasWrapper,
-    FrontEndSkillCard
+    FrontEndSkillCard,
+    BackEndSkillCard,
+    FullStackSkillCard
   }
 }
 </script>
