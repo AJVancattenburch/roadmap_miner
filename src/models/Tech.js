@@ -1,6 +1,8 @@
-export class Upgrade {
+import { generateId } from "../utils/GenerateId.js"
+
+export class Tech {
   constructor(data) {
-    this.id = data.id
+    this.id = data.id || generateId()
     this.name = data.name
     this.category = data.category
     this.energyCost = data.energyCost

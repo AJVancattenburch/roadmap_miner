@@ -1,6 +1,8 @@
+import { generateId } from "../utils/GenerateId.js"
+
 export class Stats {
   constructor(data) {
-    this.id = data.id
+    this.id = data.id || generateId()
     this.clickCount = data.clickCount
     this.totalClicks = data.totalClicks
     this.knowledge = data.knowledge || 500

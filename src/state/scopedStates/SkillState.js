@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import { upgradeState } from "./UpgradeState.js";
+import { techState } from "./TechState.js";
 import { Skill } from '../../models/Skill.js';
 import { image } from '../../assets/index.js';
 
@@ -7,103 +7,98 @@ import { image } from '../../assets/index.js';
 const skills = reactive([
   /** @type {import('../../models/Skill.js').Skill[]} */
     new Skill({
-      id: '1',
-      name: 'HTML Mastery',
+      name: 'HTML',
       category: 'Front End',
-      description: 'You have mastered HTML!',
+      description: 'New level of mastery reached in HTML!',
       picture: image.html,
       multiplier: 1,
       isUnlocked: false,
-      requiredUpgrades: [],
-      requirementCount: 0
     }),
     new Skill({
-      id: '2',
-      name: 'CSS Mastery',
+      name: 'CSS',
       category: 'Front End',
-      description: 'You have mastered CSS!',
+      description: 'New level of mastery reached in CSS!',
       picture: image.css,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '3',
-      name: 'JavaScript Mastery',
+      name: 'JavaScript',
       category: 'Front End',
-      description: 'You have mastered JavaScript!',
+      description: 'New level of mastery reached in JavaScript!',
       picture: image.javascript,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '4',
-      name: 'Vue Mastery',
+      name: 'Vue',
       category: 'Front End',
-      description: 'You have mastered Vue!',
+      description: 'New level of mastery reached in Vue!',
       picture: image.vuejs,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '5',
-      name: 'React Mastery',
+      name: 'React',
       category: 'Front End',
-      description: 'You have mastered React!',
+      description: 'New level of mastery reached in React!',
       picture: image.reactjs,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '6',
-      name: 'Angular Mastery',
+      name: 'Angular',
       category: 'Front End',
-      description: 'You have mastered Angular!',
+      description: 'New level of mastery reached in Angular!',
       picture: image.angularjs,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '7',
-      name: 'Node/Express/MongoDB Mastery',
+      name: 'Node/Express',
       category: 'Back End',
-      description: 'You have mastered mySQL!',
+      description: 'New level of mastery reached in Node/Express!',
       picture: image.mysql,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '8',
-      name: 'ASP.NET Core Mastery',
+      name: 'MongoDB',
       category: 'Back End',
-      description: 'You have mastered ASP.NET Core with C# and mySQL!',
+      description: 'New level of mastery reached in MongoDB!',
+      picture: image.mysql,
+      multiplier: 1,
+      isUnlocked: false
+    }),
+    new Skill({
+      name: 'ASP.NET Core',
+      category: 'Back End',
+      description: 'New level of mastery reached in ASP.NET Core / C# / mySQL!',
       picture: image.csharp,
       multiplier: 1,
       isUnlocked: false
     }),
 
     new Skill({
-      id: '9',
-      name: 'MEVN Stack Mastery',
+      name: 'MEVN Stack',
       category: 'Full Stack',
-      description: 'You have mastered the MEVN Stack!',
+      description: 'New level of mastery reached in the MEVN Stack!',
       picture: image.MEVN,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '10',
-      name: 'MERN Stack Mastery',
+      name: 'MERN Stack',
       category: 'Full Stack',
-      description: 'You have mastered the MERN Stack!',
+      description: 'New level of mastery reached in the MERN Stack!',
       picture: image.MERN,
       multiplier: 1,
       isUnlocked: false
     }),
     new Skill({
-      id: '11',
-      name: 'MEAN Stack Mastery',
+      name: 'MEAN Stack',
       category: 'Full Stack',
-      description: 'You have mastered the MEAN Stack!',
+      description: 'New level of mastery reached in the MEAN Stack!',
       picture: image.MEAN,
       multiplier: 1,
       isUnlocked: false

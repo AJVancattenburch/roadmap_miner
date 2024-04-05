@@ -5,8 +5,8 @@
       <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Unlocks after completing the ${skill.requirementCount} affiliated upgrades`" class="card-img-top img-fluid">
     </div>
     <small class="col-12 sub-text d-flex flex-column flex-start">
-      <div class="emphasize-text">* {{skill.requirementCount}} upgrades required:</div>
-      <span>{{ skill.requiredUpgrades }}</span>
+      <div class="emphasize-text">* Must know {{skill.requirementCount}} required technologies</div>
+      <span>{{ skill.requiredTech }}</span>
     </small>
     <i class="mdi mdi-battery"> <span class="upgrade-requirements">{{ skill.requirementCount }}</span></i>
   </div>

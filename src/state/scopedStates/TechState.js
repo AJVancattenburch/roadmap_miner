@@ -1,51 +1,45 @@
 import { reactive } from 'vue';
-import { Upgrade } from "../../models/Upgrade.js";
+import { Tech } from "../../models/Tech.js";
 import { image } from "../../assets/index.js";
 
-const upgrades = reactive([
-  /** @type {import('../../models/Upgrade.js').Upgrade[]} */
-  new Upgrade({
-    id: '1',
+const technologies = reactive([
+  /** @type {import('../../models/Tech.js').Tech[]} */
+  new Tech({
     name: 'HTML',
     category: 'Front End',
     energyCost: 10,
     multiplier: 1,
     picture: image.html
   }),
-  new Upgrade({
-    id: '2',
+  new Tech({
     name: 'CSS',
     category: 'Front End',
     energyCost: 20,
     multiplier: 2,
     picture: image.css
   }),
-  new Upgrade({
-    id: '3',
+  new Tech({
     name: 'JavaScript',
     category: 'Front End',
     energyCost: 30,
     multiplier: 3,
     picture: image.javascript
   }),
-  new Upgrade({
-    id: '4',
+  new Tech({
     name: 'Vue',
     category: 'Front End',
     energyCost: 40,
     multiplier: 4,
     picture: image.vuejs
   }),
-  new Upgrade({
-    id: '5',
+  new Tech({
     name: 'React',
     category: 'Front End',
     energyCost: 40,
     multiplier: 4,
     picture: image.reactjs
   }),
-  new Upgrade({
-    id: '6',
+  new Tech({
     name: 'Angular',
     category: 'Front End',
     energyCost: 40,
@@ -53,73 +47,57 @@ const upgrades = reactive([
     picture: image.angularjs
   }),
 
-  new Upgrade({
-    id: '7',
-    name: 'Node',
+  new Tech({
+    name: 'Node/Express',
     category: 'Back End',
     energyCost: 10,
     multiplier: 1,
     picture: image.nodejs
   }),
-  new Upgrade({
-    id: '8',
-    name: 'Express',
-    category: 'Back End',
-    energyCost: 20,
-    multiplier: 2,
-    picture: image.expressjs
-  }),
-  new Upgrade({
-    id: '9',
+  new Tech({
     name: 'MongoDB',
     category: 'Back End',
     energyCost: 30,
     multiplier: 3,
     picture: image.mongodb
   }),
-  new Upgrade({
-    id: '10',
+  new Tech({
     name: 'ASP.NET Core',
     category: 'Back End',
     energyCost: 60,
     multiplier: 6,
     picture: image.aspnet
   }),
-  new Upgrade({
-    id: '11',
+  new Tech({
     name: 'mySQL',
     category: 'Back End',
     energyCost: 40,
     multiplier: 4,
     picture: image.mysql
   }),
-  new Upgrade({
-    id: '12',
+  new Tech({
     name: 'C#',
     category: 'Back End',
     energyCost: 50,
     multiplier: 5,
     picture: image.csharp
   }),
+  new Tech({
 
-  new Upgrade({
-    id: '13',
     name: 'MERN Stack',
     category: 'Full Stack',
     energyCost: 100,
     multiplier: 10,
     picture: image.MERN
   }),
-  new Upgrade({
-    id: '14',
+  new Tech({
     name: 'MEAN Stack',
     category: 'Full Stack',
     energyCost: 100,
     multiplier: 10,
     picture: image.MEAN
   }),
-  new Upgrade({
-    id: '15',
+  new Tech({
     name: 'MEVN Stack',
     category: 'Full Stack',
     energyCost: 100,
@@ -128,10 +106,10 @@ const upgrades = reactive([
   })
 ]);
 
-export const upgradeState = reactive({
-  /** @type {import('../../models/Upgrade.js').Upgrade[]} */
-    upgrades,
+export const techState = reactive({
+  /** @type {import('../../models/Tech.js').Tech[]} */
+    technologies,
 
-  /** @type {import('../../models/Upgrade.js').Upgrade|null} */
-    activeUpgrade: null
+  /** @type {import('../../models/Tech.js').Tech|null} */
+    activeTech: null
 });

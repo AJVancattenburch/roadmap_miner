@@ -1,13 +1,19 @@
 <template>
   <div class="home d-flex">
-    <i class="upgrade-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgradeOffcanvas" aria-controls="upgradeOffcanvas">
-      <span>Upgrades</span>
+    <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techOffcanvas" aria-controls="techOffcanvas">
+      <span>Technologies</span>
     </i>
-    <UpgradeOffcanvas :position="position" :nameOf="nameOf" />
+    <TechOffcanvas :position="position" :nameOf="nameOf" />
+
     <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
       Skills
     </a>
     <SkillOffcanvas :skill="skill" :position="position" :nameOf="nameOf" />
+
+    <div class="col-12 clicker-container d-flex justify-content-center align-items-center">
+      <h1 @click="knowledgeClicker" class="col-3 btn btn-outline-primary">Click and learn</h1>
+      <p>Current Knowledge: {{ knowledgeCounter }}</p>
+    </div>
   </div>
 </template>
 
@@ -18,14 +24,13 @@ import { accountService } from "../services/AccountService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed, onMounted } from "vue";
-import UpgradeOffcanvas from "../components/upgrades/UpgradeOffcanvas.vue";
+import TechOffcanvas from "../components/technologies/TechOffcanvas.vue";
 import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
-import { Skill } from "../models/Skill.js";
 import { skillState } from "../state/scopedStates/SkillState.js";
 
 export default {
   setup() {
-    const skill = ref(skillState.skills.find(s => s))
+    const skill = ref(skillState.activeSkill)
     const position = ref('')
     const nameOf = ref('')
 
@@ -39,9 +44,9 @@ export default {
       }
     }
 
-    async function gainKnowledge() {
+    async function knowledgeClicker() {
       try {
-        await gameService.gainKnowledge();
+        await gameService.knowledgeClicker();
         logger.log(`Knowledge: ${AppState.knowledge}`)
       } catch (error) {
         logger.error(error);
@@ -49,32 +54,28 @@ export default {
       }
     }
 
-    async function getUpgrades() {
+    async function getTechnologies() {
       try {
-        await gameService.getUpgrades();
-        logger.log(`Upgrade State: ${AppState.upgradeState}`)
+        await gameService.getTechnologies();
+        logger.log(`Tech State: ${AppState.techState}`)
       } catch (error){
         logger.error(error);
         Pop.error(error);
       }
     }
 
-    onMounted(() => {
-      
-    })
-
     return {
       skill,
       position,
       nameOf,
-      gainKnowledge,
+      knowledgeClicker,
       getAccount,
-      getUpgrades,
-      upgrades: computed(() => AppState.upgradeState.upgrades),
+      getTechnologies,
+      knowledgeCounter: computed(() => AppState.knowledge),
     }
   },
   components: {
-    UpgradeOffcanvas,
+    TechOffcanvas,
     SkillOffcanvas,
   }
 }
@@ -86,7 +87,10 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100vh;
-  .upgrade-btn {
+  .clicker-container {
+    margin-top: 18rem;
+  }
+  .tech-btn {
     position: absolute;
     bottom: 1rem;
     left: 1rem;

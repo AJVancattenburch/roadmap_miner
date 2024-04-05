@@ -1,6 +1,8 @@
+import { generateId } from "../utils/GenerateId.js"
+
 export class Milestone {
   constructor(data) {
-    this.id = data.id
+    this.id = data.id || generateId()
     this.name = data.name
     this.description = data.description
     this.knowledgeThreshold = data.knowledgeThreshold

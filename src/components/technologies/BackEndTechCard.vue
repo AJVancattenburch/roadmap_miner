@@ -1,20 +1,20 @@
 <template>
-  <div v-if="upgrade.category === 'Back End'" class="card d-flex flex-column justify-content-center align-items-center">
+  <div v-if="tech.category === 'Back End'" class="card d-flex flex-column justify-content-center align-items-center">
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
-      <img :src="upgrade.picture" :alt="`Picture of ${upgrade.name}`" :title="`Click button to purchase ${upgrade.name} for ${upgrade.energyCost}`" class="card-img-top img-fluid">
+      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ upgrade.energyCost }}</span></i>
-    <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ upgrade.name }}</h6>
+    <i class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ tech.name }}</h6>
   </div>
 </template>
 
 <script>
-import { Upgrade } from "../../models/Upgrade.js";
+import { Tech } from "../../models/Tech.js";
 
 export default {
   props: {
-    upgrade: {
-      type: Upgrade,
+    tech: {
+      type: Tech,
       required: true
     }
   }

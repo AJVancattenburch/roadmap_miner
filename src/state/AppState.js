@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { upgradeState } from './scopedStates/UpgradeState.js';
+import { techState } from './scopedStates/TechState.js';
 import { skillState } from './scopedStates/SkillState.js';
 import { milestoneState } from './scopedStates/MilestoneState.js';
 // NOTE AppState is a reactive object to contain app level data
@@ -11,7 +11,7 @@ export const AppState = reactive({
   knowledge: 500,
   energy: 1000,
 
-  upgradeState,
+  techState,
   skillState,
   milestoneState
 })
