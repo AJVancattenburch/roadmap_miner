@@ -1,9 +1,9 @@
 <template>
-  <div v-if="tech.category === 'Back End'" class="card d-flex flex-column justify-content-center align-items-center">
+  <div v-if="tech.category === 'Front End'" class="card d-flex flex-column justify-content-center align-items-center">
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <i @start-learning="learnTechnology(techId)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ tech.name }}</h6>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
     tech: {
       type: Tech,
       required: true
+    }
+  },
+  setup() {
+    return {
     }
   }
 }
@@ -119,4 +123,4 @@ export default {
     -webkit-text-stroke: 1px #00000080;
   }
 }
-</style>
+</style>../../models/Tech.js

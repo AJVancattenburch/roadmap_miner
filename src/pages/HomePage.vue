@@ -3,12 +3,12 @@
     <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techOffcanvas" aria-controls="techOffcanvas">
       <span>Technologies</span>
     </i>
-    <TechOffcanvas :position="position" :nameOf="nameOf" />
+    <TechOffcanvas :offcanvasInstance="offcanvasInstance" />
 
     <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
       Skills
     </a>
-    <SkillOffcanvas :skill="skill" :position="position" :nameOf="nameOf" />
+    <SkillOffcanvas :skill="skill" :offcanvasInstance="offcanvasInstance" />
 
     <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
       <h1 @click="knowledgeClicker" class="col-3 btn btn-outline-primary">Click and learn</h1>
@@ -27,18 +27,17 @@ import { ref, computed, onMounted } from "vue";
 import TechOffcanvas from "../components/technologies/TechOffcanvas.vue";
 import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
+import { techState } from "../state/scopedStates/TechState.js";
 
 export default {
   setup() {
-    const skill = ref(skillState.activeSkill)
-    const position = ref('')
-    const nameOf = ref('')
+    const offcanvasInstance = ref('')
 
-    async function getAccount() {
+    async function startGame() {
       try {
-        await accountService.getAccount();
-      }
-      catch (error){
+        await accountService.startGame();
+        logger.log('Game started');
+      } catch (error) {
         logger.error(error);
         Pop.error(error);
       }
@@ -54,23 +53,9 @@ export default {
       }
     }
 
-    async function getTechnologies() {
-      try {
-        await gameService.getTechnologies();
-        logger.log(`Tech State: ${AppState.techState}`)
-      } catch (error){
-        logger.error(error);
-        Pop.error(error);
-      }
-    }
-
     return {
-      skill,
-      position,
-      nameOf,
+      offcanvasInstance,
       knowledgeClicker,
-      getAccount,
-      getTechnologies,
       knowledgeCounter: computed(() => AppState.knowledge),
     }
   },

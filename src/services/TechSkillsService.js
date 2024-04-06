@@ -1,28 +1,33 @@
-import { Tech } from "../models/Tech.js";
 import { AppState } from "../state/AppState.js";
 import { techState } from "../state/scopedStates/TechState.js";
 import { skillState } from "../state/scopedStates/SkillState.js";
 import { logger } from "../utils/Logger.js";
+import { gameService } from "./GameService.js";
 
 class TechSkillsService {
-
-  async learnTechnology(newTech) {
-    if (techState.activeTech.id === newTech.id) {  
-      newTech.quantity++
-      AppState.energy -= newTech.energyCost
-      await this.techEffects()
+  async startLearning(newTech) {
+    try {
+      const selectedTech = techState.technologies.find(tech => tech.id === newTech.id)
+      if (selectedTech) {
+        await this.processTechnology(selectedTech)
+      }
+      logger.log('Technology learned:', newTech)
+    } catch (error) {
+      logger.error('Error in TechSkillsService | learnTechnology method failed', error)
     }
-    logger.log('Technology learned:', newTech)
   }
 
-  async techEffects() {
+  async processTechnology(selectedTech) {
+    selectedTech.quantity++
     let techMultiplier = 0
     techState.technologies.forEach(tech => techMultiplier += tech.multiplier * tech.quantity)
     AppState.knowledge += techMultiplier
-    logger.log('Knowledge gained per click:', AppState.knowledge)
+    logger.log('New tech multiplier value:', AppState.knowledge++ * techMultiplier)
+
+    await gameService.consumeEnergy(selectedTech.energyCost, selectedTech.quantity)
   }
 
-  async setTechRequiredForSkill(newSkill) {
+  async unlockSkill(newSkill) {
     try {
       const techNameMatches = techState.technologies.find(tech => tech.name === newSkill.name)
       newSkill.requiredTech = techNameMatches
@@ -37,13 +42,13 @@ class TechSkillsService {
 
   async learnSkill(techNameMatches, newSkill) {
     try {
-      const techCountIsEqual = techNameMatches.length === newSkill.requirementCount
+      const metTechRequirements = techNameMatches.length === newSkill.requirementCount
       const hasEnoughEnergy = AppState.energy >= newSkill.energyCost
-      const increasedBySkill = techNameMatches.length * newSkill.multiplier
-      if (techCountIsEqual && hasEnoughEnergy) {
+      const increasedAmount = techNameMatches.length * newSkill.multiplier
+      if (metTechRequirements && hasEnoughEnergy) {
         newSkill.quantity++
-        newSkill.requirementCount += increasedBySkill
-        AppState.knowledge += increasedBySkill
+        newSkill.requirementCount += increasedAmount
+        AppState.knowledge += increasedAmount
         logger.log('Knowledge gained:', AppState.knowledge)
         await this.skillEffects()
         

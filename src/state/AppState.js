@@ -9,6 +9,7 @@ export const AppState = reactive({
   /** @type {import('../models/Account.js').Account} */
   account: {},
   knowledge: 500,
+  knowledgeEarned: 0,
   energy: 1000,
 
   techState,

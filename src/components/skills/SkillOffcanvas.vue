@@ -3,19 +3,19 @@
     <template #body-slot>
       <div class="offcanvas-body p-3">
         <h5 class="text-center">Front End Skills</h5>
-        <div v-for="skill in skills" :key="skill.category">
+        <front-end-skills v-for="skill in skills" :key="skill.category">
           <SkillCard v-if="skill.category === 'Front End'" :skill="skill" class="mx-2 mb-3" />
-        </div>
+        </front-end-skills>
         <hr />
         <h5 class="text-center mt-3">Back End Skills</h5>
-        <div v-for="skill in skills" :key="skill.category">
+        <back-end-skills v-for="skill in skills" :key="skill.category">
           <SkillCard v-if="skill.category === 'Back End'" :skill="skill" />
-        </div>
+        </back-end-skills>
         <hr />
         <h5 class="text-center mt-3">Full Stack Skills</h5>
-        <div v-for="skill in skills" :key="skill.category">
+        <full-stack-skills v-for="skill in skills" :key="skill.category">
           <SkillCard v-if="skill.category === 'Full Stack'" :skill="skill" class="mx-2" />
-        </div>
+        </full-stack-skills>
       </div>
     </template>
   </OffcanvasWrapper>
@@ -23,12 +23,17 @@
 
 <script>
 import OffcanvasWrapper from '../OffcanvasWrapper.vue'
-import SkillCard from "./SkillCard.vue";
+import { Skill } from "../../models/Skill.js";
 import { skillState } from "../../state/scopedStates/SkillState.js";
-import { computed, ref, toRefs } from "vue";
+import SkillCard from "./SkillCard.vue";
+import { computed } from "vue";
 
 export default {
   props: {
+    skill: {
+      type: Skill,
+      required: true
+    },
     position: {
       type: String,
     },
@@ -36,18 +41,13 @@ export default {
       type: String,
       required: true
     },
-    offcanvasHeader: String
+    offcanvasHeader: {
+      type: String
+    }
   },
   setup() {
-    const filterBy = ref('')
 
     return {
-      skillCategory: computed(() => {
-        if (!filterBy.value) {
-          return skillState.skills
-        }
-        return skillState.skills.filter(s => s.category === filterBy.value)
-      }),
       skills: computed(() => skillState.skills),
     }
   },

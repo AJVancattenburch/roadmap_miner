@@ -13,9 +13,10 @@
 </template>
 
 <script>
+import Pop from "../../utils/Pop.js";
+import { logger } from "../../utils/Logger.js";
 import { Skill } from "../../models/Skill.js";
-import { ref, computed } from "vue";
-import { skillState } from "../../state/scopedStates/SkillState.js";
+import { techSkillsService } from "../../services/TechSkillsService.js";
 
 export default {
   props: {
@@ -24,16 +25,19 @@ export default {
       required: true
     },
   },
-  setup() {
-    const filterBy = ref('')
+  setup(props) {
 
+    async function unlockSkill() {
+      try {
+        const newSkill = props.skill
+        await techSkillsService.unlockSkill(newSkill)
+      } catch (error) {
+        Pop.error(error);
+        logger.error(error);
+      }
+    }
     return {
-      skillCategory: computed(() => {
-        if (!filterBy.value) {
-          return skillState.skills
-        }
-        return skillState.skills.filter(s => s.category === filterBy.value)
-      }),
+      unlockSkill
     }
   }
 }
