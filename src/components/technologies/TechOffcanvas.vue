@@ -1,5 +1,5 @@
 <template>
-  <OffcanvasWrapper :position="'offcanvas-bottom'" :nameOf="'techOffcanvas'">
+  <OffcanvasWrapper :position="'offcanvas-bottom'" :offcanvasInstance="'techOffcanvas'" :offcanvasHeader="'Technologies to Learn'">
     <template #body-slot>
       <div class="offcanvas-body p-3">
         <h3 class="text-center">Front End Technologies</h3>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import Pop from "../../utils/Pop.js";
 import { logger } from "../../utils/Logger.js";
 import { AppState } from "../../state/AppState.js";
@@ -36,22 +36,27 @@ import FullStackTechCard from "./FullStackTechCard.vue";
 import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
 import { techSkillsService } from "../../services/TechSkillsService.js";
 import { techState } from "../../state/scopedStates/TechState.js";
+import { Tech } from "../../models/Tech.js";
 
 export default {
   props: {
+    tech: {
+      type: Tech,
+      required: true
+    },
     position: {
       type: String,
     },
-    nameOf: {
+    offcanvasInstance: {
       type: String,
       required: true
     }
   },
-  setup() {
+  setup(props) {
+
     async function learnTechnology() {
       try {
-        const techId = techState.activeTech?.id;
-        await techSkillsService.learnTechnology(techId);
+        await techSkillsService.learnTechnology(props.tech.id);
         logger.log(`Tech State: ${AppState.techState}`)
       }
       catch (error){

@@ -1,7 +1,7 @@
 <template>
-  <div :class="['offcanvas', position]" tabindex="-1" :id="`${nameOf}`" :aria-labelledby="`${nameOf}Label`">
+  <div :class="['offcanvas', position]" tabindex="-1" :id="`${offcanvasInstance}`" :aria-labelledby="`${offcanvasInstance}Label`">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" :id="`${nameOf}Label`">Technologies</h5>
+      <h5 class="offcanvas-title m-auto" :id="`${offcanvasInstance}Label`">{{ offcanvasHeader }}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <slot name="body-slot"></slot>
@@ -9,9 +9,7 @@
 </template>
 
 <script>
-import { AppState } from "../state/AppState.js";
-import { ref, computed } from "vue";
-import { Offcanvas } from "bootstrap";
+import { ref } from "vue";
 
 export default {
   props: {
@@ -19,14 +17,24 @@ export default {
       type: String,
       default: "offcanvas-start"
     },
-    nameOf: {
+    offcanvasInstance: {
       type: String,
       required: true
-    }
-  },
-  setup() {
-    return {
+    },
+    offcanvasHeader: {
+      type: String
     }
   }
 }
 </script>
+k
+<style scoped lang="scss">
+.offcanvas-header {
+  background: linear-gradient(#161250 0%, #161250f0 80%, transparent);
+  .offcanvas-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+}
+</style>
