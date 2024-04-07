@@ -1,15 +1,23 @@
 <template>
-  <div v-if="tech.category === 'Front End'" class="card d-flex flex-column justify-content-center align-items-center">
+  <div class="card d-flex flex-column justify-content-center align-items-center">
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i @start-learning="learnTechnology(techId)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
-    <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ tech.name }}</h6>
+    <i @click="startProgressBar(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
+    <div class="col-11 progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated mt-1" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{ width: techProgressPercentage }"></div>
+    </div>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
+import { techSkillsService } from "../../services/TechSkillsService.js";
 import { Tech } from "../../models/Tech.js";
+import { logger } from "../../utils/Logger.js";
+import Pop from "../../utils/Pop.js";
+import { techState } from "../../state/scopedStates/TechState.js";
 
 export default {
   props: {
@@ -18,8 +26,33 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    async function startProgressBar() {
+      try {
+        const newTech = props.tech;
+        await techSkillsService.startProgressBar(newTech);
+        logger.log(`Began learning ${newTech}`);
+      }
+      catch (error){
+        logger.error(error);
+        Pop.error(error);
+      }
+    }
+
+    const techProgressPercentage = computed(() => {
+      const threshold = techState.technologies.map(tech => tech.energyCost);
+      const item = props.tech;
+      const progressRemaining = threshold.find(energyValue => energyValue > item.energyCost);
+      if (!progressRemaining) {
+        return '100%';
+      }
+      const percentage = (item.energyCost / progressRemaining) * 100;
+      return `${percentage.toFixed(1)}%`;
+    });
+
     return {
+      techProgressPercentage,
+      startProgressBar
     }
   }
 }
@@ -28,17 +61,17 @@ export default {
 <style scoped lang="scss">
 .card {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 90px;
+  height: 100px;
   filter: drop-shadow(0 0 0.5rem #000);
   .img-container {
-    width: 150px;
-    height: 120px;
+    width: 90px;
+    height: 82px;
     .card-img-top {
-      width: 150px;
-      height: 120px;
+      width: 90px;
+      height: 82px;
       object-fit: cover;
-      object-position: center;
+      object-position: top;
     }
   }
   .mdi-lightning-bolt {
@@ -46,34 +79,41 @@ export default {
     text-shadow: 1px 1px #000ff0;
     &.badge {
       position: absolute;
-      top: 5.25rem;
+      top: -0.75rem;
       right: 50%;
       transform: translateX(50%);
-      width: 50%;
+      width: 70%;
       height: 1.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 1.15rem;
       font-style: normal;
-      background: radial-gradient(circle at 50% 50%, #80f96d, #20b60f 50%, #32a436 75%, #088732 100%);
-      border-radius: 1rem;
+      background: radial-gradient(
+        circle at 50% 50%,
+        #80f96d,
+        #20b60f 50%,
+        #32a436 75%,
+        #088732 100%);
+      border: 2px ridge #000000;
+      border-radius: 0.25rem;
       z-index: 1;
       &::after {
         content: "";
-        background: linear-gradient(45deg,
-            #80f96dcc,
-            #20b60fcc,
-            #32a436cc,
-            #088732cc,
-            #80f96dcc);
         position: absolute;
         top: -2px;
         right: 50%;
         transform: translateX(50%);
-        background-size: 400%;
+        background: linear-gradient(
+          45deg,
+          #80f96dcc,
+          #20b60fcc,
+          #32a436cc,
+          #088732cc,
+          #80f96dcc);
+        background-size: 400% 200%;
         z-index: -1;
-        filter: blur(5px);
+        filter: blur(5px) drop-shadow(-4px 2px 2px #6a6a1d) drop-shadow(4px 2px 2px #6a6a1d);
         width: calc(100% + 4px);
         height: calc(100% + 4px);
         animation: glowing 20s linear infinite;
@@ -114,13 +154,26 @@ export default {
     }
   }
   .card-title {
-    white-space: nowrap;
-    flex-wrap: nowrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: wrap;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 0.75rem;
+    text-shadow: 0 0 2px #bc4866;
+    background: radial-gradient(
+      circle at 50% 50%,
+      #000000,
+      #000000 50%,
+      #00000000 100%);
+    padding: 0.25rem;
   }
   .card-title .emphasize-title {
-    color: #52aa13;
-    text-shadow: 0 0 2px #00000080;
-    -webkit-text-stroke: 1px #00000080;
+    color: #bc4866;
+    text-shadow: 0 0 2px #ffffff80;
+    -webkit-text-stroke: 0.5px #ffccd9;
   }
 }
-</style>../../models/Tech.js
+</style>

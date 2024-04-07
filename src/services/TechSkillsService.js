@@ -5,31 +5,68 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "./GameService.js";
 
 class TechSkillsService {
-  async startLearning(newTech) {
+  async startProgressBar(newTech) {
     try {
+      logger.log('TechSkillsService | startProgressBar method called')
       const selectedTech = techState.technologies.find(tech => tech.id === newTech.id)
+      techState.activeTech = selectedTech
       if (selectedTech) {
         await this.processTechnology(selectedTech)
+        logger.log('TechSkillsService | startProgressBar method complete ▶️ processTechnology method called')
       }
-      logger.log('Technology learned:', newTech)
     } catch (error) {
       logger.error('Error in TechSkillsService | learnTechnology method failed', error)
     }
   }
 
   async processTechnology(selectedTech) {
-    selectedTech.quantity++
     let techMultiplier = 0
-    techState.technologies.forEach(tech => techMultiplier += tech.multiplier * tech.quantity)
+    techMultiplier = selectedTech.multiplier * selectedTech.quantity
+    selectedTech.quantity++
     AppState.knowledge += techMultiplier
-    logger.log('New tech multiplier value:', AppState.knowledge++ * techMultiplier)
+    //Send the 
+    logger.log('New tech multiplier value:', techMultiplier)
 
     await gameService.consumeEnergy(selectedTech.energyCost, selectedTech.quantity)
+  }
+
+  async getAllTechnologies() {
+    try {
+      logger.log('TechSkillsService | getAllTechnologies method called')
+      const techs = techState.technologies.map(t => t)
+      await this.getAffiliatedSkill()
+      logger.log('TechSkillsService | getAllTechnologies method complete', techs)
+      return techs
+    } catch (error) {
+      logger.error('Could not get all technologies', error)
+    }
+  }
+
+  async getAffiliatedSkill(skillId) {
+    try {
+      const skillNameMatches = skillState.skills.find(skill => skill.id === skillId)
+      logger.log('TechSkillsService | getAffiliatedSkill method complete', skillNameMatches)
+      skillState.activeSkill = skillNameMatches
+    } catch (error) {
+      logger.error('Could not match tech to skill', error)
+    }
+  }
+
+  async getAllSkills() {
+    try {
+      logger.log('TechSkillsService | getAllSkills method called')
+      const skills = skillState.skills.map(s => s)
+      logger.log('TechSkillsService | getAllSkills method complete', skills)
+      return skills
+    } catch (error) {
+      logger.error('Could not get all skills', error)
+    }
   }
 
   async unlockSkill(newSkill) {
     try {
       const techNameMatches = techState.technologies.find(tech => tech.name === newSkill.name)
+      skillState.activeSkill = newSkill
       newSkill.requiredTech = techNameMatches
       newSkill.requirementCount = techNameMatches.length
 

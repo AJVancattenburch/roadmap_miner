@@ -15,93 +15,93 @@ const technologies = reactive([
     name: 'CSS',
     category: 'Front End',
     energyCost: 20,
-    multiplier: 2,
+    multiplier: 1,
     picture: image.css
   }),
   new Tech({
     name: 'JavaScript',
     category: 'Front End',
     energyCost: 30,
-    multiplier: 3,
+    multiplier: 2,
     picture: image.javascript
   }),
   new Tech({
     name: 'Vue',
     category: 'Front End',
-    energyCost: 40,
-    multiplier: 4,
+    energyCost: 80,
+    multiplier: 3,
     picture: image.vuejs
   }),
   new Tech({
     name: 'React',
     category: 'Front End',
-    energyCost: 40,
-    multiplier: 4,
+    energyCost: 80,
+    multiplier: 3,
     picture: image.reactjs
   }),
   new Tech({
     name: 'Angular',
     category: 'Front End',
-    energyCost: 40,
-    multiplier: 4,
+    energyCost: 80,
+    multiplier: 3,
     picture: image.angularjs
   }),
 
   new Tech({
     name: 'Node/Express',
     category: 'Back End',
-    energyCost: 10,
-    multiplier: 1,
+    energyCost: 80,
+    multiplier: 3,
     picture: image.nodejs
   }),
   new Tech({
     name: 'MongoDB',
     category: 'Back End',
-    energyCost: 30,
+    energyCost: 80,
     multiplier: 3,
     picture: image.mongodb
   }),
   new Tech({
     name: 'ASP.NET Core',
     category: 'Back End',
-    energyCost: 60,
-    multiplier: 6,
+    energyCost: 100,
+    multiplier: 4,
     picture: image.aspnet
   }),
   new Tech({
     name: 'mySQL',
     category: 'Back End',
-    energyCost: 40,
+    energyCost: 100,
     multiplier: 4,
     picture: image.mysql
   }),
   new Tech({
     name: 'C#',
     category: 'Back End',
-    energyCost: 50,
-    multiplier: 5,
+    energyCost: 100,
+    multiplier: 4,
     picture: image.csharp
   }),
   new Tech({
 
     name: 'MERN Stack',
     category: 'Full Stack',
-    energyCost: 100,
-    multiplier: 10,
+    energyCost: 120,
+    multiplier: 5,
     picture: image.MERN
   }),
   new Tech({
     name: 'MEAN Stack',
     category: 'Full Stack',
-    energyCost: 100,
-    multiplier: 10,
+    energyCost: 120,
+    multiplier: 5,
     picture: image.MEAN
   }),
   new Tech({
     name: 'MEVN Stack',
     category: 'Full Stack',
-    energyCost: 100,
-    multiplier: 10,
+    energyCost: 120,
+    multiplier: 5,
     picture: image.MEVN
   })
 ]);
