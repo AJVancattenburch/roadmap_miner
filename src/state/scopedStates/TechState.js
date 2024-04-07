@@ -9,6 +9,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 10,
     multiplier: 1,
+    isCompleted: false,
     picture: image.html
   }),
   new Tech({
@@ -16,6 +17,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 20,
     multiplier: 1,
+    isCompleted: false,
     picture: image.css
   }),
   new Tech({
@@ -23,6 +25,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 30,
     multiplier: 2,
+    isCompleted: false,
     picture: image.javascript
   }),
   new Tech({
@@ -30,6 +33,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 80,
     multiplier: 3,
+    isCompleted: false,
     picture: image.vuejs
   }),
   new Tech({
@@ -37,6 +41,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 80,
     multiplier: 3,
+    isCompleted: false,
     picture: image.reactjs
   }),
   new Tech({
@@ -44,6 +49,7 @@ const technologies = reactive([
     category: 'Front End',
     energyCost: 80,
     multiplier: 3,
+    isCompleted: false,
     picture: image.angularjs
   }),
 
@@ -52,6 +58,7 @@ const technologies = reactive([
     category: 'Back End',
     energyCost: 80,
     multiplier: 3,
+    isCompleted: false,
     picture: image.nodejs
   }),
   new Tech({
@@ -59,6 +66,7 @@ const technologies = reactive([
     category: 'Back End',
     energyCost: 80,
     multiplier: 3,
+    isCompleted: false,
     picture: image.mongodb
   }),
   new Tech({
@@ -66,6 +74,7 @@ const technologies = reactive([
     category: 'Back End',
     energyCost: 100,
     multiplier: 4,
+    isCompleted: false,
     picture: image.aspnet
   }),
   new Tech({
@@ -73,6 +82,7 @@ const technologies = reactive([
     category: 'Back End',
     energyCost: 100,
     multiplier: 4,
+    isCompleted: false,
     picture: image.mysql
   }),
   new Tech({
@@ -80,6 +90,7 @@ const technologies = reactive([
     category: 'Back End',
     energyCost: 100,
     multiplier: 4,
+    isCompleted: false,
     picture: image.csharp
   }),
   new Tech({
@@ -88,6 +99,7 @@ const technologies = reactive([
     category: 'Full Stack',
     energyCost: 120,
     multiplier: 5,
+    isCompleted: false,
     picture: image.MERN
   }),
   new Tech({
@@ -95,6 +107,7 @@ const technologies = reactive([
     category: 'Full Stack',
     energyCost: 120,
     multiplier: 5,
+    isCompleted: false,
     picture: image.MEAN
   }),
   new Tech({
@@ -102,6 +115,7 @@ const technologies = reactive([
     category: 'Full Stack',
     energyCost: 120,
     multiplier: 5,
+    isCompleted: false,
     picture: image.MEVN
   })
 ]);

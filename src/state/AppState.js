@@ -14,5 +14,8 @@ export const AppState = reactive({
 
   techState,
   skillState,
-  milestoneState
+  milestoneState,
+
+  /** @type {import('../models/Stats.js').Stats[]} */
+  stats: [],
 })

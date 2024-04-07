@@ -3,7 +3,7 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i @click="startProgressBar(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <i @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
     <div class="col-11 progress">
       <div class="progress-bar progress-bar-striped progress-bar-animated mt-1" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{ width: techProgressPercentage }"></div>
@@ -13,7 +13,7 @@
 
 <script>
 import { computed } from "vue";
-import { techSkillsService } from "../../services/TechSkillsService.js";
+import { techsService } from "../../services/TechsService.js";
 import { Tech } from "../../models/Tech.js";
 import { logger } from "../../utils/Logger.js";
 import Pop from "../../utils/Pop.js";
@@ -27,10 +27,10 @@ export default {
     }
   },
   setup(props) {
-    async function startProgressBar() {
+    async function learnTechnology() {
       try {
         const newTech = props.tech;
-        await techSkillsService.startProgressBar(newTech);
+        await techsService.learnTechnology(newTech);
         logger.log(`Began learning ${newTech}`);
       }
       catch (error){
@@ -40,7 +40,7 @@ export default {
     }
 
     const techProgressPercentage = computed(() => {
-      const threshold = techState.technologies.map(tech => tech.energyCost);
+      const threshold = techState.activeTech
       const item = props.tech;
       const progressRemaining = threshold.find(energyValue => energyValue > item.energyCost);
       if (!progressRemaining) {
@@ -52,7 +52,7 @@ export default {
 
     return {
       techProgressPercentage,
-      startProgressBar
+      learnTechnology
     }
   }
 }
@@ -176,4 +176,4 @@ export default {
     -webkit-text-stroke: 0.5px #ffccd9;
   }
 }
-</style>
+</style>../../services/TechsService.js

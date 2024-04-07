@@ -1,9 +1,7 @@
 import { AppState } from '../state/AppState'
 import { logger } from '../utils/Logger'
-import { techSkillsService } from "./TechSkillsService.js"
 
-class GameService {
-  
+class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
     try {
       AppState.knowledge++
@@ -16,14 +14,17 @@ class GameService {
     }
   }
 
-  async consumeEnergy(techEnergy, techQuantity) {
+  async useEnergy(techEnergy, techQuantity) {
     try {
       setInterval(() => {
         AppState.energy--
-      }, techEnergy * 500)
+        logger.log('Energy consumed:', AppState.energy)
+      }, techEnergy * 50)
+      logger.log('Energy consumed:', AppState.energy, 'Energy cost:', techEnergy, 'Quantity:', techQuantity)
       if (techEnergy === 0) {
         AppState.energy += 100 * techQuantity
         techEnergy += 100 * techQuantity
+        logger.log('Energy replenished:', AppState.energy)
       }
     } catch (error) {
       logger.error('Could not consume energy', error)

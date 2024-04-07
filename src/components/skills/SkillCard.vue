@@ -16,7 +16,7 @@
 import Pop from "../../utils/Pop.js";
 import { logger } from "../../utils/Logger.js";
 import { Skill } from "../../models/Skill.js";
-import { techSkillsService } from "../../services/TechSkillsService.js";
+import { skillsService } from "../../services/SkillsService.js";
 
 export default {
   props: {
@@ -30,7 +30,7 @@ export default {
     async function unlockSkill() {
       try {
         const newSkill = props.skill
-        await techSkillsService.unlockSkill(newSkill)
+        await skillsService.unlockSkill(newSkill)
       } catch (error) {
         Pop.error(error);
         logger.error(error);

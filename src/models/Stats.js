@@ -7,7 +7,7 @@ export class Stats {
     this.totalClicks = data.totalClicks
     this.knowledge = data.knowledge || 500
     this.energy = data.energy || 1000
-    this.upgradesPurchased = data.upgradesPurchased
-    this.skillsEarned = data.skillsEarned
+    this.learnedTechnologies = data.learnedTechnologies
+    this.skillsEarned = data.skillsEarned || []
   }
 }
