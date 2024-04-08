@@ -5,18 +5,19 @@
     </div>
     <i @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
-    <div class="col-11 progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated mt-1" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{ width: techProgressPercentage }"></div>
+    <div class="col-11 progress m-1 mb-2" style="outline: 1px ridge #000;">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" :aria-valuemax="tech.energyCost" :style="{ width: techProgressPercentage }"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { techsService } from "../../services/TechsService.js";
 import { Tech } from "../../models/Tech.js";
 import { logger } from "../../utils/Logger.js";
 import Pop from "../../utils/Pop.js";
+import { AppState } from "../../state/AppState.js";
 import { techState } from "../../state/scopedStates/TechState.js";
 
 export default {
@@ -27,11 +28,22 @@ export default {
     }
   },
   setup(props) {
+    const techThreshold = computed(() => {
+      const energyCost = props.tech.energyCost;
+      const foundTech = techState.technologies.find(tech => tech.energyCost === energyCost)
+      return foundTech.energyCost;
+    });
+    const techProgress = ref(0);
+    let techProgressInterval = null;
+
     async function learnTechnology() {
       try {
         const newTech = props.tech;
         await techsService.learnTechnology(newTech);
         logger.log(`Began learning ${newTech}`);
+        if (newTech.energyCost > 0) {
+          startProgressBar();
+        }
       }
       catch (error){
         logger.error(error);
@@ -39,20 +51,22 @@ export default {
       }
     }
 
-    const techProgressPercentage = computed(() => {
-      const threshold = techState.activeTech
-      const item = props.tech;
-      const progressRemaining = threshold.find(energyValue => energyValue > item.energyCost);
-      if (!progressRemaining) {
-        return '100%';
+    function startProgressBar() {
+      techProgressInterval = setInterval(() => {
+        techProgress.value += 1;
+      }, 1000);
+    }
+
+    watch(techProgress, (newValue) => {
+      if (newValue >= techThreshold.value) {
+        clearInterval(techProgressInterval);
+        techProgress.value = 0;
       }
-      const percentage = (item.energyCost / progressRemaining) * 100;
-      return `${percentage.toFixed(1)}%`;
     });
 
     return {
-      techProgressPercentage,
-      learnTechnology
+      learnTechnology,
+      techProgressPercentage: computed(() => `${(techProgress.value / techThreshold.value) * 100}%`)
     }
   }
 }

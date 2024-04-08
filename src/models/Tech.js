@@ -5,7 +5,7 @@ export class Tech {
     this.id = data.id || generateId()
     this.name = data.name
     this.category = data.category
-    this.energyCost = data.energyCost
+    this.energyCost = data.energyCost || 0
     this.quantity = data.quantity || 0
     this.multiplier = data.multiplier
     this.picture = data.picture

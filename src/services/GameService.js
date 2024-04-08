@@ -16,18 +16,16 @@ class GameService {
 
   async useEnergy(techEnergy, techQuantity) {
     try {
-      setInterval(() => {
-        AppState.energy--
-        logger.log('Energy consumed:', AppState.energy)
-      }, techEnergy * 50)
-      logger.log('Energy consumed:', AppState.energy, 'Energy cost:', techEnergy, 'Quantity:', techQuantity)
-      if (techEnergy === 0) {
-        AppState.energy += 100 * techQuantity
-        techEnergy += 100 * techQuantity
-        logger.log('Energy replenished:', AppState.energy)
-      }
+      const intervalId = setInterval(() => {
+        AppState.energy--;
+        logger.log('Energy consumed:', AppState.energy);
+        if (AppState.energy === 0 || AppState.energy < 0) {
+          clearInterval(intervalId);
+        }
+      }, techEnergy * 50);
+      logger.log('Energy consumed:', AppState.energy, 'Energy cost:', techEnergy, 'Quantity:', techQuantity);
     } catch (error) {
-      logger.error('Could not consume energy', error)
+      logger.error('Could not consume energy', error);
     }
   }
 

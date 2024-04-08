@@ -49,7 +49,7 @@ class SkillsService {
   }
 
   async updateSkill(skillId, updatedSkill) {
-  
+    
   }
 }
 
