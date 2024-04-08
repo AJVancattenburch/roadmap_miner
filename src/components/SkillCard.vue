@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import Pop from "../../utils/Pop.js";
-import { logger } from "../../utils/Logger.js";
-import { Skill } from "../../models/Skill.js";
-import { skillsService } from "../../services/SkillsService.js";
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
+import { Skill } from "../models/Skill.js";
+import { skillsService } from "../services/SkillsService.js";
 
 export default {
   props: {

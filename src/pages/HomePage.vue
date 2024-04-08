@@ -25,9 +25,9 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
-import { ref, computed } from "vue";
-import TechOffcanvas from "../components/technologies/TechOffcanvas.vue";
-import SkillOffcanvas from "../components/skills/SkillOffcanvas.vue";
+import { ref, computed, onMounted } from "vue";
+import TechOffcanvas from "../components/TechOffcanvas.vue";
+import SkillOffcanvas from "../components/SkillOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
 import { techState } from "../state/scopedStates/TechState.js";
 
@@ -45,6 +45,19 @@ export default {
         Pop.error(error);
       }
     }
+
+    async function updateGameStats() {
+      try {
+        await gameService.updateGameStats();
+      } catch (error) {
+        logger.error(error);
+        Pop.error(error);
+      }
+    }
+
+    onMounted(() => {
+      updateGameStats();
+    })
 
     return {
       knowledgeClicker,

@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import OffcanvasWrapper from '../OffcanvasWrapper.vue'
-import { skillState } from "../../state/scopedStates/SkillState.js";
+import OffcanvasWrapper from './OffcanvasWrapper.vue'
+import { skillState } from "../state/scopedStates/SkillState.js";
 import SkillCard from "./SkillCard.vue";
 import { computed } from "vue";
 

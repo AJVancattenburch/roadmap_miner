@@ -3,22 +3,21 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <i @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></i>
+    <button @click="learnTechnology(newTech)" :disabled="techProgress != 0" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
-    <div class="col-11 progress m-1 mb-2" style="outline: 1px ridge #000;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" :aria-valuemax="tech.energyCost" :style="{ width: techProgressPercentage }"></div>
+    <div class="col-11 progress m-1 mb-2 bg-dark" style="outline: 1px ridge #000;">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuemin="0" :aria-valuemax="tech.energyCost" :style="{ width: techCompletionRate }"></div>
+      <span class="text-white" style="position: absolute; left: 50%; transform: translateX(-50%);">{{ techCompletionRate }}</span>
     </div>
   </div>
 </template>
 
 <script>
 import { computed, ref, watch } from "vue";
-import { techsService } from "../../services/TechsService.js";
-import { Tech } from "../../models/Tech.js";
-import { logger } from "../../utils/Logger.js";
-import Pop from "../../utils/Pop.js";
-import { AppState } from "../../state/AppState.js";
-import { techState } from "../../state/scopedStates/TechState.js";
+import { techsService } from "../services/TechsService.js";
+import { Tech } from "../models/Tech.js";
+import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   props: {
@@ -28,11 +27,7 @@ export default {
     }
   },
   setup(props) {
-    const techThreshold = computed(() => {
-      const energyCost = props.tech.energyCost;
-      const foundTech = techState.technologies.find(tech => tech.energyCost === energyCost)
-      return foundTech.energyCost;
-    });
+    const techThreshold = computed(() => props.tech.energyCost);
     const techProgress = ref(0);
     let techProgressInterval = null;
 
@@ -46,14 +41,14 @@ export default {
         }
       }
       catch (error){
-        logger.error(error);
-        Pop.error(error);
+        logger.error(error)
+        Pop.error(error)
       }
     }
 
     function startProgressBar() {
       techProgressInterval = setInterval(() => {
-        techProgress.value += 1;
+        techProgress.value++
       }, 1000);
     }
 
@@ -66,7 +61,11 @@ export default {
 
     return {
       learnTechnology,
-      techProgressPercentage: computed(() => `${(techProgress.value / techThreshold.value) * 100}%`)
+      techProgress,
+      techCompletionRate: computed(() => {
+        const progressBarWidth = (techProgress.value / techThreshold.value) * 100
+        return `${progressBarWidth}%`
+      })
     }
   }
 }
@@ -111,7 +110,6 @@ export default {
         #088732 100%);
       border: 2px ridge #000000;
       border-radius: 0.25rem;
-      z-index: 1;
       &::after {
         content: "";
         position: absolute;
@@ -190,4 +188,4 @@ export default {
     -webkit-text-stroke: 0.5px #ffccd9;
   }
 }
-</style>../../services/TechsService.js
+</style>

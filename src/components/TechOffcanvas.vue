@@ -28,9 +28,9 @@
 <script>
 import { computed } from "vue";
 import TechCard from "./TechCard.vue";
-import OffcanvasWrapper from '../../components/OffcanvasWrapper.vue'
-import { techState } from "../../state/scopedStates/TechState.js";
-import { Tech } from "../../models/Tech.js";
+import OffcanvasWrapper from '../components/OffcanvasWrapper.vue'
+import { techState } from "../state/scopedStates/TechState.js";
+import { Tech } from "../models/Tech.js";
 
 export default {
   props: {

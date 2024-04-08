@@ -1,42 +1,43 @@
 import { AppState } from '../state/AppState'
+import { statsState } from "../state/scopedStates/StatsState.js"
 import { logger } from '../utils/Logger'
+import { techsService } from "./TechsService.js"
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
     try {
-      AppState.knowledge++
       knowledgeEarned = AppState.knowledge - 500
       AppState.knowledgeEarned = knowledgeEarned
+      
+      if (statsState.learnedTechnologies.length === 0) {
+        AppState.knowledge++
+        logger.log('Knowledge gains (no multipliers):', AppState.knowledgeEarned)
+      } else {
+        techsService.handleEffects()
+      }
 
-      logger.log('Total Knowledge earned:', AppState.knowledgeEarned)
     } catch (error) {
       logger.error('Could not gain knowledge', error)
     }
   }
 
-  async useEnergy(techEnergy, techQuantity) {
-    try {
-      const intervalId = setInterval(() => {
-        AppState.energy--;
-        logger.log('Energy consumed:', AppState.energy);
-        if (AppState.energy === 0 || AppState.energy < 0) {
-          clearInterval(intervalId);
-        }
-      }, techEnergy * 50);
-      logger.log('Energy consumed:', AppState.energy, 'Energy cost:', techEnergy, 'Quantity:', techQuantity);
-    } catch (error) {
-      logger.error('Could not consume energy', error);
-    }
+  async consumeEnergy(newTech) {
+    let startTime = 0;
+    const intervalId = setInterval(() => {
+      startTime++;
+      techsService.handleEffects(newTech);
+      if (startTime == newTech.energyCost + 1) {
+        clearInterval(intervalId);
+        techsService.updateTechnology(newTech);
+      }
+    }, 1000);
+    logger.log('Energy consumed:', AppState.energy, 'Energy cost:', newTech.energyCost);
   }
 
   async updateGameStats() {
     try {
-      // ANCHOR - Come back here to replace the placeholder for the final implementation that will update the game statistics
-      return {
-        knowledge: AppState.knowledge,
-        energy: AppState.energy
-      
-      }
+      statsState
+      logger.log('Current stats:', statsState)
     } catch (error) {
       logger.error('Could not update current stats', error)
     }
