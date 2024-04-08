@@ -26,14 +26,17 @@ class GameService {
     await techsService.determineProficiency(newTech);
     const intervalId = setInterval(() => {
       startTime++;
-      techsService.handleEffects(newTech, startTime);
-      if (startTime == newTech.energyCost + 1) {
+      if (startTime < newTech.energyCost) {
+        techsService.handleEffects(newTech, startTime);
+      } else {
         clearInterval(intervalId);
+        techsService.handleEffects(newTech, startTime);
         techsService.updateTechnology(newTech);
       }
     }, 1000);
     logger.log('Energy consumed:', AppState.energy, 'Energy cost:', newTech.energyCost);
   }
+
 
   async updateGameStats() {
     try {

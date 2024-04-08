@@ -35,9 +35,7 @@ import { techState } from "../state/scopedStates/TechState.js";
 export default {
   setup() {
     const knowledgeCounter = computed(() => AppState.knowledge)
-    const energyLevel = computed(() => {
-      return AppState.energy
-    })
+    const energyLevel = computed(() => AppState.energy)
     const offcanvasInstance = ref('')
 
     async function knowledgeClicker() {
