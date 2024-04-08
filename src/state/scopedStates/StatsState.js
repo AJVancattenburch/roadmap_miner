@@ -1,11 +1,10 @@
 import { reactive } from "vue";
+import { AppState } from "../AppState.js";
 
 export const statsState = reactive({
 
-  clickCount: 0,
-  totalClicks: 0,
-  knowledge: 500,
-  energy: 1000,
+  knowledge: AppState.knowledge,
+  energy: AppState.energy,
 
   /** @type {import('../models/Tech.js').Tech[]} */
   learnedTechnologies: [],

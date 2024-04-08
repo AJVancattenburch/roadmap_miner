@@ -23,6 +23,7 @@ class GameService {
 
   async consumeEnergy(newTech) {
     let startTime = 0;
+    await techsService.determineProficiency(newTech);
     const intervalId = setInterval(() => {
       startTime++;
       techsService.handleEffects(newTech);

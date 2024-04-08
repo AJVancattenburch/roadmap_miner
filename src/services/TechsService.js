@@ -7,33 +7,35 @@ import { statsState } from "../state/scopedStates/StatsState.js";
 class TechsService {
   async learnTechnology(newTech) {
     try {
-      gameService.consumeEnergy(newTech);
+      await gameService.consumeEnergy(newTech);
+      await this.determineProficiency(newTech);
     } catch (error) {
       logger.error('TechSkillsService | learnTechnology method failed', error);
     }
   }
 
   async handleEffects(newTech) {
-    await this.determineProficiency(newTech);
     if (newTech.quantity === 0) {
       logger.log('Energy consumed:', AppState.energy);
       AppState.energy--;
+    } else {
+      AppState.energy -= newTech.multiplier;
+      AppState.knowledge += newTech.energyCost / 10;
     }
-    AppState.energy -= newTech.multiplier;
-    AppState.knowledge += newTech.energyCost / 10;
-
     logger.log('Energy consumation multiplied:', AppState.energy);
   }
 
   async determineProficiency(newTech) {
     try {
-      if (newTech.quantity === 0) {
-
-        newTech.proficiency = 'Beginner';
-      } else if (newTech.quantity === 1) {
-        newTech.proficiency = 'Intermediate';
+      const foundTech = techState.technologies.find(tech => tech.id === newTech.id);
+      logger.log('Found technology:', foundTech);
+      if (foundTech.quantity === 0) {
+        foundTech.proficiency = 'Beginner';
+      } else if (foundTech.quantity === 1) {
+        foundTech.proficiency = 'Intermediate';
+      } else if (foundTech.quantity === 2) {
+        foundTech.proficiency = 'Advanced';
       }
-      newTech.proficiency = 'Advanced';
     } catch (error) {
       logger.error('Could not determine proficiency', error);
     }
