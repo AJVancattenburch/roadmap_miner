@@ -8,21 +8,20 @@ class TechsService {
   async learnTechnology(newTech) {
     try {
       await gameService.consumeEnergy(newTech);
-      await this.determineProficiency(newTech);
     } catch (error) {
       logger.error('TechSkillsService | learnTechnology method failed', error);
     }
   }
 
-  async handleEffects(newTech) {
+  async handleEffects(newTech, startTime) {
     if (newTech.quantity === 0) {
-      logger.log('Energy consumed:', AppState.energy);
+      logger.log('Energy consumed:', startTime);
       AppState.energy--;
     } else {
       AppState.energy -= newTech.multiplier;
       AppState.knowledge += newTech.energyCost / 10;
     }
-    logger.log('Energy consumation multiplied:', AppState.energy);
+    logger.log('Energy remaining:', AppState.energy);
   }
 
   async determineProficiency(newTech) {
@@ -35,6 +34,7 @@ class TechsService {
         foundTech.proficiency = 'Intermediate';
       } else if (foundTech.quantity === 2) {
         foundTech.proficiency = 'Advanced';
+        document
       }
     } catch (error) {
       logger.error('Could not determine proficiency', error);

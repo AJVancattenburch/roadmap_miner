@@ -26,7 +26,7 @@ class GameService {
     await techsService.determineProficiency(newTech);
     const intervalId = setInterval(() => {
       startTime++;
-      techsService.handleEffects(newTech);
+      techsService.handleEffects(newTech, startTime);
       if (startTime == newTech.energyCost + 1) {
         clearInterval(intervalId);
         techsService.updateTechnology(newTech);

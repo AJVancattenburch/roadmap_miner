@@ -3,7 +3,7 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <button @click="learnTechnology(newTech)" :disabled="techProgress != 0" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
+    <button @click="learnTechnology(newTech)" :disabled="techProgress != 0 || techProficiency" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
     <div class="col-11 progress m-1 mb-2 bg-dark" style="outline: 1px ridge #000;">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuemin="0" :aria-valuemax="tech.energyCost" :style="{ width: techCompletionRate }"></div>
@@ -15,9 +15,11 @@
 <script>
 import { computed, ref, watch } from "vue";
 import { techsService } from "../services/TechsService.js";
+import { techState } from "../state/scopedStates/TechState.js";
 import { Tech } from "../models/Tech.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
+import { statsState } from "../state/scopedStates/StatsState.js";
 
 export default {
   props: {
@@ -30,6 +32,10 @@ export default {
     const techThreshold = computed(() => props.tech.energyCost);
     const techProgress = ref(0);
     let techProgressInterval = null;
+
+    const techProficiency = computed(() => {
+      return techState.technologies.find(tech => tech.name === props.tech.name).proficiency === 'Advanced';
+    });
 
     async function learnTechnology() {
       try {
@@ -62,6 +68,8 @@ export default {
     return {
       learnTechnology,
       techProgress,
+
+      techProficiency,
       techCompletionRate: computed(() => {
         const progressBarWidth = (techProgress.value / techThreshold.value) * 100
         return `${progressBarWidth}%`
