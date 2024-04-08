@@ -3,8 +3,8 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <button v-if="!techProficiency === 'Advanced'" :disabled="techProgress != 0" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
-    <button v-else :disabled="techProgress != 0 || techProficiency === 'Advanced'" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment-2">MAXED</span></button>
+    <button v-if="techProficiency !== 'Advanced'" :disabled="techProgress != 0" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
+    <button v-else :disabled="techProficiency === 'Advanced'" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="max-increment">MAXED</span></button>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
     <div class="col-11 progress m-1 mb-2 bg-dark" style="outline: 1px ridge #000;">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuemin="0" :aria-valuemax="tech.energyCost" :style="{ width: techCompletionRate }"></div>
@@ -20,7 +20,6 @@ import { techState } from "../state/scopedStates/TechState.js";
 import { Tech } from "../models/Tech.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
-import { statsState } from "../state/scopedStates/StatsState.js";
 
 export default {
   props: {
@@ -102,10 +101,10 @@ export default {
     text-shadow: 1px 1px #000ff0;
     &.badge {
       position: absolute;
-      top: -0.75rem;
+      top: -1rem;
       right: 50%;
       transform: translateX(50%);
-      width: 70%;
+      width: 80%;
       height: 1.5rem;
       display: flex;
       justify-content: center;
@@ -123,7 +122,6 @@ export default {
       &::after {
         content: "";
         position: absolute;
-        top: -2px;
         right: 50%;
         transform: translateX(50%);
         background: linear-gradient(
@@ -135,9 +133,9 @@ export default {
           #80f96dcc);
         background-size: 400% 200%;
         z-index: -1;
-        filter: blur(5px) drop-shadow(-4px 2px 2px #6a6a1d) drop-shadow(4px 2px 2px #6a6a1d);
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
+        filter: blur(5px);
+        width: 100%;
+        height: 100%;
         animation: glowing 20s linear infinite;
         opacity: 1;
         transition: opacity 0.3s ease-in-out;
@@ -170,13 +168,28 @@ export default {
       }
     }
     .cost-increment {
-      color: #000;
+      color: #ffffff;
+      font-size: 0.8rem;
       font-weight: 500;
       text-shadow: none;
     }
-    .cost-increment-2 {
-      color: #000;
-      font-size: 0.75rem;
+    .max-increment {
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-shadow: none;
+    }
+  }
+  .badge:disabled {
+    filter: grayscale(75%);
+    cursor: not-allowed;
+    &::after {
+      background: transparent;
+    }
+    [class$="-increment"] {
+      color: #000000;
+      filter: saturate(0.5);
+      mix-blend-mode: hard-light;
     }
   }
   .card-title {

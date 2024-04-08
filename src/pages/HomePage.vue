@@ -16,6 +16,7 @@
     <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
       <h1 @click="knowledgeClicker" class="col-3 btn btn-outline-primary">Click and learn</h1>
       <p class="text-light">Current Knowledge: {{ knowledgeCounter }}</p>
+      <p class="text-light">Current Energy: {{ energyLevel }}</p>
     </div>
   </div>
 </template>
@@ -34,6 +35,9 @@ import { techState } from "../state/scopedStates/TechState.js";
 export default {
   setup() {
     const knowledgeCounter = computed(() => AppState.knowledge)
+    const energyLevel = computed(() => {
+      return AppState.energy
+    })
     const offcanvasInstance = ref('')
 
     async function knowledgeClicker() {
@@ -62,6 +66,7 @@ export default {
     return {
       knowledgeClicker,
       knowledgeCounter,
+      energyLevel,
 
       offcanvasInstance,
       technologies: computed(() => techState.technologies),
