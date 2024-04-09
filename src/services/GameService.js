@@ -22,17 +22,21 @@ class GameService {
   }
 
   async reduceEnergyTimer(newTech) {
+    
     let startTime = 0;
     await techsService.determineProficiency(newTech);
     const intervalId = setInterval(() => {
-        startTime++;
-        startTime >= newTech.energyCost ?
-            (clearInterval(intervalId), techsService.handleEffects(newTech, startTime), techsService.updateTechnology(newTech)) :
-            techsService.handleEffects(newTech, startTime);
+      if (startTime < newTech.energyCost) {
+        techsService.handleEffects(newTech, startTime);
+      } else {
+        clearInterval(intervalId);
+        techsService.handleEffects(newTech, newTech.energyCost);
+        techsService.updateTechnology(newTech);
+      }
+      startTime++;
     }, 1000);
     logger.log('Energy consumed:', AppState.energy, 'Energy cost:', newTech.energyCost);
   }
-
 
 
   async updateGameStats() {
