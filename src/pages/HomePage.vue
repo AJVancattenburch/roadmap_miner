@@ -10,15 +10,23 @@
       <TechsOffcanvas  :offcanvasInstance="offcanvasInstance" />
 
       <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
-        Skills
+        <span>Skills</span>
       </a>
       <SkillsOffcanvas :offcanvasInstance="offcanvasInstance" />
     </section>
 
-    <aside v-for="current in stats" :key="current.id" class="current-score">
-        <p class="text-light">🧠 Knowledge: {{ stats.knowledge }}</p>
-        <p class="text-light">⚡ Energy: {{ stats.energyLevel }}</p>
-        <TechCard v-for="tech in learnedTechnologies" :key="tech.id" :tech="tech" />
+    <aside class="current-score text-white">
+      <h6 class="col-12">🧠 Knowledge: {{ stats.knowledge }}</h6>
+      <h6 class="col-12">⚡ Energy: {{ stats.energy }}</h6>
+
+      <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <TechBadge v-for="myTech in stats.learnedTechnologies" :key="myTech.id" :tech="myTech" class="col-4" />
+      </div>
+      <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
+      <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+        <SkillCard v-for="mySkill in stats.skillsEarned" :key="mySkill.id" :skill="mySkill" />
+      </div>
     </aside>
 
     <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
@@ -33,6 +41,8 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed, onMounted } from "vue";
+import TechBadge from "../components/TechBadge.vue";
+import SkillCard from "../components/SkillCard.vue";
 import TechsOffcanvas from "../components/TechsOffcanvas.vue";
 import SkillsOffcanvas from "../components/SkillsOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
@@ -77,6 +87,8 @@ export default {
     }
   },
   components: {
+    TechBadge,
+    SkillCard,
     TechsOffcanvas,
     SkillsOffcanvas,
   }
@@ -96,14 +108,13 @@ export default {
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 9rem;
+    padding: 2rem;
+    height: 35rem;
     width: 15rem;
-    background: linear-gradient(270deg, #000, #111 90%, transparent);
+    background: linear-gradient(270deg, #000, #111 85%, transparent);
     border-radius: 0 0 0 1rem;
     transition: 0.3s ease-in-out;
-    &>p {
+    &>h6 {
       font-size: 1rem;
       font-weight: bold;
       text-shadow: 0 1px 2px #3546b5;
@@ -112,7 +123,7 @@ export default {
   .clicker-container {
     margin-top: 18rem;
   }
-  .tech-btn {
+  .tech-btn, .skill-btn {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
