@@ -3,20 +3,26 @@
     <div class="d-flex justify-content-end align-items-top" style="position: absolute; top: 1rem; right: 1rem;">
       <Login />
     </div>
-    <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techOffcanvas" aria-controls="techOffcanvas">
-      <span>Technologies</span>
-    </i>
-    <TechOffcanvas  :offcanvasInstance="offcanvasInstance" />
+    <section>
+      <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techOffcanvas" aria-controls="techOffcanvas">
+        <span>Technologies</span>
+      </i>
+      <TechsOffcanvas  :offcanvasInstance="offcanvasInstance" />
 
-    <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
-      Skills
-    </a>
-    <SkillOffcanvas :offcanvasInstance="offcanvasInstance" />
+      <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
+        Skills
+      </a>
+      <SkillsOffcanvas :offcanvasInstance="offcanvasInstance" />
+    </section>
+
+    <aside v-for="current in stats" :key="current.id" class="current-score">
+        <p class="text-light">🧠 Knowledge: {{ stats.knowledge }}</p>
+        <p class="text-light">⚡ Energy: {{ stats.energyLevel }}</p>
+        <TechCard v-for="tech in learnedTechnologies" :key="tech.id" :tech="tech" />
+    </aside>
 
     <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
-      <h1 @click="knowledgeClicker" class="col-3 btn btn-outline-primary">Click and learn</h1>
-      <p class="text-light">Current Knowledge: {{ knowledgeCounter }}</p>
-      <p class="text-light">Current Energy: {{ energyLevel }}</p>
+      <h1 @click="knowledgeClicker" class="col-2 btn btn-outline-success fw-bold fst-italic">Click => learn</h1>
     </div>
   </div>
 </template>
@@ -27,16 +33,16 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed, onMounted } from "vue";
-import TechOffcanvas from "../components/TechOffcanvas.vue";
-import SkillOffcanvas from "../components/SkillOffcanvas.vue";
+import TechsOffcanvas from "../components/TechsOffcanvas.vue";
+import SkillsOffcanvas from "../components/SkillsOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
 import { techState } from "../state/scopedStates/TechState.js";
+import { statsState } from "../state/scopedStates/StatsState.js";
 
 export default {
   setup() {
-    const knowledgeCounter = computed(() => AppState.knowledge)
-    const energyLevel = computed(() => AppState.energy)
     const offcanvasInstance = ref('')
+    const stats = computed(() => statsState)
 
     async function knowledgeClicker() {
       try {
@@ -63,17 +69,16 @@ export default {
 
     return {
       knowledgeClicker,
-      knowledgeCounter,
-      energyLevel,
 
+      stats,
       offcanvasInstance,
       technologies: computed(() => techState.technologies),
       skills: computed(() => skillState.skills),
     }
   },
   components: {
-    TechOffcanvas,
-    SkillOffcanvas,
+    TechsOffcanvas,
+    SkillsOffcanvas,
   }
 }
 </script>
@@ -84,6 +89,26 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100vh;
+  .current-score {
+    position: absolute;
+    top: 9rem;
+    right: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 9rem;
+    width: 15rem;
+    background: linear-gradient(270deg, #000, #111 90%, transparent);
+    border-radius: 0 0 0 1rem;
+    transition: 0.3s ease-in-out;
+    &>p {
+      font-size: 1rem;
+      font-weight: bold;
+      text-shadow: 0 1px 2px #3546b5;
+    }
+  }
   .clicker-container {
     margin-top: 18rem;
   }
