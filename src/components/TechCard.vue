@@ -3,7 +3,7 @@
     <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
-    <button v-if="techProficiency !== 'Advanced'" :disabled="techProgress != 0" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
+    <button v-if="techProficiency !== 'Advanced'" :disabled="techProgress > 0" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
     <button v-else :disabled="techProficiency === 'Advanced'" @click="learnTechnology(newTech)" class="mdi mdi-lightning-bolt badge"> <span class="max-increment">MAXED</span></button>
     <h6 class="card-title text-center pt-2"><span class="emphasize-title text-uppercase">Learn</span> {{ tech.name }}</h6>
     <div class="col-11 progress m-1 mb-2 bg-dark" style="outline: 1px ridge #000;">
@@ -41,10 +41,10 @@ export default {
     async function learnTechnology() {
       try {
         const newTech = props.tech;
-        await techsService.learnTechnology(newTech);
-        logger.log(`Began learning ${newTech}`);
         if (newTech.energyCost > 0) {
           startProgressBar();
+          await techsService.learnTechnology(newTech);
+          logger.log(`Technology: ${newTech.name} learned!`)
         }
       }
       catch (error){
@@ -186,7 +186,7 @@ export default {
     &::after {
       background: transparent;
     }
-    [class$="-increment"] {
+    .cost-increment, .max-increment {
       color: #000000;
       filter: saturate(0.5);
       mix-blend-mode: hard-light;

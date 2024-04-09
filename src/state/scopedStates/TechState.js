@@ -7,7 +7,7 @@ const technologies = reactive([
   new Tech({
     name: 'HTML',
     category: 'Front End',
-    energyCost: 2,
+    energyCost: 10,
     multiplier: 1,
     isCompleted: false,
     picture: image.html
