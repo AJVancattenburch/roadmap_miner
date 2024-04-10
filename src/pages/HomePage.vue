@@ -64,19 +64,6 @@ export default {
       }
     }
 
-    async function updateGameStats() {
-      try {
-        await gameService.updateGameStats();
-      } catch (error) {
-        logger.error(error);
-        Pop.error(error);
-      }
-    }
-
-    onMounted(() => {
-      updateGameStats();
-    })
-
     return {
       knowledgeClicker,
 

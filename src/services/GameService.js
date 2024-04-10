@@ -1,7 +1,9 @@
 import { AppState } from '../state/AppState'
 import { statsState } from "../state/scopedStates/StatsState.js"
+import { techState } from "../state/scopedStates/TechState.js"
 import { logger } from '../utils/Logger'
 import { techsService } from "./TechsService.js"
+import { Tech } from '../models/Tech.js'
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
@@ -39,10 +41,12 @@ class GameService {
   }
 
 
-  async updateGameStats() {
+  async addTechToStats(newTech) {
     try {
-      statsState
-      logger.log('Current stats:', statsState)
+      const tech = new Tech(newTech)
+      statsState.learnedTechnologies.push(tech)
+      statsState.techStat = tech
+      logger.log('New technology learned!:', statsState.techStat)
     } catch (error) {
       logger.error('Could not update current stats', error)
     }

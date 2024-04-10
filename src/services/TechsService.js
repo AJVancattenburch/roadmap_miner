@@ -44,17 +44,17 @@ class TechsService {
 
   async updateTechnology(newTech) {
     try {
+      
       newTech = {
-        name: newTech.name,
-        category: newTech.category,
+        ...newTech,
         quantity: newTech.quantity++,
         energyCost: newTech.energyCost *= 2,
         multiplier: newTech.multiplier *= 2,
-        proficiency: newTech.proficiency,
         isCompleted: true,
       }
 
-      statsState.learnedTechnologies.push(newTech)
+      // statsState.learnedTechnologies.push(newTech)
+      await gameService.addTechToStats(newTech)
       logger.log('Technology updated and added to learned technologies:', newTech, statsState)
     } catch (error) {
       logger.error('Could not update technology', error)
