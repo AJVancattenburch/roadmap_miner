@@ -21,7 +21,7 @@
 
       <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
       <div class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge v-for="myTech in stats.learnedTechnologies" :key="myTech.id" :tech="myTech" class="col-4" />
+        <TechBadge v-for="learnedTech in stats.learnedTechnologies" :key="learnedTech.isCompleted" :tech="learnedTech" class="col-4" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -38,6 +38,7 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
+import { techsService } from "../services/TechsService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed, onMounted } from "vue";
@@ -82,7 +83,10 @@ export default {
 
       stats,
       offcanvasInstance,
-      technologies: computed(() => techState.technologies),
+      technologies: computed(() => {
+        const learnedTechnologies = statsState.learnedTechnologies.map(techData => new Tech(techData));
+        return learnedTechnologies;
+      }),
       skills: computed(() => skillState.skills),
     }
   },

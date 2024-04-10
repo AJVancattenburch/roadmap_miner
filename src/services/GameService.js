@@ -41,8 +41,9 @@ class GameService {
 
   async updateGameStats() {
     try {
-      statsState
+      const stats = statsState
       logger.log('Current stats:', statsState)
+      return stats
     } catch (error) {
       logger.error('Could not update current stats', error)
     }
