@@ -1,6 +1,5 @@
 import { AppState } from '../state/AppState'
 import { statsState } from "../state/scopedStates/StatsState.js"
-import { techState } from "../state/scopedStates/TechState.js"
 import { logger } from '../utils/Logger'
 import { techsService } from "./TechsService.js"
 import { Tech } from '../models/Tech.js'
@@ -26,7 +25,6 @@ class GameService {
   async reduceEnergyTimer(newTech) {
     
     let startTime = 0;
-    await techsService.determineProficiency(newTech);
     const intervalId = setInterval(() => {
       if (startTime < newTech.energyCost) {
         techsService.handleEffects(newTech, startTime);
