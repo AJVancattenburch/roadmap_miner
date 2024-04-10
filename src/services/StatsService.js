@@ -1,4 +1,5 @@
 import { AppState } from "../state/AppState"
+import { Tech } from "../models/Tech.js"
 class StatsService {
   async getGameStats(currentStats) {
     AppState.stats = currentStats
@@ -6,10 +7,10 @@ class StatsService {
     const stats ={
       knowledge: AppState.knowledge,
       energy: AppState.energy,
-      learnedTechnologies: AppState.techState.technologies.filter(tech => tech.isCompleted),
-      learnedSkills: AppState.skillState.skills.filter(skill => skill.isUnlocked)
+      learnedTechnologies: [],
+      skillsEarned: []
     }
-    AppState.stats.push(stats)
+    return stats
   }
 
   getMyTechnologies() {

@@ -21,7 +21,7 @@
 
       <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
       <div class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge v-for="myTech in stats.learnedTechnologies" :key="myTech.id" :tech="myTech" class="col-4" />
+        <TechBadge v-for="learnedTech in stats.learnedTechnologies" :key="learnedTech.isCompleted" :tech="learnedTech" class="col-4" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
