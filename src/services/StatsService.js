@@ -7,11 +7,10 @@ class StatsService {
     const stats ={
       knowledge: AppState.knowledge,
       energy: AppState.energy,
-      learnedTechnologies: AppState.techState.technologies
-        .filter(tech => tech.isCompleted)
-        .map(techData => new Tech(techData)) // Construct Tech objects
-    };
-    AppState.stats.push(stats);
+      learnedTechnologies: [],
+      skillsEarned: []
+    }
+    return stats
   }
 
   getMyTechnologies() {

@@ -9,27 +9,27 @@ class TechsService {
     try {
       await gameService.reduceEnergyTimer(newTech);
     } catch (error) {
-      logger.error('TechSkillsService | learnTechnology method failed', error);
+      logger.error('Tech learning process failed. Timer did not start', error);
     }
   }
 
   async handleEffects(newTech, startTime) {
     if (startTime < newTech.energyCost) {
       if (newTech.quantity === 0) {
-        logger.log('Energy consumed:', startTime);
+        logger.log('Energy usage:', startTime);
         AppState.energy--;
       } else {
         AppState.energy -= newTech.multiplier;
         AppState.knowledge += newTech.energyCost / 10;
       }
-      logger.log('Energy remaining:', AppState.energy);
+      await this.determineProficiency(newTech);
+      logger.log('Energy remaining from tech effects:', AppState.energy);
     }
   }
 
   async determineProficiency(newTech) {
     try {
       const foundTech = techState.technologies.find(tech => tech.id === newTech.id);
-      logger.log('Found technology:', foundTech);
       if (foundTech.quantity === 0) {
         foundTech.proficiency = 'Beginner';
       } else if (foundTech.quantity === 1) {
@@ -37,16 +37,16 @@ class TechsService {
       } else if (foundTech.quantity === 2) {
         foundTech.proficiency = 'Advanced';
       }
+      logger.log(`New proficiency level for ${foundTech.name}: ${foundTech.proficiency}`);
     } catch (error) {
-      logger.error('Could not determine proficiency', error);
+      logger.error('Could not determine proficiency level', error);
     }
   }
 
   async updateTechnology(newTech) {
     try {
       newTech = {
-        name: newTech.name,
-        category: newTech.category,
+        ...newTech,
         quantity: newTech.quantity++,
         energyCost: newTech.energyCost *= 2,
         multiplier: newTech.multiplier *= 2,
@@ -54,12 +54,22 @@ class TechsService {
         isCompleted: true,
       }
 
-      statsState.learnedTechnologies.push(newTech)
+      await this.addToStats(newTech);
       logger.log('Technology updated and added to learned technologies:', newTech, statsState)
     } catch (error) {
       logger.error('Could not update technology', error)
     }
   }
+
+  async addToStats(newTech) {
+    try {
+      const index = techState.technologies.findIndex(tech => tech.id === newTech.id);
+      techState.technologies.splice(index, 1, newTech);
+      statsState.learnedTechnologies.push(newTech);
+    } catch (error) {
+      logger.error('Could not complete proficiency level', error);
+    }
+  }
 }
 
-export const techsService = new TechsService()
+export const techsService = new TechsService();

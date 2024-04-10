@@ -38,7 +38,6 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
-import { techsService } from "../services/TechsService.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed, onMounted } from "vue";
@@ -83,10 +82,7 @@ export default {
 
       stats,
       offcanvasInstance,
-      technologies: computed(() => {
-        const learnedTechnologies = statsState.learnedTechnologies.map(techData => new Tech(techData));
-        return learnedTechnologies;
-      }),
+      technologies: computed(() => techState.technologies),
       skills: computed(() => skillState.skills),
     }
   },
