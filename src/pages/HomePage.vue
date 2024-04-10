@@ -21,11 +21,11 @@
 
       <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
       <div class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge v-for="learnedTech in stats.learnedTechnologies" :key="learnedTech.isCompleted" :tech="learnedTech" class="col-4" />
+        <TechBadge v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" :tech="learnedTech" class="col-4" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-        <SkillCard v-for="mySkill in stats.skillsEarned" :key="mySkill.id" :skill="mySkill" />
+        <SkillCard v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" :skill="earnedSkill" />
       </div>
     </aside>
 

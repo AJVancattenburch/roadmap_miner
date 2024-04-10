@@ -7,6 +7,7 @@ import { statsState } from "../state/scopedStates/StatsState.js";
 class TechsService {
   async learnTechnology(newTech) {
     try {
+      await this.determineProficiency(newTech);
       await gameService.reduceEnergyTimer(newTech);
     } catch (error) {
       logger.error('Tech learning process failed. Timer did not start', error);
@@ -22,7 +23,6 @@ class TechsService {
         AppState.energy -= newTech.multiplier;
         AppState.knowledge += newTech.energyCost / 10;
       }
-      await this.determineProficiency(newTech);
       logger.log('Energy remaining from tech effects:', AppState.energy);
     }
   }
@@ -47,7 +47,6 @@ class TechsService {
     try {
       
       newTech = {
-        ...newTech,
         ...newTech,
         quantity: newTech.quantity++,
         energyCost: newTech.energyCost *= 2,
