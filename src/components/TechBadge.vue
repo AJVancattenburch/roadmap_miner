@@ -1,15 +1,15 @@
 <template>
   <div class="col-12 d-flex">
-    <div v-if="tech.quantity === 0" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container beginner d-flex flex-column justify-content-center align-items-center">
+    <div v-if="tech.quantity === 1" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container beginner d-flex flex-column justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" class="badge-img img-fluid">
       <small class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
     </div>
-    <div v-if="tech.quantity === 1" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container intermediate d-flex flex-column justify-content-center align-items-center">
+    <div v-if="tech.quantity === 2" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container intermediate d-flex flex-column justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Intermediate" class="badge-img img-fluid">
       <small class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
     </div>
-    <div v-if="tech.quantity === 2" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container advanced d-flex flex-column justify-content-center align-items-center">
-      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Advanced" class="badge-img img-fluid">
+    <div v-if="tech.quantity === 3" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container advanced d-flex flex-column justify-content-center align-items-center">
+      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Proficiency Level: ${tech.proficiency}`" class="badge-img img-fluid">
       <small class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
     </div>
   </div>

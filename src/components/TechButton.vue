@@ -1,11 +1,12 @@
 <template>
-  <button v-if="tech.quantity === 0" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 1" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 2" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 3" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">Maxed</span></button>
+  <button v-if="tech.quantity === 0" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt green-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 1" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt yellow-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 2" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 3" :style="{ disabledColor }" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">Maxed</span></button>
 </template>
 
 <script>
+import { computed, ref } from "vue";
 import { Tech } from "../models/Tech.js";
 
 export default {
@@ -27,8 +28,9 @@ export default {
       const newTech = props.tech;
       emit('learn-technology', newTech)
     }
+
     return {
-      learnTechnology,
+      learnTechnology
     }
   }
 }
@@ -52,6 +54,7 @@ export default {
     font-style: normal;
     border: 2px ridge #000000;
     border-radius: 0.25rem;
+    transition: 0.3s ease-in-out;
     &::after {
       content: "";
       position: absolute;
@@ -136,9 +139,10 @@ export default {
     text-shadow: none;
   }
 }
-.badge:disabled {
+*:disabled {
   filter: grayscale(75%);
   cursor: not-allowed;
+  transition: 0.3s ease-in-out;
   &::after {
     background: transparent;
   }
@@ -146,6 +150,7 @@ export default {
     color: #000000;
     filter: saturate(0.5);
     mix-blend-mode: hard-light;
+    transition: 0.3s ease-in-out;
   }
 }
 </style>

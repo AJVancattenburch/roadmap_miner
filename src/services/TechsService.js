@@ -34,11 +34,11 @@ class TechsService {
     try {
       const foundTech = techState.technologies.find(tech => tech.id === newTech.id);
       if (foundTech.quantity === 0) {
-        foundTech.proficiency === 'Beginner';
+        newTech.proficiency = 'Beginner';
       } else if (foundTech.quantity === 1) {
-        foundTech.proficiency === 'Intermediate';
+        newTech.proficiency = 'Intermediate';
       } else if (foundTech.quantity === 2) {
-        foundTech.proficiency === 'Advanced';
+        newTech.proficiency = 'Advanced';
         // await skillsService.autoUnlockSkillByRelatedTech(newTech);
         await skillsService.linkTechToSkill(newTech);
       }
