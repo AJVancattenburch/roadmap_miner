@@ -7,7 +7,7 @@ const technologies = reactive([
   new Tech({
     name: 'HTML',
     category: 'Front End',
-    energyCost: 10,
+    energyCost: 1,
     multiplier: 1,
     isCompleted: false,
     picture: image.html
@@ -15,7 +15,7 @@ const technologies = reactive([
   new Tech({
     name: 'CSS',
     category: 'Front End',
-    energyCost: 20,
+    energyCost: 2,
     multiplier: 1,
     isCompleted: false,
     picture: image.css
@@ -23,7 +23,7 @@ const technologies = reactive([
   new Tech({
     name: 'JavaScript',
     category: 'Front End',
-    energyCost: 30,
+    energyCost: 3,
     multiplier: 2,
     isCompleted: false,
     picture: image.javascript
@@ -31,7 +31,7 @@ const technologies = reactive([
   new Tech({
     name: 'Vue',
     category: 'Front End',
-    energyCost: 80,
+    energyCost: 8,
     multiplier: 3,
     isCompleted: false,
     picture: image.vuejs
@@ -39,7 +39,7 @@ const technologies = reactive([
   new Tech({
     name: 'React',
     category: 'Front End',
-    energyCost: 80,
+    energyCost: 8,
     multiplier: 3,
     isCompleted: false,
     picture: image.reactjs
@@ -47,7 +47,7 @@ const technologies = reactive([
   new Tech({
     name: 'Angular',
     category: 'Front End',
-    energyCost: 80,
+    energyCost: 8,
     multiplier: 3,
     isCompleted: false,
     picture: image.angularjs
@@ -56,7 +56,7 @@ const technologies = reactive([
   new Tech({
     name: 'Node/Express',
     category: 'Back End',
-    energyCost: 80,
+    energyCost: 8,
     multiplier: 3,
     isCompleted: false,
     picture: image.nodejs
@@ -64,7 +64,7 @@ const technologies = reactive([
   new Tech({
     name: 'MongoDB',
     category: 'Back End',
-    energyCost: 80,
+    energyCost: 8,
     multiplier: 3,
     isCompleted: false,
     picture: image.mongodb
@@ -72,7 +72,7 @@ const technologies = reactive([
   new Tech({
     name: 'ASP.NET Core',
     category: 'Back End',
-    energyCost: 100,
+    energyCost: 10,
     multiplier: 4,
     isCompleted: false,
     picture: image.aspnet
@@ -80,7 +80,7 @@ const technologies = reactive([
   new Tech({
     name: 'mySQL',
     category: 'Back End',
-    energyCost: 100,
+    energyCost: 10,
     multiplier: 4,
     isCompleted: false,
     picture: image.mysql
@@ -88,16 +88,15 @@ const technologies = reactive([
   new Tech({
     name: 'C#',
     category: 'Back End',
-    energyCost: 100,
+    energyCost: 10,
     multiplier: 4,
     isCompleted: false,
     picture: image.csharp
   }),
   new Tech({
-
     name: 'MERN Stack',
     category: 'Full Stack',
-    energyCost: 120,
+    energyCost: 12,
     multiplier: 5,
     isCompleted: false,
     picture: image.MERN
@@ -105,7 +104,7 @@ const technologies = reactive([
   new Tech({
     name: 'MEAN Stack',
     category: 'Full Stack',
-    energyCost: 120,
+    energyCost: 12,
     multiplier: 5,
     isCompleted: false,
     picture: image.MEAN
@@ -113,7 +112,7 @@ const technologies = reactive([
   new Tech({
     name: 'MEVN Stack',
     category: 'Full Stack',
-    energyCost: 120,
+    energyCost: 12,
     multiplier: 5,
     isCompleted: false,
     picture: image.MEVN

@@ -1,19 +1,29 @@
 <template>
-    <div v-if="tech.quantity === 0" class="badge-container beginner d-flex flex-column justify-content-center align-items-center">
+  <div class="col-12 d-flex">
+    <div v-if="tech.quantity === 0" class="col-4 d-flex badge-container beginner d-flex flex-column justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Beginner" class="badge-img img-fluid">
       <small class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
     </div>
-    <div v-if="tech.quantity === 1" class="badge-container intermediate d-flex flex-column justify-content-center align-items-center">
+    <div v-if="tech.quantity === 1" class="col-4 d-flex badge-container intermediate d-flex flex-column justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Intermediate" class="badge-img img-fluid">
       <small class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
     </div>
-    <div v-if="tech.quantity === 2" class="badge-container advanced d-flex flex-column justify-content-center align-items-center">
+    <div v-if="tech.quantity === 2" class="col-4 d-flex badge-container advanced d-flex flex-column justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Advanced" class="badge-img img-fluid">
       <small class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
     </div>
+  </div>
+    <!-- <div v-for="(quantity, index) in tech.quantity" :key="index" :class="`badge-container `" class="advanced d-flex flex-column justify-content-center align-items-center">
+      <img :src="techBadge.picture" :alt="`Picture of ${techBadge.name}`" title="Proficiency Level: Advanced" class="badge-img img-fluid">
+      <small class="card-title red d-flex flex-column fw-bold pt-2">{{ techBadge.name }}<span class="proficiency">III</span></small>
+    </div> -->
+  
 </template>
 
 <script>
+import { computed } from "vue";
+import { statsState } from "../state/scopedStates/StatsState.js";
+
 
 export default {
   props: {
@@ -23,7 +33,12 @@ export default {
     }
   },
   setup() {
-    return {}
+    return {
+      // techBadge: computed(() => {
+      //   const badge = statsState.learnedTechnologies.find(tech => tech.name === tech.name)
+      //   return badge
+      // })
+    }
   }
 }
 </script>

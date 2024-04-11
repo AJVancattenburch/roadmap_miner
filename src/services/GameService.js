@@ -3,6 +3,7 @@ import { statsState } from "../state/scopedStates/StatsState.js"
 import { logger } from '../utils/Logger'
 import { techsService } from "./TechsService.js"
 import { Tech } from '../models/Tech.js'
+import { statsService } from "./StatsService.js"
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {

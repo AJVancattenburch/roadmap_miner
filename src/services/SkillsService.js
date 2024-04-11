@@ -3,6 +3,7 @@ import { skillState } from "../state/scopedStates/SkillState.js"
 import { techState } from "../state/scopedStates/TechState.js"
 import { logger } from "../utils/Logger.js"
 import { Skill } from "../models/Skill.js"
+import { statsState } from "../state/scopedStates/StatsState.js"
 
 class SkillsService {
   async getSkills() {
@@ -12,12 +13,18 @@ class SkillsService {
 
   async autoUnlockSkill(newSkill) {
     try {
-      const techNameMatches = techState.technologies.find(tech => tech.name === newSkill.name)
-      skillState.activeSkill = newSkill
-      newSkill.requiredTech = techNameMatches
-      newSkill.requirementCount = techNameMatches.length
+      const techNameMatches = statsState.learnedTechnologies.filter(tech => tech.name === newSkill.name)
+      const techNameMatchesCount = techNameMatches.length >= 1
+      if (techNameMatches) {
+        while (techNameMatchesCount) {
+          await this.earnSkill(techNameMatches, newSkill)
+        }
+      }
+      // skillState.activeSkill = newSkill
+      // newSkill.requiredTech = techNameMatches
+      // newSkill.requirementCount = techNameMatches.length
+      
 
-      await this.earnSkill(techNameMatches, newSkill)
       logger.log('Added required technologies and count requirement to pertaining skills:', newSkill)
     } catch (error) {
       logger.error('Could not match tech to skill', error)
@@ -28,11 +35,10 @@ class SkillsService {
     try {
       const metTechRequirements = techNameMatches.length === newSkill.requirementCount
       const hasEnoughEnergy = AppState.energy >= newSkill.energyCost
-      const increasedAmount = techNameMatches.length * newSkill.multiplier
       if (metTechRequirements && hasEnoughEnergy) {
         newSkill.quantity++
-        newSkill.requirementCount += increasedAmount
-        AppState.knowledge += increasedAmount
+        newSkill.requirementCount = techNameMatches.length++
+        AppState.knowledge += 
         logger.log('Knowledge gained:', AppState.knowledge)
         await this.skillEffects()
         

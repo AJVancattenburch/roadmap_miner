@@ -1,16 +1,17 @@
 import { AppState } from "../state/AppState"
 import { Tech } from "../models/Tech.js"
 class StatsService {
-  async getGameStats(currentStats) {
-    AppState.stats = currentStats
+  async getStats() {
     
-    const stats ={
-      knowledge: AppState.knowledge,
-      energy: AppState.energy,
-      learnedTechnologies: [],
-      skillsEarned: []
-    }
-    return stats
+    // const techStats = AppState.learnedTechnologies.map(tech => new Tech(tech)
+    const techStats = AppState.learnedTechnologies.map(tech => {
+      return {
+        ...new Tech(tech),
+        quantity: tech.quantity,
+        
+      }
+    })
+    return techStats
   }
 
   getMyTechnologies() {

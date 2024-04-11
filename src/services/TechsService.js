@@ -3,6 +3,7 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "./GameService.js";
 import { AppState } from "../state/AppState.js";
 import { statsState } from "../state/scopedStates/StatsState.js";
+import { skillsService } from "./SkillsService.js";
 
 class TechsService {
   async learnTechnology(newTech) {
@@ -38,6 +39,7 @@ class TechsService {
         foundTech.proficiency = 'Intermediate';
       } else if (foundTech.quantity === 2) {
         foundTech.proficiency = 'Advanced';
+        await skillsService.autoUnlockSkill(newTech);
       }
       logger.log(`New proficiency level for ${foundTech.name}: ${foundTech.proficiency}`);
     } catch (error) {
@@ -56,21 +58,10 @@ class TechsService {
         isCompleted: true,
       }
 
-      // statsState.learnedTechnologies.push(newTech)
       await gameService.addTechToStats(newTech)
       logger.log('Technology updated and added to learned technologies:', newTech, statsState)
     } catch (error) {
       logger.error('Could not update technology', error)
-    }
-  }
-
-  async addToStats(newTech) {
-    try {
-      const index = techState.technologies.findIndex(tech => tech.id === newTech.id);
-      techState.technologies.splice(index, 1, newTech);
-      statsState.learnedTechnologies.push(newTech);
-    } catch (error) {
-      logger.error('Could not complete proficiency level', error);
     }
   }
 }

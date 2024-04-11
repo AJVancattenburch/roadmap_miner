@@ -20,8 +20,8 @@
       <h6 class="col-12">⚡ Energy: {{ energy }}</h6>
 
       <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
-      <div class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" :tech="learnedTech" :techQuantity="learnedTech.quantity" />
+      <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-12 d-flex justify-content-center align-items-center">
+        <TechBadge :tech="learnedTech" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -40,7 +40,7 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import TechBadge from "../components/TechBadge.vue";
 import SkillCard from "../components/SkillCard.vue";
 import TechsOffcanvas from "../components/TechsOffcanvas.vue";
@@ -48,7 +48,6 @@ import SkillsOffcanvas from "../components/SkillsOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
 import { techState } from "../state/scopedStates/TechState.js";
 import { statsState } from "../state/scopedStates/StatsState.js";
-
 export default {
   setup() {
     const offcanvasInstance = ref('')

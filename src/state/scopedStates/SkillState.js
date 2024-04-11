@@ -11,7 +11,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in HTML!',
       picture: image.html,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false,
     }),
     new Skill({
@@ -19,7 +19,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in CSS!',
       picture: image.css,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -27,7 +27,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in JavaScript!',
       picture: image.javascript,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -35,7 +35,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in Vue!',
       picture: image.vuejs,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -43,7 +43,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in React!',
       picture: image.reactjs,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -51,7 +51,7 @@ const skills = reactive([
       category: 'Front End',
       description: 'New level of mastery reached in Angular!',
       picture: image.angularjs,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -59,7 +59,7 @@ const skills = reactive([
       category: 'Back End',
       description: 'New level of mastery reached in Node/Express!',
       picture: image.mysql,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -67,7 +67,7 @@ const skills = reactive([
       category: 'Back End',
       description: 'New level of mastery reached in MongoDB!',
       picture: image.mysql,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
     new Skill({
@@ -75,7 +75,7 @@ const skills = reactive([
       category: 'Back End',
       description: 'New level of mastery reached in ASP.NET Core / C# / mySQL!',
       picture: image.csharp,
-      multiplier: 1,
+      multiplier: 3,
       isUnlocked: false
     }),
 
@@ -84,7 +84,7 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'New level of mastery reached in the MEVN Stack!',
       picture: image.MEVN,
-      multiplier: 1,
+      multiplier: 6,
       isUnlocked: false
     }),
     new Skill({
@@ -92,7 +92,7 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'New level of mastery reached in the MERN Stack!',
       picture: image.MERN,
-      multiplier: 1,
+      multiplier: 6,
       isUnlocked: false
     }),
     new Skill({
@@ -100,7 +100,7 @@ const skills = reactive([
       category: 'Full Stack',
       description: 'New level of mastery reached in the MEAN Stack!',
       picture: image.MEAN,
-      multiplier: 1,
+      multiplier: 6,
       isUnlocked: false
     })
 ]);

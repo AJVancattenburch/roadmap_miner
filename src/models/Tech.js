@@ -9,5 +9,6 @@ export class Tech {
     this.energyCost = data.energyCost || 0
     this.quantity = data.quantity || 0
     this.multiplier = data.multiplier
+    this.proficiency = data.proficiency || 'Foreign'
   }
 }

@@ -1,12 +1,11 @@
 <template>
-  <button v-if="!techProficiency" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-else-if="techProficiency !== 'Advanced'" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-else-if="techProficiency === 'Advanced'" disabled class="mdi mdi-lightning-bolt red-badge"> <span class="max-increment text-uppercase">Maxed</span></button>
+  <button v-if="tech.quantity === 0" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 1" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 2" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 3" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">Maxed</span></button>
 </template>
 
 <script>
-import { computed } from "vue";
-import { techState } from "../state/scopedStates/TechState.js";
 import { Tech } from "../models/Tech.js";
 
 export default {
@@ -21,19 +20,13 @@ export default {
     }
   },
   setup(props, { emit }) {
-    const techProficiency = computed(() => {
-      const foundTech = techState.technologies.find(tech => tech.proficiency === props.tech.proficiency)
-      return foundTech.proficiency
-    });
 
     function learnTechnology() {
       const newTech = props.tech;
       emit('learn-technology', newTech)
     }
     return {
-      techProficiency,
-
-      learnTechnology
+      learnTechnology,
     }
   }
 }
@@ -93,6 +86,12 @@ export default {
       &::after {
         background: linear-gradient(
           45deg, #f96d6dcc, #b60f0fcc, #a43636cc, #773232cc, #f96d6dcc);
+      }
+      &.red-badge-max {
+        filter: grayscale(75%);
+        &::after {
+          background: transparent;
+        }
       }
     }
     &:active:after {
