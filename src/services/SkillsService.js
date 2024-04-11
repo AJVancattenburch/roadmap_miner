@@ -3,35 +3,37 @@ import { skillState } from "../state/scopedStates/SkillState.js"
 import { logger } from "../utils/Logger.js"
 import { Skill } from "../models/Skill.js"
 import { techState } from './../state/scopedStates/TechState';
+import { statsState } from './../state/scopedStates/StatsState';
+import { gameService } from "./GameService.js";
 
 class SkillsService {
-  async getSkills() {
-    const skills = skillState.skills.map(skill => new Skill(skill))
-    return skills
+
+  async linkTechToSkill(newTech) {
+    try {
+      logger.log('Tech to skill:', newTech)
+      const newSkill = skillState.skills.find(skill => skill.name === newTech.name)
+      await this.autoUnlockSkillByRelatedTech(newTech, newSkill)
+    } catch (error) {
+      logger.error('Could not link tech to skill', error)
+    }
   }
 
-  async autoUnlockSkill(newSkill) {
+  async autoUnlockSkillByRelatedTech(newTech, newSkill) {
     try {
-      const techNameMatches = techState.technologies.find(tech => tech.name === newSkill.requirement)
-      await this.learnSkill(techNameMatches, newSkill)
-      logger.log('Added required technologies and count requirement to pertaining skills:', newSkill)
+      const techMatch = newTech.quantity === newSkill.requirementCount
+      if (techMatch) {
+        await this.learnSkill(newSkill)
+      }
     } catch (error) {
       logger.error('Could not match tech to skill', error)
     }    
   }
 
-  async learnSkill(techNameMatches, newSkill) {
+  async learnSkill(newSkill) {
     try {
-      const metTechRequirements = techNameMatches.length === newSkill.requirementCount
-      const hasEnoughEnergy = AppState.energy >= newSkill.energyCost
-      if (metTechRequirements && hasEnoughEnergy) {
-        newSkill.quantity++
-        newSkill.requirementCount = techNameMatches.length++
-        AppState.knowledge += 
-        logger.log('Knowledge gained:', AppState.knowledge)
-        await this.skillEffects()
-        
-      }
+      newSkill.quantity++
+      logger.log('Knowledge gained:', AppState.knowledge)
+      await this.skillEffects()
     } catch (error) {
       logger.error('Could not add skill', error)
     }
@@ -39,12 +41,20 @@ class SkillsService {
 
   async skillEffects() {
     let skillMultiplier = 0
-    skillState.skills.forEach(skill => skillMultiplier += skill.multiplier * skill.quantity)
+    const updatedSkill = skillState.skills.find(skill => skillMultiplier *= skill.energyCost)
     AppState.knowledge += skillMultiplier
+    logger.log('Knowledge gained:', skillMultiplier)
+    await this.completeSkill(updatedSkill)
   }
 
-  async updateSkill(skillId, updatedSkill) {
-    
+  async completeSkill(updatedSkill) {
+    try {
+      updatedSkill.isCompleted = true
+      logger.log('Skill updated:', updatedSkill)
+      await gameService.addSkillToStats(updatedSkill)
+    } catch (error) {
+      logger.error('Could not update skill', error)
+    }
   }
 }
 

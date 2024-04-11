@@ -50,6 +50,16 @@ class GameService {
       logger.error('Could not update current stats', error)
     }
   }
+
+  async addSkillToStats(newSkill) {
+    try {
+      statsState.learnedSkills.push(newSkill)
+      statsState.skillStat = newSkill
+      logger.log('New skill learned!:', statsState.skillStat)
+    } catch (error) {
+      logger.error('Could not update current stats', error)
+    }
+  }
 }
 
 export const gameService = new GameService()
