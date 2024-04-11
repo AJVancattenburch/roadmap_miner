@@ -1,9 +1,8 @@
 import { AppState } from "../state/AppState.js"
 import { skillState } from "../state/scopedStates/SkillState.js"
-import { techState } from "../state/scopedStates/TechState.js"
 import { logger } from "../utils/Logger.js"
 import { Skill } from "../models/Skill.js"
-import { statsState } from "../state/scopedStates/StatsState.js"
+import { techState } from './../state/scopedStates/TechState';
 
 class SkillsService {
   async getSkills() {
@@ -13,7 +12,7 @@ class SkillsService {
 
   async autoUnlockSkill(newSkill) {
     try {
-      const techNameMatches = statsState.learnedTechnologies.filter(tech => tech.name === newSkill.name)
+      const techNameMatches = techState.technologies.filter(tech => tech.name === newSkill.name)
       const techNameMatchesCount = techNameMatches.length >= 1
       if (techNameMatches) {
         while (techNameMatchesCount) {

@@ -27,17 +27,17 @@ export default {
   },
   setup(props) {
 
-    async function unlockSkill() {
+    async function autoUnlockSkill() {
       try {
         const newSkill = props.skill
-        await skillsService.unlockSkill(newSkill)
+        await skillsService.autoUnlockSkill(newSkill)
       } catch (error) {
         Pop.error(error);
         logger.error(error);
       }
     }
     return {
-      unlockSkill
+      autoUnlockSkill
     }
   }
 }
