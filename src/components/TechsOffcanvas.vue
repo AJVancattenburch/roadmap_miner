@@ -1,5 +1,5 @@
 <template>
-  <OffcanvasWrapper :position="'offcanvas-bottom'" :offcanvasInstance="'techOffcanvas'" :offcanvasHeader="'Technologies to Learn'">
+  <OffcanvasWrapper :position="'offcanvas-bottom'" :offcanvasInstance="'techsOffcanvas'" :offcanvasHeader="'Technologies to Learn'">
     <template #body-slot>
       <div class="offcanvas-body d-flex justify-content-evenly">
         <h5 class="front-end-header pb-3">Front End Technologies</h5>

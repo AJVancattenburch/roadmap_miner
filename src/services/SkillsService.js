@@ -12,18 +12,8 @@ class SkillsService {
 
   async autoUnlockSkill(newSkill) {
     try {
-      const techNameMatches = techState.technologies.filter(tech => tech.name === newSkill.name)
-      const techNameMatchesCount = techNameMatches.length >= 1
-      if (techNameMatches) {
-        while (techNameMatchesCount) {
-          await this.earnSkill(techNameMatches, newSkill)
-        }
-      }
-      // skillState.activeSkill = newSkill
-      // newSkill.requiredTech = techNameMatches
-      // newSkill.requirementCount = techNameMatches.length
-      
-
+      const techNameMatches = techState.technologies.find(tech => tech.name === newSkill.requirement)
+      await this.learnSkill(techNameMatches, newSkill)
       logger.log('Added required technologies and count requirement to pertaining skills:', newSkill)
     } catch (error) {
       logger.error('Could not match tech to skill', error)

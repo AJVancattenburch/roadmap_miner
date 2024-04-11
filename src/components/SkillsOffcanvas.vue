@@ -1,5 +1,5 @@
 <template>
-  <OffcanvasWrapper :position="'offcanvas-start'" :offcanvasInstance="'skillOffcanvas'" :offcanvasHeader="'Skill Tree'">
+  <OffcanvasWrapper :position="'offcanvas-start'" :offcanvasInstance="'skillsOffcanvas'" :offcanvasHeader="'Skill Tree'">
     <template #body-slot>
       <div class="offcanvas-body p-3">
         <h5 class="text-center">Front End Skills</h5>

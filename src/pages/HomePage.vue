@@ -4,12 +4,12 @@
       <Login />
     </div>
     <section>
-      <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techOffcanvas" aria-controls="techOffcanvas">
+      <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techsOffcanvas" aria-controls="techsOffcanvas">
         <span>Technologies</span>
       </i>
       <TechsOffcanvas  :offcanvasInstance="offcanvasInstance" />
 
-      <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillOffcanvas" aria-controls="skillOffcanvas">
+      <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillsOffcanvas" aria-controls="skillsOffcanvas">
         <span>Skills</span>
       </a>
       <SkillsOffcanvas :offcanvasInstance="offcanvasInstance" />
