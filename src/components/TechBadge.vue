@@ -1,21 +1,19 @@
 <template>
-  <div v-if="tech.quantity === 0" class="badge-container beginner d-flex justify-content-center align-items-center mx-1">
-    <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Beginner" class="badge-img img-fluid">
-    <small class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
-  </div>
-  <div v-if="tech.quantity === 1" class="badge-container intermediate d-flex justify-content-center align-items-center mx-1">
-    <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Intermediate" class="badge-img img-fluid">
-    <small class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
-  </div>
-  <div v-if="tech.quantity === 2" class="badge-container advanced d-flex justify-content-center align-items-center mx-1">
-    <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Advanced" class="badge-img img-fluid">
-    <small class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
-  </div>
+    <div v-if="tech.quantity === 0" class="badge-container beginner d-flex flex-column justify-content-center align-items-center">
+      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Beginner" class="badge-img img-fluid">
+      <small class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
+    </div>
+    <div v-if="tech.quantity === 1" class="badge-container intermediate d-flex flex-column justify-content-center align-items-center">
+      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Intermediate" class="badge-img img-fluid">
+      <small class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
+    </div>
+    <div v-if="tech.quantity === 2" class="badge-container advanced d-flex flex-column justify-content-center align-items-center">
+      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Advanced" class="badge-img img-fluid">
+      <small class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
+    </div>
 </template>
 
 <script>
-import { Stats } from "../models/Stats.js";
-import { Tech } from "../models/Tech.js";
 
 export default {
   props: {
@@ -53,7 +51,6 @@ export default {
   }
   .card-title:is(.green, .yellow, .red) {
     position: absolute;
-    width: 100%;
     font-size: 0.65rem;
     -webkit-text-stroke: 0.75px #000;
     &.green {

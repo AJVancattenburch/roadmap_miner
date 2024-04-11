@@ -16,12 +16,12 @@
     </section>
 
     <aside class="current-score text-white">
-      <h6 class="col-12">🧠 Knowledge: {{ stats.knowledge }}</h6>
-      <h6 class="col-12">⚡ Energy: {{ stats.energy }}</h6>
+      <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
+      <h6 class="col-12">⚡ Energy: {{ energy }}</h6>
 
       <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
       <div class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" :tech="learnedTech" class="col-4" />
+        <TechBadge v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" :tech="learnedTech" :techQuantity="learnedTech.quantity" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -68,6 +68,8 @@ export default {
       knowledgeClicker,
 
       stats,
+      knowledge: computed(() => AppState.knowledge),
+      energy: computed(() => AppState.energy),
       offcanvasInstance,
       technologies: computed(() => techState.technologies),
       skills: computed(() => skillState.skills),

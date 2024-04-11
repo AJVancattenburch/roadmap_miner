@@ -15,13 +15,15 @@ class TechsService {
   }
 
   async handleEffects(newTech, startTime) {
+    //ANCHOR - Left off here dealing with logic of 'not to try and learn every tech' but that advancing in proficiency is the goal, increasing problem solving skills over following the 'latest tech trends'
     if (startTime < newTech.energyCost) {
       if (newTech.quantity === 0) {
         logger.log('Energy usage:', startTime);
-        AppState.energy--;
+        AppState.knowledge += Math.floor(newTech.energyCost / 3);
+        AppState.energy -= Math.floor(newTech.energyCost);
       } else {
-        AppState.energy -= newTech.multiplier;
-        AppState.knowledge += newTech.energyCost / 10;
+        AppState.energy -= Math.floor(startTime + newTech.multiplier);
+        AppState.knowledge += Math.floor(startTime + (newTech.multiplier * 1.25));
       }
       logger.log('Energy remaining from tech effects:', AppState.energy);
     }
@@ -50,7 +52,7 @@ class TechsService {
         ...newTech,
         quantity: newTech.quantity++,
         energyCost: newTech.energyCost *= 2,
-        multiplier: newTech.multiplier *= 2,
+        multiplier: newTech.multiplier *= 3,
         isCompleted: true,
       }
 

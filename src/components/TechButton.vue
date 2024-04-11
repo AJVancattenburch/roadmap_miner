@@ -1,7 +1,7 @@
 <template>
-  <button v-if="!techProficiency || techProficiency === 'Beginner'" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-else-if="techProficiency === 'Intermediate'" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-else disabled class="mdi mdi-lightning-bolt red-badge"> <span class="max-increment text-uppercase">Maxed</span></button>
+  <button v-if="!techProficiency" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-else-if="techProficiency !== 'Advanced'" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"> <span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-else-if="techProficiency === 'Advanced'" disabled class="mdi mdi-lightning-bolt red-badge"> <span class="max-increment text-uppercase">Maxed</span></button>
 </template>
 
 <script>
