@@ -3,7 +3,6 @@ import { statsState } from "../state/scopedStates/StatsState.js"
 import { logger } from '../utils/Logger'
 import { techsService } from "./TechsService.js"
 import { Tech } from '../models/Tech.js'
-import { statsService } from "./StatsService.js"
 import { skillsService } from "./SkillsService.js"
 import { Skill } from "../models/Skill.js"
 
