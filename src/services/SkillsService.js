@@ -8,53 +8,36 @@ import { gameService } from "./GameService.js";
 
 class SkillsService {
 
-  async linkTechToSkill(newTech) {
+  async autoUnlockSkill(newTech) {
     try {
       logger.log('Tech to skill:', newTech)
-      const newSkill = skillState.skills.find(skill => skill.name === newTech.name)
-      await this.autoUnlockSkillByRelatedTech(newTech, newSkill)
+
+      const unlockedSkill = skillState.skills.find(skill => skill.name === newTech.name)
+      logger.log('Skill found:', unlockedSkill)
+      await this.learnSkill(unlockedSkill)
     } catch (error) {
       logger.error('Could not link tech to skill', error)
     }
   }
 
-  async autoUnlockSkillByRelatedTech(newTech, newSkill) {
-    try {
-      const techMatch = newTech.quantity === newSkill.requirementCount
-      if (techMatch) {
-        await this.learnSkill(newSkill)
-      }
-    } catch (error) {
-      logger.error('Could not match tech to skill', error)
-    }    
-  }
-
   async learnSkill(newSkill) {
     try {
-      newSkill.quantity++
-      logger.log('Knowledge gained:', AppState.knowledge)
-      await this.skillEffects()
+      const learnedSkill = new Skill(newSkill)
+      logger.log('Skill obtained!:', learnedSkill)
+      await this.completeSkill(learnedSkill)
     } catch (error) {
       logger.error('Could not add skill', error)
     }
   }
 
-  async skillEffects() {
+  async completeSkill(learnedSkill) {
     let skillMultiplier = 0
-    const updatedSkill = skillState.skills.find(skill => skillMultiplier *= skill.energyCost)
-    AppState.knowledge += skillMultiplier
+    
+    learnedSkill.isUnlocked = true
+    skillMultiplier = learnedSkill.multiplier
+    AppState.knowledge = Math.floor((AppState.knowledge * skillMultiplier) / 2);
     logger.log('Knowledge gained:', skillMultiplier)
-    await this.completeSkill(updatedSkill)
-  }
-
-  async completeSkill(updatedSkill) {
-    try {
-      updatedSkill.isCompleted = true
-      logger.log('Skill updated:', updatedSkill)
-      await gameService.addSkillToStats(updatedSkill)
-    } catch (error) {
-      logger.error('Could not update skill', error)
-    }
+    await gameService.addSkillToStats(learnedSkill)
   }
 }
 

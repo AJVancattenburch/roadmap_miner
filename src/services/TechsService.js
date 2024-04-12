@@ -38,8 +38,8 @@ class TechsService {
         newTech.proficiency = 'Intermediate';
       } else if (foundTech.quantity === 3) {
         newTech.proficiency = 'Advanced';
-        await skillsService.linkTechToSkill(newTech);
       }
+      await gameService.addTechToStats(newTech);
       logger.log(`New proficiency level for ${foundTech.name}: ${foundTech.proficiency}`);
     } catch (error) {
       logger.error('Could not determine proficiency level', error);
@@ -56,8 +56,7 @@ class TechsService {
         multiplier: newTech.multiplier *= 3,
         isCompleted: true,
       }
-
-      await gameService.addTechToStats(newTech)
+      await this.determineProficiency(newTech);
       logger.log('Technology updated and added to learned technologies:', newTech, statsState)
     } catch (error) {
       logger.error('Could not update technology', error)

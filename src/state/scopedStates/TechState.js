@@ -121,7 +121,7 @@ const technologies = reactive([
 
 export const techState = reactive({
   /** @type {import('../../models/Tech.js').Tech[]} */
-    technologies,
+    technologies: technologies,
 
   /** @type {import('../../models/Tech.js').Tech|null} */
     activeTech: null

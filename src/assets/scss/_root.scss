@@ -15,10 +15,25 @@
 
   --glass-plum: #50122750;
   --shadow-plum: #501227af;
+  --glass-purple: #3d125050;
+  --shadow-purple: #3d1250af;
+  --glass-dark-purple: #16125050;
+  --shadow-dark-purple: #161250af;
+  --glass-yellow: #f9f96d50;
+  --shadow-yellow: #f9f96daf;
+  --glass-pink: #ffccd950;
+  --shadow-pink: #ffccd9af;
+  --glass-orange: #ffa50050;
+  --glass-light-red: #f96d6d50;
+  --glass-red: #b60f0f50;
+  --glass-crimson: #a4363650;
+  --glass-dark-crimson: #77323250;
+  --glass-light-green: #80f96d50;
+  --glass-blue: #3546b550;
 
-  --btn-shadow-yellow: 0 0 0.5rem #f9f96d, 0 0 0 0.1rem #80f96d inset;
+  --btn-shadow-yellow: 0 0 0.5rem #f9f96d, 0 0 0 0.1rem #f9f96d inset;
   --btn-shadow-green: 0 0 0.5rem #80f96d, 0 0 0 0.1rem #80f96d inset;
-  --btn-shadow-red: 0 0 0.5rem #f96d6d, 0 0 0 0.1rem #80f96d inset;
+  --btn-shadow-red: 0 0 0.5rem #f96d6d, 0 0 0 0.1rem #f96d6d inset;
 
   --yellow-radial-gradient: radial-gradient(circle at 50% 50%, #f9f96d, #b6b60f99 50%, #a4a43699 75%, #787732);
   --green-radial-gradient: radial-gradient(circle at 50% 50%, #80f96d, #20b60f99 50%, #32a43699 75%, #088732);

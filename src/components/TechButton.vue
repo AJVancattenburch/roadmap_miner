@@ -38,8 +38,8 @@ export default {
 
 <style scoped lang="scss">
 .mdi {
-  color: var(--color-orange);
-  text-shadow: 1px 1px var(--color-blue);
+  color: var(--orange);
+  text-shadow: 1px 1px var(-blue);
   &.green-badge, &.yellow-badge, &.red-badge {
     position: absolute;
     top: -1rem;
@@ -62,13 +62,13 @@ export default {
       right: 50%;
       transform: translateX(50%);
       background-size: 400% 200%;
-      z-index: -1;
-      filter: blur(5px);
       width: 100%;
       height: 100%;
-      animation: glowing 20s linear infinite;
+      animation: shimmer 20s linear infinite;
       opacity: 1;
       transition: opacity 1s ease-in-out;
+      z-index: -1;
+      filter: blur(5px);
     }
     &.green-badge {
         background: var(--green-radial-gradient);
@@ -101,15 +101,13 @@ export default {
     &:hover:before {
       opacity: 1;
     }
-    @keyframes glowing {
+    @keyframes shimmer {
       0% {
         background-position: 0 0;
       }
-    
       50% {
         background-position: 400% 0;
       }
-    
       100% {
         background-position: 0 0;
       }

@@ -107,7 +107,7 @@ const skills = reactive([
 
 export const skillState = reactive({
   /** @type {import('../../models/Skill.js).Skill[]} */
-    skills,
+    skills: skills,
 
   /** @type {import('../../models/Skill.js).Skill|null} */
     activeSkill: null

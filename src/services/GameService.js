@@ -4,6 +4,8 @@ import { logger } from '../utils/Logger'
 import { techsService } from "./TechsService.js"
 import { Tech } from '../models/Tech.js'
 import { statsService } from "./StatsService.js"
+import { skillsService } from "./SkillsService.js"
+import { Skill } from "../models/Skill.js"
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
@@ -45,6 +47,9 @@ class GameService {
       const tech = new Tech(newTech)
       statsState.learnedTechnologies.push(tech)
       statsState.techStat = tech
+      if (tech.proficiency === 'Advanced') {
+        await skillsService.autoUnlockSkill(newTech);
+      }
       logger.log('New technology learned!:', statsState.techStat)
     } catch (error) {
       logger.error('Could not update current stats', error)
@@ -53,9 +58,10 @@ class GameService {
 
   async addSkillToStats(newSkill) {
     try {
-      statsState.learnedSkills.push(newSkill)
-      statsState.skillStat = newSkill
-      logger.log('New skill learned!:', statsState.skillStat)
+      const skill = new Skill(newSkill)
+      statsState.skillsEarned.push(skill)
+      statsState.skillStat = skill
+      logger.log('New skill added to stats!:', statsState.skillStat)
     } catch (error) {
       logger.error('Could not update current stats', error)
     }

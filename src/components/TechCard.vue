@@ -80,11 +80,11 @@ export default {
   position: relative;
   width: 90px;
   height: 100px;
-  background: conic-gradient(transparent, #fff 0.5turn, transparent);
+  background: conic-gradient(var(--glass-plum), #fff 0.5turn, var(--glass-plum));
   border-radius: 0.25rem;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
-  filter: drop-shadow(0 0 0.5rem #000);
+  filter: drop-shadow(0 0 0.5rem var(--bg-dark-purple));
   .img-container {
     width: 90px;
     height: 82px;
@@ -93,6 +93,7 @@ export default {
       height: 82px;
       object-fit: cover;
       object-position: top;
+      filter: drop-shadow(0 0.25rem 0.25rem var(--shadow-plum));
     }
   }
   .card-title {
