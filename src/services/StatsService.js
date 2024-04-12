@@ -3,7 +3,6 @@ import { Tech } from "../models/Tech.js"
 class StatsService {
   async getStats() {
     
-    // const techStats = AppState.learnedTechnologies.map(tech => new Tech(tech)
     const techStats = AppState.learnedTechnologies.map(tech => {
       return {
         ...new Tech(tech),

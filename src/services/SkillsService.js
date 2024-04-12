@@ -2,8 +2,6 @@ import { AppState } from "../state/AppState.js"
 import { skillState } from "../state/scopedStates/SkillState.js"
 import { logger } from "../utils/Logger.js"
 import { Skill } from "../models/Skill.js"
-import { techState } from './../state/scopedStates/TechState';
-import { statsState } from './../state/scopedStates/StatsState';
 import { gameService } from "./GameService.js";
 
 class SkillsService {
@@ -32,7 +30,7 @@ class SkillsService {
 
   async completeSkill(learnedSkill) {
     let skillMultiplier = 0
-    
+
     learnedSkill.isUnlocked = true
     skillMultiplier = learnedSkill.multiplier
     AppState.knowledge = Math.floor((AppState.knowledge * skillMultiplier) / 2);

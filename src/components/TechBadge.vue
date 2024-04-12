@@ -16,9 +16,6 @@
 </template>
 
 <script>
-import { computed } from "vue";
-import { statsState } from "../state/scopedStates/StatsState.js";
-
 
 export default {
   props: {
