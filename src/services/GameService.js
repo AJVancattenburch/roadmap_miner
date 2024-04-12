@@ -11,12 +11,15 @@ class GameService {
     try {
       knowledgeEarned = AppState.knowledge - 500
       AppState.knowledgeEarned = knowledgeEarned
+      AppState.knowledge++
+      logger.log('Knowledge gains (no multipliers):', AppState.knowledgeEarned)
       
-      if (statsState.learnedTechnologies.length === 0) {
-        AppState.knowledge++
-        logger.log('Knowledge gains (no multipliers):', AppState.knowledgeEarned)
-      } else {
+      if (statsState.learnedTechnologies.length >= 1) {
         techsService.handleEffects()
+        logger.log('Knowledge gains (w/ multiplier from technologies):', AppState.knowledgeEarned)
+      } else if(statsState.skillsEarned.length >= 1) {
+        skillsService.handleEffects()
+        logger.log('Knowledge gains (w/ multiplier from skills):', AppState.knowledgeEarned)
       }
 
     } catch (error) {

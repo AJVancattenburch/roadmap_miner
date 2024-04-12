@@ -3,7 +3,6 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "./GameService.js";
 import { AppState } from "../state/AppState.js";
 import { statsState } from "../state/scopedStates/StatsState.js";
-import { skillsService } from "./SkillsService.js";
 
 class TechsService {
   async learnTechnology(newTech) {

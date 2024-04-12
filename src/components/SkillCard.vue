@@ -1,6 +1,6 @@
 <template>
   <div class="card d-flex flex-column justify-content-center align-items-center mb-2">
-    <h6 class="card-title text-center pt-2"><span class="emphasize-title">Learn</span> {{ skill.name }}</h6>
+    <h6 class="card-title text-center pt-2"><span class="emphasize-title">{{ skill.name }}</span> Mastery</h6>
     <div class="img-container d-flex justify-content-center align-items-center rounded-1">
       <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Unlocks after completing the ${skill.requirementCount} affiliated technologies`" class="card-img-top img-fluid">
     </div>
