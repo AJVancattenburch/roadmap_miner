@@ -96,10 +96,10 @@ export default {
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 2rem 0.5rem 0 2rem;
     height: 35rem;
-    width: 15rem;
-    background: linear-gradient(270deg, #000, #111 85%, transparent);
+    width: 18rem;
+    background: linear-gradient(270deg, #000, #111 90%, transparent);
     border-radius: 0 0 0 1rem;
     transition: 0.3s ease-in-out;
     &>h6 {
