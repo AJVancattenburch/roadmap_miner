@@ -24,8 +24,8 @@
         <TechBadge :tech="learnedTech" />
       </div>
       <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
-      <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-        <SkillCard v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" :skill="earnedSkill" />
+      <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="col-12 d-flex justify-content-center align-items-center">
+        <SkillBadge :skill="earnedSkill" />
       </div>
     </aside>
 
@@ -42,7 +42,7 @@ import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed } from "vue";
 import TechBadge from "../components/TechBadge.vue";
-import SkillCard from "../components/SkillCard.vue";
+import SkillBadge from "../components/SkillBadge.vue";
 import TechsOffcanvas from "../components/TechsOffcanvas.vue";
 import SkillsOffcanvas from "../components/SkillsOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
@@ -76,7 +76,7 @@ export default {
   },
   components: {
     TechBadge,
-    SkillCard,
+    SkillBadge,
     TechsOffcanvas,
     SkillsOffcanvas,
   }
