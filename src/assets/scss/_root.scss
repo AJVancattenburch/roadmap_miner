@@ -1,0 +1,30 @@
+:root {
+  --bg-plum: #501227;
+  --bg-purple: #3d1250;
+  --bg-dark-purple: #161250;
+
+  --yellow: #f9f96d;
+  --pink: #ffccd9;
+  --orange: #ffa500;
+  --light-red: #f96d6d;
+  --red: #b60f0f;
+  --crimson: #a43636;
+  --dark-crimson: #773232;
+  --light-green: #80f96d;
+  --blue: #3546b5;
+
+  --glass-plum: #50122750;
+  --shadow-plum: #501227af;
+
+  --btn-shadow-yellow: 0 0 0.5rem #f9f96d, 0 0 0 0.1rem #80f96d inset;
+  --btn-shadow-green: 0 0 0.5rem #80f96d, 0 0 0 0.1rem #80f96d inset;
+  --btn-shadow-red: 0 0 0.5rem #f96d6d, 0 0 0 0.1rem #80f96d inset;
+
+  --yellow-radial-gradient: radial-gradient(circle at 50% 50%, #f9f96d, #b6b60f99 50%, #a4a43699 75%, #787732);
+  --green-radial-gradient: radial-gradient(circle at 50% 50%, #80f96d, #20b60f99 50%, #32a43699 75%, #088732);
+  --red-radial-gradient: radial-gradient(circle at 50% 50%, #f96d6d, #b60f0f99 50%, #a4363699 75%, #773232);
+  --scrollbar-radial-gradient: radial-gradient(ellipse, #bd1b1b 20%, #501227af 70%, transparent);
+  --glass-yellow-linear-gradient: linear-gradient(45deg, #f9f96d99, #b6b60f99, #a4a43699, #78773299, #f9f96dcc);
+  --glass-green-linear-gradient: linear-gradient(45deg, #80f96d99, #20b60f99, #32a43699, #08873299, #80f96dcc);
+  --glass-red-linear-gradient: linear-gradient(45deg, #f96d6d99, #b60f0f99, #a4363699, #77323299, #f96d6dcc);
+}

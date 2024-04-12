@@ -29,9 +29,9 @@ export default {
 k
 <style scoped lang="scss">
 .offcanvas-container {
-  background: linear-gradient(#161250, #3d1250);
+  background: linear-gradient(var(--bg-dark-purple), var(--bg-purple));
   .offcanvas-header {
-    background: linear-gradient(0deg, #161250, #501227);
+    background: linear-gradient(0deg, var(--bg-dark-purple), var(--bg-plum));
     text-align: left;
     .offcanvas-title {
       font-size: 1.5rem;
@@ -45,15 +45,15 @@ k
     }
   }
   ::-webkit-scrollbar {
-    background: #3d1250;
+    background: var(--bg-purple);
   }
   ::-webkit-scrollbar-thumb {
-    background: radial-gradient(ellipse, #bd1b1b 20%, #501227af 70%, transparent);
+    background: var(--scrollbar-radial-gradient);
     border-radius: 0.5rem;
   }
   ::-webkit-scrollbar-track {
-    background: #161250;
-    border-inline: 0.15rem ridge #50122750;
+    background: var(--bg-dark-purple);
+    border-inline: 0.15rem ridge var(--glass-plum);
   }
   ::-webkit-scrollbar-button {
     display: none;

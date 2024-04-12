@@ -105,7 +105,7 @@ export default {
     &>h6 {
       font-size: 1rem;
       font-weight: bold;
-      text-shadow: 0 1px 2px #3546b5;
+      text-shadow: 0 1px 2px var(--blue);
     }
   }
   .clicker-container {

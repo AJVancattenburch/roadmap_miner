@@ -47,7 +47,7 @@ export default {
 .mdi {
   color: green;
   .tech-requirements {
-    color: red;
+    color: var(--red);
     font-style: normal;
   }
 }

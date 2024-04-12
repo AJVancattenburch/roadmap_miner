@@ -1,8 +1,8 @@
 <template>
-  <button v-if="tech.quantity === 0" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt green-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 1" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt yellow-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 2" :disabled="techProgress > 0" @click="learnTechnology" :style="{ disabledColor }" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">{{ tech.energyCost }}</span></button>
-  <button v-if="tech.quantity === 3" :style="{ disabledColor }" class="mdi mdi-lightning-bolt red-badge"><span class="max-increment text-uppercase">Maxed</span></button>
+  <button v-if="tech.quantity === 0" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt green-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 1" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt yellow-badge"><span class="cost-increment">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 2" :disabled="techProgress > 0" @click="learnTechnology" class="mdi mdi-lightning-bolt red-badge"><span class="cost-increment text-uppercase">{{ tech.energyCost }}</span></button>
+  <button v-if="tech.quantity === 3" class="mdi mdi-trophy red-badge"><span class="max-increment text-uppercase">Maxed</span></button>
 </template>
 
 <script>
@@ -37,9 +37,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.mdi-lightning-bolt {
-  color: orange;
-  text-shadow: 1px 1px #000ff0;
+.mdi {
+  color: var(--color-orange);
+  text-shadow: 1px 1px var(--color-blue);
   &.green-badge, &.yellow-badge, &.red-badge {
     position: absolute;
     top: -1rem;
@@ -54,7 +54,8 @@ export default {
     font-style: normal;
     border: 2px ridge #000000;
     border-radius: 0.25rem;
-    transition: 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    
     &::after {
       content: "";
       position: absolute;
@@ -67,30 +68,24 @@ export default {
       height: 100%;
       animation: glowing 20s linear infinite;
       opacity: 1;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
     &.green-badge {
-        background: radial-gradient(
-          circle at 50% 50%, #80f96d, #20b60f 50%, #32a436 75%, #088732 100%);
+        background: var(--green-radial-gradient);
       &::after {
-        background: linear-gradient(
-          45deg, #80f96dcc, #20b60fcc, #32a436cc, #088732cc, #80f96dcc);
+        background: var(--glass-green-linear-gradient);
       }
     }
     &.yellow-badge {
-      background: radial-gradient(
-        circle at 50% 50%, #f9f96d, #b6b60f 50%, #a4a436 75%, #787732 100%);
+      background: var(--yellow-radial-gradient);
       &::after {
-        background: linear-gradient(
-          45deg, #f9f96dcc, #b6b60fcc, #a4a436cc, #787732cc, #f9f96dcc);
+        background: var(--glass-yellow-linear-gradient);
       }
     }
     &.red-badge {
-      background: radial-gradient(
-        circle at 50% 50%, #f96d6d, #b60f0f 50%, #a43636 75%, #773232 100%);
+      background: var(--red-radial-gradient);
       &::after {
-        background: linear-gradient(
-          45deg, #f96d6dcc, #b60f0fcc, #a43636cc, #773232cc, #f96d6dcc);
+        background: var(--glass-red-linear-gradient);
       }
       &.red-badge-max {
         filter: grayscale(75%);
@@ -121,7 +116,7 @@ export default {
     }
     
     &:not(:hover) {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px #00000099;
       transform: perspective(500rem) rotateX(20deg) translateZ(-10px) translate(50%, -15%);
       transition: transform 0.3s ease-in-out;
     }
@@ -131,18 +126,24 @@ export default {
     font-size: 0.8rem;
     font-weight: 500;
     text-shadow: none;
+    transition: 1s ease-in-out;
   }
   .max-increment {
-    color: #ffffff;
+    background: linear-gradient(45deg, #000, #111 85%, transparent);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
     font-size: 0.8rem;
     font-weight: 500;
     text-shadow: none;
+    filter: saturate(0.75), brightness(1.25);
+    transition: 1s ease-in-out;
   }
 }
 *:disabled {
   filter: grayscale(75%);
   cursor: not-allowed;
-  transition: 0.3s ease-in-out;
+  transition: 1s ease-in-out;
   &::after {
     background: transparent;
   }
@@ -150,7 +151,7 @@ export default {
     color: #000000;
     filter: saturate(0.5);
     mix-blend-mode: hard-light;
-    transition: 0.3s ease-in-out;
+    transition: 1s ease-in-out;
   }
 }
 </style>

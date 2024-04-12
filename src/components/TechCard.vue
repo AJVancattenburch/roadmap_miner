@@ -1,6 +1,6 @@
 <template>
   <div class="card d-flex flex-column justify-content-center align-items-center">
-    <div class="img-container d-flex justify-content-center align-items-center bg-dark rounded-1">
+    <div class="img-container d-flex justify-content-center align-items-center">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Click button to purchase ${tech.name} for ${tech.energyCost}`" class="card-img-top img-fluid">
     </div>
     <TechButton :tech="tech" :techProgress="techProgress" @learn-technology="learnTechnology" />
@@ -80,6 +80,10 @@ export default {
   position: relative;
   width: 90px;
   height: 100px;
+  background: conic-gradient(transparent, #fff 0.5turn, transparent);
+  border-radius: 0.25rem;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
   filter: drop-shadow(0 0 0.5rem #000);
   .img-container {
     width: 90px;
@@ -100,18 +104,15 @@ export default {
     flex-wrap: wrap;
     color: #fff;
     font-size: 0.75rem;
-    text-shadow: 0 0 2px #bc4866;
-    background: radial-gradient(
-      circle at 50% 50%,
-      #000000,
-      #000000 50%,
-      #00000000 100%);
+    text-shadow: 0 0 2px var(--crimson);
+    background: linear-gradient(0deg, var(--bg-dark-purple), var(--shadow-plum));
     padding: 0.25rem;
+    border-radius: 0.25rem;
   }
   .card-title .emphasize-title {
-    color: #bc4866;
+    color: var(--crimson);
     text-shadow: 0 0 2px #ffffff80;
-    -webkit-text-stroke: 0.5px #ffccd9;
+    -webkit-text-stroke: 0.5px var(--pink);
   }
 }
 </style>

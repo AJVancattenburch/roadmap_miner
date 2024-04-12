@@ -26,14 +26,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  setup() {
-    return {
-      // techBadge: computed(() => {
-      //   const badge = statsState.learnedTechnologies.find(tech => tech.name === tech.name)
-      //   return badge
-      // })
-    }
   }
 }
 </script>
@@ -51,26 +43,26 @@ export default {
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   &.beginner {
-    box-shadow: 0 0 0.5rem #80f96d, 0 0 0.1rem #80f96d inset;
+    box-shadow:var(--btn-shadow-green);
   }
   &.intermediate {
-    box-shadow: 0 0 0.5rem #f9f96d, 0 0 0.1rem #80f96d inset;
+    box-shadow: var(--btn-shadow-yellow);
   }
   &.advanced {
-    box-shadow: 0 0 0.5rem #f96d6d, 0 0 0.1rem #80f96d inset;
+    box-shadow: var(--btn-shadow-red);
   }
   .card-title:is(.green, .yellow, .red) {
     position: absolute;
     font-size: 0.65rem;
     -webkit-text-stroke: 0.75px #000;
     &.green {
-      color: #80f96d;
+      color: var(--light-green);
     }
     &.yellow {
-      color: #f9f96d;
+      color: var(--yellow);
     }
     &.red {
-      color: #f96d6d;
+      color: var(--light-red);
     }
     span {
       position: relative;
