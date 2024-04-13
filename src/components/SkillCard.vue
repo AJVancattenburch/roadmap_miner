@@ -1,14 +1,9 @@
 <template>
-  <div class="card d-flex flex-column justify-content-center align-items-center mb-2">
-    <h6 class="card-title text-center pt-2"><span class="emphasize-title">{{ skill.name }}</span> Mastery</h6>
-    <div class="img-container d-flex justify-content-center align-items-center rounded-1">
-      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Unlocks after completing the ${skill.requirementCount} affiliated technologies`" class="card-img-top img-fluid">
+  <div class="card d-flex justify-content-center align-items-center mx-1">
+    <div class="img-container d-flex justify-content-center align-items-center">
+      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Picture of the ${skill.name} skill`" class="card-img img-fluid">
     </div>
-    <small class="col-12 sub-text d-flex flex-column flex-start">
-      <div class="emphasize-text">* Must know {{skill.requirementCount}} required technologies</div>
-      <span>{{ skill.requiredTech }}</span>
-    </small>
-    <i class="mdi mdi-battery"> <span class="tech-requirements">{{ skill.requirementCount }}</span></i>
+    <span class="col-12 card-title text-center sub-text"><span class="emphasize-title">{{ skill.name }}</span> Mastery</span>
   </div>
 </template>
 
@@ -44,19 +39,53 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.mdi {
-  color: green;
-  .tech-requirements {
-    color: var(--red);
-    font-style: normal;
-  }
-}
-.sub-text {
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 1rem;
-  .emphasize-text {
+.card {
+  width: 185px;
+  height: 100px;
+  overflow: hidden;
+  background: conic-gradient(var(--glass-plum), #7a7a7a 0.5turn, var(--glass-plum));
+  border-radius: 0 0 2rem 2rem;
+  .card-title {
+    position: relative;
+    top: 0.25rem;
+    color: #fff;
+    text-shadow: 0 0.5rem 0.5rem var(--blue);
+    font-size: 1rem;
     font-weight: 700;
+    z-index: 1;
+  }
+  .img-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    .card-img {
+      position: absolute;
+      top: -4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 130px;
+      aspect-ratio: 1 / 1;
+      object-fit: 100%;
+      border-radius: 50%;
+      border-bottom-left-radius: 30%;
+      border-bottom-right-radius: 30%;
+      background: var(--glass-blue-linear-gradient);
+      box-shadow: var(--btn-shadow-green);
+    }
+  }
+  .mdi {
+    color: green;
+    .tech-requirements {
+      color: var(--red);
+      font-style: normal;
+    }
+  }
+  .sub-text {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 0;
   }
 }
 </style>

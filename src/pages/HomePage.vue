@@ -4,14 +4,14 @@
       <Login />
     </div>
     <section>
-      <i class="tech-btn mdi mdi-plus" type="button" data-bs-toggle="offcanvas" data-bs-target="#techsOffcanvas" aria-controls="techsOffcanvas">
-        <span>Technologies</span>
+      <i class="tech-btn mdi mdi-plus fs-4 fst-normal" type="button" data-bs-toggle="offcanvas" data-bs-target="#techsOffcanvas" aria-controls="techsOffcanvas">
+        <span class="header">Technologies</span>
       </i>
       <TechsOffcanvas  :offcanvasInstance="offcanvasInstance" />
 
-      <a class="btn btn-primary skill-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillsOffcanvas" aria-controls="skillsOffcanvas">
-        <span>Skills</span>
-      </a>
+      <i class="skill-btn mdi mdi-human-male-board fs-5 fst-normal" type="button" data-bs-toggle="offcanvas" data-bs-target="#skillsOffcanvas" aria-controls="skillsOffcanvas">
+        <span class="header">Skills</span>
+      </i>
       <SkillsOffcanvas :offcanvasInstance="offcanvasInstance" />
     </section>
 
@@ -90,6 +90,11 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100vh;
+  .header {
+    font-size: 1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px var(--blue);
+  }
   .current-score {
     position: absolute;
     top: 9rem;
@@ -121,7 +126,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 2rem;
     height: 3rem;
     width: 3rem;
     background: #111;
