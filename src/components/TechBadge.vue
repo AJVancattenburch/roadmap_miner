@@ -1,21 +1,17 @@
 <template>
-  <div class="col-12 d-flex">
-    <div v-if="tech.quantity === 1" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container beginner d-flex flex-column justify-content-center align-items-center">
+  <div class="">
+    <div :title="`Proficiency Level: ${tech.proficiency}`" :class="`col-3 d-flex badge-container ${nameSlug} d-flex flex-column justify-content-center align-items-center`">
       <img :src="tech.picture" :alt="`Picture of ${tech.name}`" class="badge-img img-fluid">
-      <small class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
-    </div>
-    <div v-if="tech.quantity === 2" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container intermediate d-flex flex-column justify-content-center align-items-center">
-      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" title="Proficiency Level: Intermediate" class="badge-img img-fluid">
-      <small class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
-    </div>
-    <div v-if="tech.quantity === 3" :title="`Proficiency Level: ${tech.proficiency}`" class="col-4 d-flex badge-container advanced d-flex flex-column justify-content-center align-items-center">
-      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" :title="`Proficiency Level: ${tech.proficiency}`" class="badge-img img-fluid">
-      <small class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
+      <small v-if="tech.quantity === 1" class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
+      <small v-if="tech.quantity === 2" class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
+      <small v-if="tech.quantity === 3" class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
+import { slugKebab } from "../utils/SlugKebab.js";
 
 export default {
   props: {
@@ -23,7 +19,15 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  setuo(props) {
+    const nameSlug = computed(() => {
+      return slugKebab(props.tech.name)
+    })
+    return {
+      nameSlug
+    }
+  } 
 }
 </script>
 

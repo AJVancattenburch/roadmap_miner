@@ -18,13 +18,14 @@
     <aside class="current-score text-white">
       <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
       <h6 class="col-12">⚡ Energy: {{ energy }}</h6>
-
-      <h6 class="col-12 pt-5 tech-title">📚 Learned Tech:</h6>
-      <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-12 d-flex justify-content-center align-items-center">
-        <TechBadge :tech="learnedTech" />
+      <h6 class="pt-5 tech-title">📚 Learned Tech:</h6>
+      <div class="d-flex">
+        <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-2 d-flex justify-content-center align-items-center">
+          <TechBadge :tech="learnedTech" />
+        </div>
       </div>
-      <h6 class="col-12 pt-3 skills-title">🎓 Earned Skills:</h6>
-      <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="col-12 d-flex justify-content-center align-items-center">
+      <h6 class="pt-3 skills-title">🎓 Earned Skills:</h6>
+      <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
         <SkillBadge :skill="earnedSkill" />
       </div>
     </aside>

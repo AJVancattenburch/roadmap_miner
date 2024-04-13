@@ -11,7 +11,7 @@
   --crimson: #a43636;
   --dark-crimson: #773232;
   --light-green: #80f96d;
-  --blue: #3546b5;
+  --blue: #36a4a4;
 
   --glass-plum: #50122750;
   --shadow-plum: #501227af;
@@ -29,19 +29,22 @@
   --glass-crimson: #a4363650;
   --glass-dark-crimson: #77323250;
   --glass-light-green: #80f96d50;
-  --glass-blue: #3546b550;
+  --glass-blue: #36a4a450;
 
   --btn-shadow-yellow: 0 0 0.5rem #f9f96d, 0 0 0 0.1rem #f9f96d inset;
   --btn-shadow-green: 0 0 0.5rem #80f96d, 0 0 0 0.1rem #80f96d inset;
   --btn-shadow-red: 0 0 0.5rem #f96d6d, 0 0 0 0.1rem #f96d6d inset;
 
+  --plum-radial-gradient: radial-gradient(circle at 50% 50%, #501227, #50122799 50%, #50122799 75%, #501227);
+  --purple-radial-gradient: radial-gradient(circle at 50% 50%, #3d1250, #3d125099 50%, #3d125099 75%, #3d1250);
   --yellow-radial-gradient: radial-gradient(circle at 50% 50%, #f9f96d, #b6b60f99 50%, #a4a43699 75%, #787732);
   --green-radial-gradient: radial-gradient(circle at 50% 50%, #80f96d, #20b60f99 50%, #32a43699 75%, #088732);
   --red-radial-gradient: radial-gradient(circle at 50% 50%, #f96d6d, #b60f0f99 50%, #a4363699 75%, #773232);
-  --blue-radial-gradient: radial-gradient(circle at 50% 50%, #3546b5, #3546b599 50%, #3546b599 75%, #3546b5);
+  --blue-radial-gradient: radial-gradient(circle at 50% 50%, #36a4a4, #36a4a499 50%, #36a4a499 75%, #36a4a4);
   --scrollbar-radial-gradient: radial-gradient(ellipse, #bd1b1b 20%, #501227af 70%, transparent);
   --glass-yellow-linear-gradient: linear-gradient(45deg, #f9f96d99, #b6b60f99, #a4a43699, #78773299, #f9f96dcc);
   --glass-green-linear-gradient: linear-gradient(45deg, #80f96d99, #20b60f99, #32a43699, #08873299, #80f96dcc);
   --glass-red-linear-gradient: linear-gradient(45deg, #f96d6d99, #b60f0f99, #a4363699, #77323299, #f96d6dcc);
-  --glass-blue-linear-gradient: linear-gradient(45deg, #3546b599, #3546b599, #3546b599, #3546b599, #3546b5cc);
+  --glass-blue-linear-gradient: linear-gradient(45deg, #36a4a499, #36a4a499, #36a4a499, #36a4a499, #36a4a4cc);
+  --tetrad-linear-gradient: linear-gradient(45deg, #6d36a4, #36a4a4, #6da436, #a43636);
 }
