@@ -8,6 +8,10 @@
             <SkillCard v-if="skill.category === 'Front End'" :skill="skill" />
           </div>
         </section>
+        <div class="col-12 d-flex px-2 indicators">
+          <i title="Scroll to left" class="col-6 mdi mdi-chevron-double-left text-start"></i>
+          <i title="Scroll to right" class="col-6 mdi mdi-chevron-double-right text-end"></i>
+        </div>
         <hr />
         <h5 class="text-center mt-3">Back End Skills</h5>
         <section class="scroll-box d-flex justify-content-evenly align-items-center">
@@ -15,6 +19,10 @@
             <SkillCard v-if="skill.category === 'Back End'" :skill="skill" />
           </div>
         </section>
+        <div class="col-12 d-flex px-2 indicators">
+          <i title="Scroll to left" class="col-6 mdi mdi-chevron-double-left text-start"></i>
+          <i title="Scroll to right" class="col-6 mdi mdi-chevron-double-right text-end"></i>
+        </div>
         <hr />
         <h5 class="text-center mt-3">Full Stack Skills</h5>
         <section class="scroll-box d-flex justify-content-evenly align-items-center">
@@ -22,6 +30,10 @@
             <SkillCard v-if="skill.category === 'Full Stack'" :skill="skill" />
           </div>
         </section>
+        <div class="col-12 d-flex px-2 indicators">
+          <i title="Scroll to left" class="col-6 mdi mdi-chevron-double-left text-start"></i>
+          <i title="Scroll to right" class="col-6 mdi mdi-chevron-double-right text-end"></i>
+        </div>
       </div>
     </template>
   </OffcanvasWrapper>
@@ -61,10 +73,9 @@ export default {
 
 <style scoped lang="scss">
 .offcanvas-body {
-  overflow-x: hidden;
   .scroll-box {
     overflow-y: hidden;
-    padding-block: 0.5rem;
+    padding-bottom: 10rem;
     .card-container {
       display: flex;
       flex-wrap: wrap;
@@ -74,8 +85,11 @@ export default {
       height: 100%;
       margin-block: 0.25rem;
       background: var(--glass-blue-linear8-gradient);
-      color: var(--dark-gray);
     }
   }
+}
+.indicators {
+  color: #9a9a9a;
+  cursor: pointer;
 }
 </style>

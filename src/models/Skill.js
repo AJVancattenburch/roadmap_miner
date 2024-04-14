@@ -7,10 +7,11 @@ export class Skill {
     this.category = data.category
     this.description = data.description
     this.picture = data.picture
+    this.fillPrimary = data.fillPrimary
+    this.fillSecondary = data.fillSecondary
+    this.accent = data.accent
     this.multiplier = data.multiplier
     this.isUnlocked = data.isUnlocked || false
-    this.requiredTech = data.requiredTech || []
-    this.requirementCount = data.requirementCount
   }
 }
 

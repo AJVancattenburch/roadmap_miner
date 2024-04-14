@@ -1,9 +1,9 @@
 <template>
-  <div class="card d-flex justify-content-center align-items-center mx-1">
+  <div class="card d-flex mx-1">
     <div class="img-container d-flex justify-content-center align-items-center">
-      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Picture of the ${skill.name} skill`" class="card-img img-fluid">
+      <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Picture of the ${skill.name} skill`" :style="{ boxShadow: `0 0 0.5rem ${skill.fillSecondary}, 0 0 0.25rem 0.1rem ${skill.fillSecondary} inset` }" class="card-img img-fluid">
     </div>
-    <span class="col-12 card-title text-center sub-text"><span class="emphasize-title">{{ skill.name }}</span> Mastery</span>
+    <span :style="{ color: skill.fillPrimary, textShadow: skill.fillSecondary, textShadow: `0.5px 0.5px 1px ${skill.accent}` }" class="col-12 card-title d-flex flex-column text-center justify-content-center">{{ skill.name }}<span class="emphasis ps-1">Mastery</span></span>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { Skill } from "../models/Skill.js";
 import { skillsService } from "../services/SkillsService.js";
+import { onMounted, ref } from "vue";
 
 export default {
   props: {
@@ -31,6 +32,7 @@ export default {
         logger.error(error);
       }
     }
+
     return {
       autoUnlockSkill
     }
@@ -40,52 +42,52 @@ export default {
 
 <style scoped lang="scss">
 .card {
-  width: 185px;
-  height: 100px;
-  overflow: hidden;
+  width: 175px;
+  height: 135px;
   background: conic-gradient(var(--glass-plum), #7a7a7a 0.5turn, var(--glass-plum));
-  border-radius: 0 0 2rem 2rem;
+  border-radius: 0.5rem 1.5rem 1.5rem 0.5rem;
+  overflow: hidden;
   .card-title {
     position: relative;
     top: 0.25rem;
-    color: #fff;
-    text-shadow: 0 0.5rem 0.5rem var(--blue);
-    font-size: 1rem;
-    font-weight: 700;
+    color: #ebebeb;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.1;
+    padding-bottom: 0.25rem;
     z-index: 1;
   }
   .img-container {
     position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 170px;
+    height: 90px;
+    transform: translateX(0.75rem);
+    background: var(--glass-blue-linear-gradient);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0.5rem;
     .card-img {
       position: absolute;
-      top: -4rem;
+      top: -3rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 130px;
+      width: 100%;
       height: 130px;
       aspect-ratio: 1 / 1;
       object-fit: 100%;
-      border-radius: 50%;
-      border-bottom-left-radius: 30%;
-      border-bottom-right-radius: 30%;
-      background: var(--glass-blue-linear-gradient);
-      box-shadow: var(--btn-shadow-green);
+      border-top-left-radius: 0;
+      border-top-right-radius: 1.5rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0%;
+      //box-shadow: var(--btn-shadow-green);
     }
   }
   .mdi {
     color: green;
-    .tech-requirements {
-      color: var(--red);
-      font-style: normal;
-    }
   }
-  .sub-text {
-    font-size: 1rem;
-    font-weight: 500;
-    padding-bottom: 0;
+  .emphasis {
+    color: var(--red);
+    font-style: normal;
+    padding-right: 0.5rem;
   }
 }
 </style>

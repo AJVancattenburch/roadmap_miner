@@ -3,7 +3,7 @@ import css from "./tech/css.png";
 import figma from "./tech/figma.png";
 import javascript from "./tech/javascript.png";
 import mongodb from "./tech/mongodb.png";
-import aspnet from "./tech/asp-net.png";
+import aspnetcore from "./tech/aspnetcore.png";
 import csharp from "./tech/csharp.png";
 import mysql from "./tech/my-sql.png";
 import nodejs from "./tech/nodejs.png";
@@ -24,7 +24,7 @@ export const image = {
   figma,
   javascript,
   mongodb,
-  aspnet,
+  aspnetcore,
   csharp,
   mysql,
   nodejs,
