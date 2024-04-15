@@ -17,6 +17,7 @@ import threejs from "./tech/threejs.svg";
 import MEVN from "./tech/mevn.png";
 import MERN from "./tech/mern.png";
 import MEAN from "./tech/mean.png";
+import cardBackground from "./tech/card-background.png";
 
 export const image = {
   html,
@@ -37,5 +38,6 @@ export const image = {
   threejs,
   MEVN,
   MERN,
-  MEAN
+  MEAN,
+  cardBackground
 }

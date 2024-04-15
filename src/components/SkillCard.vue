@@ -3,7 +3,7 @@
     <div class="img-container d-flex justify-content-center align-items-center">
       <img :src="skill.picture" :alt="`Picture of ${skill.name}`" :title="`Picture of the ${skill.name} skill`" :style="{ boxShadow: `0 0 0.5rem ${skill.fillSecondary}, 0 0 0.25rem 0.1rem ${skill.fillSecondary} inset` }" class="card-img img-fluid">
     </div>
-    <span :style="{ color: skill.fillPrimary, textShadow: skill.fillSecondary, textShadow: `0.5px 0.5px 1px ${skill.accent}` }" class="col-12 card-title d-flex flex-column text-center justify-content-center">{{ skill.name }}<span class="emphasis ps-1">Mastery</span></span>
+    <span :style="{ color: skill.fillPrimary }" class="col-12 card-title d-flex flex-column text-center justify-content-center">{{ skill.name }}<span class="emphasis ps-1">Mastery</span></span>
   </div>
 </template>
 
@@ -12,7 +12,6 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { Skill } from "../models/Skill.js";
 import { skillsService } from "../services/SkillsService.js";
-import { onMounted, ref } from "vue";
 
 export default {
   props: {
@@ -22,6 +21,7 @@ export default {
     },
   },
   setup(props) {
+
 
     async function autoUnlockSkill() {
       try {
@@ -44,13 +44,15 @@ export default {
 .card {
   width: 175px;
   height: 135px;
-  background: conic-gradient(var(--glass-plum), #7a7a7a 0.5turn, var(--glass-plum));
+  background: conic-gradient(var(--bg-dark-purple), var(--glass-plum) 0.5turn, var(--bg-dark-purple));
   border-radius: 0.5rem 1.5rem 1.5rem 0.5rem;
   overflow: hidden;
+  filter: drop-shadow(2px 2px 3px var(--blue));
   .card-title {
     position: relative;
     top: 0.25rem;
     color: #ebebeb;
+    text-shadow: 1px 1px 2px var(--plum);
     font-size: 1.05rem;
     font-weight: 500;
     line-height: 1.1;
