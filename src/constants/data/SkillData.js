@@ -1,4 +1,5 @@
 import { image } from '../../assets';
+import { Skill } from "../../models/Skill.js";
 
 const SkillData = [
   {
@@ -132,8 +133,4 @@ const SkillData = [
   }
 ];
 
-export const skillData = SkillData.map(skill => {
-  return {
-    ...skill
-  }
-});
+export const skillData = SkillData.map(skill => new Skill(skill));

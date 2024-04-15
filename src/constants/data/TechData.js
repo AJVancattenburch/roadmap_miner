@@ -1,4 +1,5 @@
 import { image } from '../../assets'
+import { Tech } from "../../models/Tech.js";
 
 const TechData = [
   {
@@ -115,8 +116,4 @@ const TechData = [
   }
 ];
 
-export const techData = TechData.map(tech => {
-  return {
-    ...tech
-  }
-})
+export const techData = TechData.map(tech => new Tech(tech));
