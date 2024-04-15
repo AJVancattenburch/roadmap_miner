@@ -5,6 +5,8 @@ import { techsService } from "./TechsService.js"
 import { Tech } from '../models/Tech.js'
 import { skillsService } from "./SkillsService.js"
 import { Skill } from "../models/Skill.js"
+import { mileStonesService } from './MilestonesService'
+import { skillState } from '../state/scopedStates/SkillState'
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
@@ -63,9 +65,20 @@ class GameService {
       const skill = new Skill(newSkill)
       statsState.skillsEarned.push(skill)
       statsState.skillStat = skill
+      await this.countSkills()
       logger.log('New skill added to stats!:', statsState.skillStat)
     } catch (error) {
       logger.error('Could not update current stats', error)
+    }
+  }
+
+  async countSkills() {
+    try {
+      const skillCount = statsState.skillsEarned.length
+      logger.log('Skills count:', skillCount)
+      await mileStonesService.checkMilestoneStatus(skillCount)
+    } catch (error) {
+      logger.error('Could not count skills', error)
     }
   }
 }

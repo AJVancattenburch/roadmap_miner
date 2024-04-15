@@ -9,5 +9,6 @@ export class Milestone {
     this.picture = data.picture
     this.multiplier = data.multiplier
     this.bonus = data.bonus
+    this.reqSkillCount = data.reqSkillCount
   }
 }

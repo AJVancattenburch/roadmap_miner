@@ -20,7 +20,7 @@ export default {
       required: true
     }
   },
-  setuo(props) {
+  setup(props) {
     const nameSlug = computed(() => {
       return slugKebab(props.tech.name)
     })
