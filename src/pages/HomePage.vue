@@ -122,6 +122,9 @@ export default {
         color: #ebebeb;
         transition: all 0.3s ease-in-out;
       }
+      &:active {
+        filter: brightness(0.9);
+      }
     }
   }
   .current-score {

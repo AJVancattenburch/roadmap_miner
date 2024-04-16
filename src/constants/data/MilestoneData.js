@@ -10,7 +10,7 @@ const MilestoneData = [
     complimentaryColor: '#d35887',
     accentColor: '#ebebeb',
     reqSkillCount: 1,
-    multiplier: 1,
+    multiplier: 2,
     bonus: 0,
     isUnlocked: false
   },
@@ -22,7 +22,7 @@ const MilestoneData = [
     complimentaryColor: '#005aec',
     accentColor: '#ebebeb',
     reqSkillCount: 3,
-    multiplier: 2,
+    multiplier: 4,
     bonus: 0,
     isUnlocked: false
   },
@@ -34,7 +34,7 @@ const MilestoneData = [
     complimentaryColor: '#bbe682',
     accentColor: '#ebebeb',
     reqSkillCount: 9,
-    multiplier: 3,
+    multiplier: 6,
     bonus: 0,
     isUnlocked: false
   },
@@ -46,7 +46,7 @@ const MilestoneData = [
     complimentaryColor: '#fb8261',
     accentColor: '#ebebeb',
     reqSkillCount: 12,
-    multiplier: 4,
+    multiplier: 8,
     bonus: 0,
     isUnlocked: false
   }

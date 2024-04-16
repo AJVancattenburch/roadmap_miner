@@ -1,6 +1,7 @@
 import { Milestone } from "../models/Milestone"
 import { milestoneState } from "../state/scopedStates/MilestoneState"
 import { logger } from "../utils/Logger"
+import { gameService } from "./GameService.js"
 
 class MileStonesService {
   async checkMilestoneStatus(skillCount) {
@@ -29,6 +30,7 @@ class MileStonesService {
       const currentMilestone = new Milestone(milestone)
       milestoneState.activeMilestone = currentMilestone
       logger.log('Current milestone:', milestoneState.activeMilestone)
+      await gameService.increaseKnowledgePerClick(milestone.multiplier)
     } catch (error) {
       logger.error('Could not set current milestone', error)
     }

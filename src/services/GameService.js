@@ -7,6 +7,7 @@ import { skillsService } from "./SkillsService.js"
 import { Skill } from "../models/Skill.js"
 import { mileStonesService } from './MilestonesService'
 import { skillState } from '../state/scopedStates/SkillState'
+import { milestoneState } from "../state/scopedStates/MilestoneState.js"
 
 class GameService {  
   async knowledgeClicker(knowledgeEarned = 0) {
@@ -14,8 +15,8 @@ class GameService {
       knowledgeEarned = AppState.knowledge - 500
       AppState.knowledgeEarned = knowledgeEarned
       AppState.knowledge++
+      await this.increaseKnowledgePerClick()
       logger.log('Knowledge gains (no multipliers):', AppState.knowledgeEarned)
-      
       if (statsState.learnedTechnologies.length >= 1) {
         techsService.handleEffects()
         logger.log('Knowledge gains (w/ multiplier from technologies):', AppState.knowledgeEarned)
@@ -26,6 +27,19 @@ class GameService {
 
     } catch (error) {
       logger.error('Could not gain knowledge', error)
+    }
+  }
+
+  async increaseKnowledgePerClick() {
+    try {
+      const foundMilestone = milestoneState.milestones.find(milestone => milestone.reqSkillCount === skillState.skillsEarned.length)
+      if (foundMilestone) {
+        AppState.knowledgePerClick = foundMilestone.multiplier
+        logger.log('Knowledge per click increased:', AppState.knowledgePerClick)
+      }
+      logger.log('Knowledge per click increased:', AppState.knowledgePerClick)
+    } catch (error) {
+      logger.error('Could not increase knowledge per click', error)
     }
   }
 
