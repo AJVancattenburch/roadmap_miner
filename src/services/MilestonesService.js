@@ -5,22 +5,32 @@ import { logger } from "../utils/Logger"
 class MileStonesService {
   async checkMilestoneStatus(skillCount) {
     try {
-      const newMilestone = milestoneState.milestones.find(milestone => milestone.reqSkillCount === skillCount)
-      logger.log('Milestone unlocked:', newMilestone)
-      await this.unlockMilestone(newMilestone)
+      const reachedMilestone = milestoneState.milestones.find(milestone => milestone.reqSkillCount === skillCount)
+      await this.completeMilestone(reachedMilestone)
     } catch (error) {
-      logger.error('Could not check milestone status', error)
+      logger.error('Could not link skill to milestone', error)
     }
   }
 
-  async unlockMilestone(newMilestone) {
+  async completeMilestone(reachedMilestone) {
     try {
-      const earnedMilestone = new Milestone(newMilestone)
-      earnedMilestone.isUnlocked = true
-      milestoneState.activeMilestone = earnedMilestone
-      logger.log('Milestone unlocked:', newMilestone)
+      if (reachedMilestone) {
+        reachedMilestone.isComplete = true
+        logger.log('🚩 New Milestone Reached! 🚩:', reachedMilestone)
+        await this.setCurrentMilestone(reachedMilestone)
+      }
     } catch (error) {
-      logger.error('Could not unlock milestone', error)
+      logger.error('Could not add milestone', error)
+    }
+  }
+
+  async setCurrentMilestone(milestone) {
+    try {
+      const currentMilestone = new Milestone(milestone)
+      milestoneState.activeMilestone = currentMilestone
+      logger.log('Current milestone:', milestoneState.activeMilestone)
+    } catch (error) {
+      logger.error('Could not set current milestone', error)
     }
   }
 }

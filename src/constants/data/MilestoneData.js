@@ -1,4 +1,5 @@
 import { Milestone } from "../../models/Milestone.js";
+import { colorThemes } from "../../utils/colorThemes.js";
 
 const MilestoneData = [
   {
@@ -9,17 +10,19 @@ const MilestoneData = [
     multiplier: 1,
     bonus: 0,
     reqSkillCount: 1,
-    isUnlocked: false
+    isUnlocked: false,
+    colorTheme: colorThemes.junior
   },
   {
-    name: 'Mid-Level Developer',
-    description: 'You are now a Mid-Level Developer!',
+    name: 'Intermediate Developer',
+    description: 'You are now an Intermediate Developer!',
     knowledgeThreshold: 5000,
     picture: 'https://placehold.it/200x200',
     multiplier: 2,
     bonus: 0,
     reqSkillCount: 3,
-    isUnlocked: false
+    isUnlocked: false,
+    colorTheme: colorThemes.intermediate
   },
   {
     name: 'Senior Developer',
@@ -29,7 +32,8 @@ const MilestoneData = [
     multiplier: 3,
     bonus: 0,
     reqSkillCount: 9,
-    isUnlocked: false
+    isUnlocked: false,
+    colorTheme: colorThemes.senior
   },
   {
     name: 'Lead Developer',
@@ -39,7 +43,8 @@ const MilestoneData = [
     multiplier: 4,
     bonus: 0,
     reqSkillCount: 12,
-    isUnlocked: false
+    isUnlocked: false,
+    colorTheme: colorThemes.lead
   }
 ];
 

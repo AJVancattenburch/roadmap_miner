@@ -1,7 +1,12 @@
 <template>
   <div class="home d-flex">
-    <div class="d-flex justify-content-end align-items-top" style="position: absolute; top: 1rem; right: 1rem;">
-      <Login />
+    <div class="col-12 flex-row d-flex justify-content-center align-items-top pt-2">
+      <div class="col-9 d-flex justify-content-end">
+        <MilestoneCard v-if="milestone" :milestone="milestone" />
+      </div>
+      <div class="col-2 d-flex justify-content-end pt-3">
+        <Login />
+      </div>
     </div>
     <section>
       <i class="tech-btn mdi mdi-plus fs-4 fst-normal" type="button" data-bs-toggle="offcanvas" data-bs-target="#techsOffcanvas" aria-controls="techsOffcanvas">
@@ -17,16 +22,18 @@
 
     <aside class="current-score text-white">
       <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
-      <h6 class="col-12">⚡ Energy: {{ energy }}</h6>
-      <h6 class="pt-5 tech-title">📚 Learned Tech:</h6>
+      <h6 class="col-12 pb-4">⚡ Energy: {{ energy }}</h6>
+      <h6 class="pt-4 tech-title">📚 Learned Tech:</h6>
       <div class="d-flex">
         <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-2 d-flex justify-content-center align-items-center">
           <TechBadge :tech="learnedTech" />
         </div>
       </div>
       <h6 class="pt-3 skills-title">🎓 Earned Skills:</h6>
-      <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
-        <SkillBadge :skill="earnedSkill" />
+      <div class="scroll-box">
+        <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
+          <SkillBadge :skill="earnedSkill" />
+        </div>
       </div>
     </aside>
 
@@ -42,6 +49,7 @@ import { logger } from "../utils/Logger.js";
 import { gameService } from "../services/GameService.js";
 import { AppState } from "../state/AppState.js";
 import { ref, computed } from "vue";
+import MilestoneCard from "../components/MilestoneCard.vue";
 import TechBadge from "../components/TechBadge.vue";
 import SkillBadge from "../components/SkillBadge.vue";
 import TechsOffcanvas from "../components/TechsOffcanvas.vue";
@@ -49,6 +57,7 @@ import SkillsOffcanvas from "../components/SkillsOffcanvas.vue";
 import { skillState } from "../state/scopedStates/SkillState.js";
 import { techState } from "../state/scopedStates/TechState.js";
 import { statsState } from "../state/scopedStates/StatsState.js";
+import { milestoneState } from "../state/scopedStates/MilestoneState.js";
 export default {
   setup() {
     const offcanvasInstance = ref('')
@@ -73,6 +82,8 @@ export default {
       offcanvasInstance,
       technologies: computed(() => techState.technologies),
       skills: computed(() => skillState.skills),
+      milestones: computed(() => milestoneState.milestones),
+      milestone: computed(() => milestoneState.activeMilestone)
     }
   },
   components: {
@@ -80,7 +91,8 @@ export default {
     SkillBadge,
     TechsOffcanvas,
     SkillsOffcanvas,
-  }
+    MilestoneCard
+}
 }
 </script>
 
@@ -102,8 +114,8 @@ export default {
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 2rem 0.5rem 0 2rem;
-    height: 35rem;
+    padding: 2rem 0.5rem 2rem 2rem;
+    height: auto;
     width: 18rem;
     background: linear-gradient(270deg, #000, #111 90%, transparent);
     border-radius: 0 0 0 1rem;
@@ -113,14 +125,21 @@ export default {
       font-weight: bold;
       text-shadow: 0 1px 2px var(--blue);
     }
+    .scroll-box {
+      overflow-y: auto;
+      height: auto;
+      max-height: 10rem;
+      margin-block: 0.25rem;
+      background: var(--glass-blue-linear-gradient);
+    }
   }
-  .clicker-container {
-    margin-top: 18rem;
-  }
+  //.clicker-container {
+  //  margin-top: 18rem;
+  //}
   .tech-btn, .skill-btn {
     position: absolute;
     bottom: 1rem;
-    left: 1rem;
+    left: 1.5rem;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -143,19 +162,7 @@ export default {
     }
   }
   .skill-btn {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-    height: 3rem;
-    width: 3rem;
-    background: #111;
-    &:hover {
-      background: #333;
-    }
+    top: 0;
   }
 }
 </style>

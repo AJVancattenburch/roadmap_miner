@@ -22,7 +22,6 @@ export default {
   },
   setup(props) {
 
-
     async function autoUnlockSkill() {
       try {
         const newSkill = props.skill

@@ -3,6 +3,9 @@ import { skillState } from "../state/scopedStates/SkillState.js"
 import { logger } from "../utils/Logger.js"
 import { Skill } from "../models/Skill.js"
 import { gameService } from "./GameService.js";
+import { mileStonesService } from './MilestonesService';
+import { skills } from "../constants/index.js";
+import { statsState } from "../state/scopedStates/StatsState.js";
 
 class SkillsService {
 
@@ -36,6 +39,17 @@ class SkillsService {
     AppState.knowledge = Math.floor((AppState.knowledge * skillMultiplier) / 2);
     logger.log('Knowledge gained:', skillMultiplier)
     await gameService.addSkillToStats(learnedSkill)
+  }
+
+  async checkSkillCount() {
+    try {
+      const skillCount = statsState.skillsEarned.length
+      logger.log('Skill count:', skillCount)
+      await mileStonesService.checkMilestoneStatus(skillCount)
+      
+    } catch (error) {
+      logger.error('Failed to get skills:', error)
+    }
   }
 }
 

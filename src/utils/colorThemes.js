@@ -1,4 +1,5 @@
 const colorThemes = {
+  // Technology color themes
   html: {
     fillPrimary: '#e44d26',
     fillSecondary: '#f16529',
@@ -64,6 +65,28 @@ const colorThemes = {
   },
   mean: {
     fillPrimary: 'linear-gradient(90deg, #5eaf4d, #ec9200, #d00c05, #9cbe48)',
+    accent: '#ebebeb'
+  },
+
+  // Milestone color themes
+  junior: {
+    primary: '#8bc782',
+    complimentary: '#d35887',
+    accent: '#ebebeb'
+  },
+  intermediate: {
+    primary: '#ec9200',
+    complimentary: '#005aec',
+    accent: '#ebebeb'
+  },
+  senior: {
+    primary: '#ad82e6',
+    complimentary: '#bbe682',
+    accent: '#ebebeb'
+  },
+  lead: {
+    primary: '#61dafb',
+    complimentary: '#fb8261',
     accent: '#ebebeb'
   }
 }

@@ -65,20 +65,10 @@ class GameService {
       const skill = new Skill(newSkill)
       statsState.skillsEarned.push(skill)
       statsState.skillStat = skill
-      await this.countSkills()
       logger.log('New skill added to stats!:', statsState.skillStat)
+      await skillsService.checkSkillCount()
     } catch (error) {
       logger.error('Could not update current stats', error)
-    }
-  }
-
-  async countSkills() {
-    try {
-      const skillCount = statsState.skillsEarned.length
-      logger.log('Skills count:', skillCount)
-      await mileStonesService.checkMilestoneStatus(skillCount)
-    } catch (error) {
-      logger.error('Could not count skills', error)
     }
   }
 }
