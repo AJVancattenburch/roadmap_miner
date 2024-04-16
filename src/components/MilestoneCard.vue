@@ -1,6 +1,6 @@
 <template>
   <div class="card d-flex flex-row justify-content-around align-items-center mt-4">
-    <span :style="{ color: milestone.primary, textShadow: `0 2px 2px ${milestone.secondary}` }" :title="`You are now a ${milestone.description}`" class="card-title">Current Rank: {{ milestone.name }}</span>
+    <span :style="{ color: milestone.primaryColor, textShadow: `0 2px 2px ${milestone.complimentaryColor }` }" :title="`You are now a ${milestone.description}`" class="card-title">Current Rank: {{ milestone.name }}</span>
     <span class="badge bg-secondary text-wrap">Knowledge Multiplier: {{ milestone.multiplier }}</span>
   </div>
 </template>

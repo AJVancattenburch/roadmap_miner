@@ -1,14 +1,14 @@
 <template>
   <div class="home d-flex">
-    <div class="col-12 flex-row d-flex justify-content-center align-items-top pt-2">
+    <section class="game-progress-container col-12 flex-row d-flex justify-content-center align-items-top pt-2">
       <div class="col-9 d-flex justify-content-end">
         <MilestoneCard v-if="milestone" :milestone="milestone" />
       </div>
       <div class="col-2 d-flex justify-content-end pt-3">
         <Login />
       </div>
-    </div>
-    <section>
+    </section>
+    <section class="tech-skill-container">
       <i class="tech-btn mdi mdi-plus fs-4 fst-normal" type="button" data-bs-toggle="offcanvas" data-bs-target="#techsOffcanvas" aria-controls="techsOffcanvas">
         <span class="header">Technologies</span>
       </i>
@@ -20,26 +20,29 @@
       <SkillsOffcanvas :offcanvasInstance="offcanvasInstance" />
     </section>
 
-    <aside class="current-score text-white">
-      <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
-      <h6 class="col-12 pb-4">⚡ Energy: {{ energy }}</h6>
-      <h6 class="pt-4 tech-title">📚 Learned Tech:</h6>
-      <div class="d-flex">
-        <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-2 d-flex justify-content-center align-items-center">
-          <TechBadge :tech="learnedTech" />
+    <section class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
+      <h1 @click="knowledgeClicker" class="col-2 knowledge-clicker btn btn-outline-success fw-bold fst-italic">Click => learn</h1>
+    </section>
+    
+    <section class="col=12">
+      <aside class="col-4 current-score text-white">
+        <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
+        <h6 class="col-12 pb-4">⚡ Energy: {{ energy }}</h6>
+        <h6 class="pt-4 tech-title">📚 Learned Tech:</h6>
+        <div class="d-flex">
+          <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-2 d-flex justify-content-center align-items-center">
+            <TechBadge :tech="learnedTech" />
+          </div>
         </div>
-      </div>
-      <h6 class="pt-3 skills-title">🎓 Earned Skills:</h6>
-      <div class="scroll-box">
-        <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
-          <SkillBadge :skill="earnedSkill" />
+        <h6 class="pt-3 skills-title">🎓 Earned Skills:</h6>
+        <div class="scroll-box">
+          <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
+            <SkillBadge :skill="earnedSkill" />
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </section>
 
-    <div class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
-      <h1 @click="knowledgeClicker" class="col-2 btn btn-outline-success fw-bold fst-italic">Click => learn</h1>
-    </div>
   </div>
 </template>
 
@@ -77,12 +80,11 @@ export default {
       knowledgeClicker,
 
       stats,
+      offcanvasInstance,
       knowledge: computed(() => AppState.knowledge),
       energy: computed(() => AppState.energy),
-      offcanvasInstance,
       technologies: computed(() => techState.technologies),
       skills: computed(() => skillState.skills),
-      milestones: computed(() => milestoneState.milestones),
       milestone: computed(() => milestoneState.activeMilestone)
     }
   },
@@ -92,7 +94,7 @@ export default {
     TechsOffcanvas,
     SkillsOffcanvas,
     MilestoneCard
-}
+  }
 }
 </script>
 
@@ -107,11 +109,26 @@ export default {
     font-weight: 500;
     text-shadow: 0 1px 2px var(--blue);
   }
+  .clicker-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .knowledge-clicker {
+      background: var(--glass-green-linear-gradient) !important;
+      color: #ebebeb;
+      &:hover {
+        background: var(--glass-green-linear-gradient) var(--glass-orange)!important;
+        color: #ebebeb;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
   .current-score {
     position: absolute;
     top: 9rem;
     right: 0;
-    color: #fff;
+    color: #ebebeb;
     display: flex;
     flex-direction: column;
     padding: 2rem 0.5rem 2rem 2rem;
@@ -140,7 +157,7 @@ export default {
     position: absolute;
     bottom: 1rem;
     left: 1.5rem;
-    color: #fff;
+    color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: center;

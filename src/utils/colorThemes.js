@@ -75,19 +75,13 @@ const colorThemes = {
     accent: '#ebebeb'
   },
   intermediate: {
-    primary: '#ec9200',
-    complimentary: '#005aec',
-    accent: '#ebebeb'
+    
   },
   senior: {
-    primary: '#ad82e6',
-    complimentary: '#bbe682',
-    accent: '#ebebeb'
+    
   },
   lead: {
-    primary: '#61dafb',
-    complimentary: '#fb8261',
-    accent: '#ebebeb'
+    
   }
 }
 
