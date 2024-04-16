@@ -1,5 +1,4 @@
 import { Milestone } from "../../models/Milestone.js";
-import { colorThemes } from "../../utils/colorThemes.js";
 
 const MilestoneData = [
   {

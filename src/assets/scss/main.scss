@@ -21,4 +21,25 @@ main {
 a {
   text-decoration: none;
 }
-
+.current-score {
+  .scroll-box {
+    height: auto;
+    max-height: 10rem;
+    overflow-y: auto;
+    background: linear-gradient(90deg, transparent 0, var(--bg-dark-purple) 30%, transparent);
+    border-left: 0.15rem ridge var(--glass-plum);
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: radial-gradient(circle, #f96d6d, transparent 80%, transparent);
+    border-radius: 0.5rem;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-dark-purple);
+    border-inline: 0.15rem ridge var(--glass-plum);
+  }
+}

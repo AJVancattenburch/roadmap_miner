@@ -10,7 +10,6 @@ import Pop from "../utils/Pop.js"
 import { logger } from "../utils/Logger.js"  
 import { Milestone } from "../models/Milestone.js"
 import { mileStonesService } from "../services/MilestonesService.js"
-import { colorThemes } from "../utils/colorThemes.js"
 
 export default {
   props: {

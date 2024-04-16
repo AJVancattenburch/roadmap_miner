@@ -1,5 +1,5 @@
 <template>
-  <div v-if="skill.isUnlocked" class="flex-row card d-flex justify-content-center align-items-center mb-1">
+  <div v-if="skill.isUnlocked" class="flex-row card d-flex justify-content-center align-items-center m-2">
     <div class="col-3 img-container d-flex me-1">
       <img :src="skill.picture" :alt="`Picture of ${skill.picture} Mastery Badge`" :class="`${nameSlug}-img img-fluid`">
     </div>

@@ -23,18 +23,18 @@
     <section class="col-12 clicker-container d-flex flex-column justify-content-center align-items-center">
       <h1 @click="knowledgeClicker" class="col-2 knowledge-clicker btn btn-outline-success fw-bold fst-italic">Click => learn</h1>
     </section>
-    
-    <section class="col=12">
-      <aside class="col-4 current-score text-white">
+
+    <section>
+      <aside class="col-4 current-score text-white ps-5">
         <h6 class="col-12">🧠 Knowledge: {{ knowledge }}</h6>
-        <h6 class="col-12 pb-4">⚡ Energy: {{ energy }}</h6>
+        <h6 class="col-12">⚡ Energy: {{ energy }}</h6>
         <h6 class="pt-4 tech-title">📚 Learned Tech:</h6>
-        <div class="d-flex">
-          <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-2 d-flex justify-content-center align-items-center">
+        <div class="tech-container">
+          <div v-for="(learnedTech, index) in stats.learnedTechnologies" :key="index" class="col-4 d-flex justify-content-start align-items-center pt-1">
             <TechBadge :tech="learnedTech" />
           </div>
         </div>
-        <h6 class="pt-3 skills-title">🎓 Earned Skills:</h6>
+        <h6 class="pt-3 pb-2 skills-title">🎓 Earned Skills:</h6>
         <div class="scroll-box">
           <div v-for="(earnedSkill, index) in stats.skillsEarned" :key="index" class="d-flex justify-content-center align-items-center">
             <SkillBadge :skill="earnedSkill" />
@@ -104,6 +104,7 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100vh;
+  color: #ebebeb;
   .header {
     font-size: 1rem;
     font-weight: 500;
@@ -116,10 +117,8 @@ export default {
     transform: translate(-50%, -50%);
     .knowledge-clicker {
       background: var(--glass-green-linear-gradient) !important;
-      color: #ebebeb;
       &:hover {
         background: var(--glass-green-linear-gradient) var(--glass-orange)!important;
-        color: #ebebeb;
         transition: all 0.3s ease-in-out;
       }
       &:active {
@@ -129,9 +128,8 @@ export default {
   }
   .current-score {
     position: absolute;
-    top: 9rem;
+    top: 6rem;
     right: 0;
-    color: #ebebeb;
     display: flex;
     flex-direction: column;
     padding: 2rem 0.5rem 2rem 2rem;
@@ -141,26 +139,20 @@ export default {
     border-radius: 0 0 0 1rem;
     transition: 0.3s ease-in-out;
     &>h6 {
-      font-size: 1rem;
-      font-weight: bold;
       text-shadow: 0 1px 2px var(--blue);
     }
-    .scroll-box {
-      overflow-y: auto;
-      height: auto;
-      max-height: 10rem;
+    .tech-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
       margin-block: 0.25rem;
-      background: var(--glass-blue-linear-gradient);
     }
   }
-  //.clicker-container {
-  //  margin-top: 18rem;
-  //}
   .tech-btn, .skill-btn {
     position: absolute;
     bottom: 1rem;
     left: 1.5rem;
-    color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -175,10 +167,6 @@ export default {
     &>span {
       position: absolute;
       top: 3rem;
-    }
-    &:hover {
-      background: #333;
-      transition: 0.3s ease-in-out;
     }
   }
   .skill-btn {

@@ -1,11 +1,9 @@
 <template>
-  <div class="">
-    <div :title="`Proficiency Level: ${tech.proficiency}`" :class="`col-3 d-flex badge-container ${nameSlug} d-flex flex-column justify-content-center align-items-center`">
-      <img :src="tech.picture" :alt="`Picture of ${tech.name}`" class="badge-img img-fluid">
-      <small v-if="tech.quantity === 1" class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
-      <small v-if="tech.quantity === 2" class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
-      <small v-if="tech.quantity === 3" class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
-    </div>
+  <div :title="`Proficiency Level: ${tech.proficiency}`" :class="`d-flex badge-container ${nameSlug} d-flex flex-column justify-content-start align-items-center mb-1`">
+    <img :src="tech.picture" :alt="`Picture of ${tech.name}`" class="badge-img img-fluid">
+    <small v-if="tech.quantity === 1" class="card-title green d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">I</span></small>
+    <small v-if="tech.quantity === 2" class="card-title yellow d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">II</span></small>
+    <small v-if="tech.quantity === 3" class="card-title red d-flex flex-column fw-bold pt-2">{{ tech.name }}<span class="proficiency">III</span></small>
   </div>
 </template>
 
