@@ -32,9 +32,9 @@ class GameService {
 
   async increaseKnowledgePerClick() {
     try {
-      const foundMilestone = milestoneState.milestones.find(milestone => milestone.reqSkillCount === skillState.skillsEarned.length)
+      const foundMilestone = milestoneState.milestones.find(milestone => milestone.id === milestoneState.activeMilestone.id)
       if (foundMilestone) {
-        AppState.knowledgePerClick = foundMilestone.multiplier
+        AppState.knowledge += foundMilestone.multiplier
         logger.log('Knowledge per click increased:', AppState.knowledgePerClick)
       }
       logger.log('Knowledge per click increased:', AppState.knowledgePerClick)
